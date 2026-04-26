@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
+
+import java.net.URI;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -37,12 +40,18 @@ public class GeminiServiceImpl implements GeminiService {
             System.err.println("Gemini API URL or Key is not configured. GeminiService will use stub logic.");
             this.webClient = null;
         } else {
+            // Absolute URIs per request (avoid baseUrl + "?key=..." resolution issues)
             this.webClient = WebClient.builder()
-                    .baseUrl(apiUrl)
                     .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(4 * 1024 * 1024))
                     .build();
-            System.out.println("GeminiService configured with API URL: " + apiUrl);
+            System.out.println("GeminiService configured. URL=" + apiUrl + " | API key length=" + apiKey.length()
+                    + " (if URL looks wrong, unset Windows env GEMINI_API_URL — it overrides application*.properties)");
         }
+    }
+
+    private URI geminiRequestUri() {
+        return UriComponentsBuilder.fromHttpUrl(apiUrl).queryParam("key", apiKey).build().toUri();
     }
 
     @Override
@@ -133,7 +142,7 @@ public class GeminiServiceImpl implements GeminiService {
                         "generationConfig", Map.of("temperature", 0.1, "responseMimeType", "application/json"));
 
                 Mono<Map> responseMono = webClient.post()
-                        .uri(uriBuilder -> uriBuilder.queryParam("key", apiKey).build())
+                        .uri(geminiRequestUri())
                         .body(BodyInserters.fromValue(requestBody))
                         .retrieve()
                         .bodyToMono(Map.class);
@@ -238,5 +247,173 @@ public class GeminiServiceImpl implements GeminiService {
         classificationResult.put("urgency", extractedUrgency);
         classificationResult.put("urgentPriorityScore", extractedScore);
         return classificationResult;
+    }
+
+    @Override
+    public String generateTriageReply(String patientMessage) {
+        if (patientMessage == null || patientMessage.trim().isEmpty()) {
+            return "Pakisulat po ang nararamdaman ninyo para matulungan ko kayo.";
+        }
+
+        if (webClient == null) {
+            return "AI service is not configured yet. Please set the Gemini API key in backend/src/main/resources/application.properties.";
+        }
+
+        try {
+            String prompt = """
+                    You are a medical triage assistant for a Filipino healthcare app.
+                    Reply in Filipino (Tagalog) and keep the response short, clear, and compassionate.
+                    Do not claim to be a doctor. Add emergency advice only when needed.
+                    If symptoms suggest severe danger (e.g. chest pain, stroke signs, severe bleeding, trouble breathing),
+                    advise immediate emergency help.
+
+                    Patient message: %s
+                    """
+                    .formatted(patientMessage.trim());
+
+            Map<String, Object> requestBody = Map.of(
+                    "contents", List.of(
+                            Map.of("parts", List.of(Map.of("text", prompt)))),
+                    "generationConfig", Map.of("temperature", 0.3, "maxOutputTokens", 300));
+
+            Map geminiResponse = webClient.post()
+                    .uri(geminiRequestUri())
+                    .body(BodyInserters.fromValue(requestBody))
+                    .retrieve()
+                    .bodyToMono(Map.class)
+                    .block();
+
+            if (geminiResponse != null && geminiResponse.containsKey("error")) {
+                System.err.println("Gemini API error payload: " + geminiResponse.get("error"));
+                return "Pasensya na, tumangging ang Gemini API (tingnan ang backend log para sa detalye). Siguraduhing tama ang API key at model sa configuration.";
+            }
+
+            if (geminiResponse != null && geminiResponse.containsKey("candidates")) {
+                List<Map<String, Object>> candidates = (List<Map<String, Object>>) geminiResponse.get("candidates");
+                if (!candidates.isEmpty()) {
+                    Map<String, Object> firstCandidate = candidates.get(0);
+                    Map<String, Object> content = (Map<String, Object>) firstCandidate.get("content");
+                    if (content != null && content.containsKey("parts")) {
+                        List<Map<String, Object>> parts = (List<Map<String, Object>>) content.get("parts");
+                        if (!parts.isEmpty()) {
+                            String text = (String) parts.get(0).get("text");
+                            if (text != null && !text.trim().isEmpty()) {
+                                return text.trim();
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (geminiResponse != null) {
+                System.err.println("Gemini reply had no usable text. Response keys: " + geminiResponse.keySet());
+            }
+        } catch (Exception e) {
+            if (e instanceof WebClientResponseException wcre) {
+                System.err.println("Gemini HTTP " + wcre.getStatusCode() + " body: " + wcre.getResponseBodyAsString());
+            } else {
+                System.err.println("Error generating triage reply from Gemini: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        return "Pasensya na, may pansamantalang problema sa AI assistant. Pakisubukan muli.";
+    }
+
+    @Override
+    public Map<String, Object> generateTriageSummary(String transcript) {
+        Map<String, Object> out = new HashMap<>();
+        out.put("fallback", true);
+        out.put("service", "Emergency / General consultation");
+        out.put("urgency", "Not specified");
+        out.put("waitNote", "Magpakonsulta sa propesyonal na doktor para sa tamang diagnosis.");
+        out.put("summary", "Hindi makumpleto ang AI summary. Pakisubukan muli maya-maya.");
+        out.put("rationale", List.of("Ang inyong mga sagot ay naitala na para sa susunod na hakbang."));
+        out.put("alternatives", List.of());
+
+        if (transcript == null || transcript.isBlank()) {
+            return out;
+        }
+
+        if (webClient == null) {
+            return out;
+        }
+
+        try {
+            String prompt = """
+                    You are a medical triage assistant for a Filipino patient app (NOT a doctor).
+                    Based ONLY on the questionnaire transcript below, recommend the most appropriate hospital SERVICE type
+                    (e.g. Emergency Department, General Medicine, Pediatrics) and urgency.
+
+                    Output ONLY valid JSON (no markdown) with this exact shape:
+                    {
+                      "recommendedService": "string in Filipino",
+                      "urgency": "Critical" | "Urgent" | "Not urgent" | "Not specified",
+                      "waitNote": "short Filipino note about timing / caution",
+                      "summary": "2-4 sentences in Filipino for the patient",
+                      "rationale": ["bullet in Filipino", "another bullet"],
+                      "alternatives": [{"service":"string","reason":"string"}]
+                    }
+
+                    Transcript:
+                    %s
+                    """
+                    .formatted(transcript.trim());
+
+            Map<String, Object> part = new HashMap<>();
+            part.put("text", prompt);
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("contents", List.of(Map.of("parts", List.of(part))));
+            requestBody.put(
+                    "generationConfig",
+                    Map.of(
+                            "temperature", 0.25,
+                            "maxOutputTokens", 800,
+                            "responseMimeType", "application/json"));
+
+            Map geminiResponse = webClient.post()
+                    .uri(geminiRequestUri())
+                    .body(BodyInserters.fromValue(requestBody))
+                    .retrieve()
+                    .bodyToMono(Map.class)
+                    .block();
+
+            if (geminiResponse != null && geminiResponse.containsKey("error")) {
+                System.err.println("Gemini summary error: " + geminiResponse.get("error"));
+                return out;
+            }
+
+            if (geminiResponse != null && geminiResponse.containsKey("candidates")) {
+                List<Map<String, Object>> candidates = (List<Map<String, Object>>) geminiResponse.get("candidates");
+                if (!candidates.isEmpty()) {
+                    Map<String, Object> first = candidates.get(0);
+                    Map<String, Object> content = (Map<String, Object>) first.get("content");
+                    if (content != null && content.containsKey("parts")) {
+                        List<Map<String, Object>> parts = (List<Map<String, Object>>) content.get("parts");
+                        if (!parts.isEmpty()) {
+                            String text = (String) parts.get(0).get("text");
+                            if (text != null && !text.trim().isEmpty()) {
+                                text = text.replace("```json", "").replace("```", "").trim();
+                                Map<String, Object> parsed = objectMapper.readValue(text, Map.class);
+                                parsed.put("fallback", false);
+                                if (!parsed.containsKey("service") && parsed.containsKey("recommendedService")) {
+                                    parsed.put("service", parsed.get("recommendedService"));
+                                }
+                                return parsed;
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            if (e instanceof WebClientResponseException wcre) {
+                System.err.println("Gemini summary HTTP " + wcre.getStatusCode() + " body: "
+                        + wcre.getResponseBodyAsString());
+            } else {
+                System.err.println("Gemini summary error: " + e.getMessage());
+            }
+        }
+
+        return out;
     }
 }

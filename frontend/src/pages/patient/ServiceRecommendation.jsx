@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PatientShell from '../../components/patient/PatientShell.jsx';
 import PatientHeader from '../../components/patient/PatientHeader.jsx';
 import Icon from '../../components/shared/Icon.jsx';
-import { recommendation } from '../../data/triage.js';
+import { recommendation as defaultRecommendation } from '../../data/triage.js';
 
 export default function ServiceRecommendation() {
+  const location = useLocation();
+  const recommendation = location.state?.recommendation || defaultRecommendation;
+  const alternatives = recommendation.alternatives?.length
+    ? recommendation.alternatives
+    : defaultRecommendation.alternatives;
+
   return (
     <PatientShell hideNav>
       <PatientHeader title="Suriin" subtitle="Resulta ng AI" />
@@ -24,11 +30,15 @@ export default function ServiceRecommendation() {
               {recommendation.urgency} · {recommendation.waitNote}
             </span>
 
+            {recommendation.summary && (
+              <p className="mt-4 text-body-md text-on-surface leading-relaxed">{recommendation.summary}</p>
+            )}
+
             <div className="mt-stack-lg space-y-stack-sm">
               <h3 className="font-bold text-on-surface flex items-center gap-2">
                 <Icon name="psychology" className="text-primary-container" /> Bakit po ito?
               </h3>
-              {recommendation.rationale.map((r, i) => (
+              {(recommendation.rationale || []).map((r, i) => (
                 <div key={i} className="flex gap-3 items-start">
                   <Icon name="check_circle" className="text-primary-container shrink-0 mt-0.5" size={18} />
                   <p className="text-body-md text-on-surface-variant">{r}</p>
@@ -41,13 +51,13 @@ export default function ServiceRecommendation() {
         {/* Alternatives */}
         <div className="bg-white rounded-xl p-4 shadow-card">
           <h3 className="font-bold text-on-surface mb-3">Iba pang opsyon</h3>
-          {recommendation.alternatives.map((a) => (
+          {alternatives.map((a) => (
             <div key={a.service} className="flex justify-between items-start gap-3 py-3 border-b border-outline-variant/30 last:border-0">
               <div>
                 <h4 className="font-bold text-on-surface">{a.service}</h4>
                 <p className="text-body-md text-on-surface-variant">{a.reason}</p>
               </div>
-              <button className="text-primary-container font-label-bold text-label-bold">PUMILI</button>
+              <button type="button" className="text-primary-container font-label-bold text-label-bold">PUMILI</button>
             </div>
           ))}
         </div>

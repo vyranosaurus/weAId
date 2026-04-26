@@ -22,5 +22,9 @@ export default defineConfig({
     port: 3000,
     open: true,
     cors: true,
+    proxy: {
+      // Same-origin /api in dev → avoids browser CORS when frontend is localhost:3000
+      '/api': { target: 'http://localhost:8080', changeOrigin: true },
+    },
   },
 })

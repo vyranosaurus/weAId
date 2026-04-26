@@ -3,6 +3,8 @@ package com.hackathon.socomsci.controller;
 
 import com.hackathon.socomsci.model.*;
 import com.hackathon.socomsci.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api")
 public class HospitalController {
+
+    private static final Logger logger = LoggerFactory.getLogger(HospitalController.class);
 
     private final HospitalService hospitalService;
 
@@ -45,8 +49,7 @@ public class HospitalController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            logger.error("Error fetching services for hospital ID: {}", hospitalId, e); // <-- Pass the exception 'e' as
-                                                                                        // the last argument
+            logger.error("Error fetching services for hospital ID: {}", hospitalId, e);
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
