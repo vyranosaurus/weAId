@@ -162,7 +162,7 @@ export default function PatientHome() {
 
         {/* Promo banner */}
         <Link
-          to="/patient/triage"
+          to="/patient/search"
           className="block group bg-gradient-to-br from-primary-container via-[#7f1f1f] to-[#5f1414] rounded-2xl p-stack-lg text-white shadow-hero relative overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(60,0,0,0.35)]"
         >
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/15 rounded-full blur-2xl animate-pulse" />
