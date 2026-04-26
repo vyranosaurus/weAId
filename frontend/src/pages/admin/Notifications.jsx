@@ -52,6 +52,7 @@ export default function AdminNotifications() {
       <div className="space-y-3">
         {adminNotifications.map((n) => {
           const s = sevStyles[n.severity];
+          const needsAttention = !n.read && (n.severity === 'critical' || n.severity === 'warning');
           return (
             <div
               key={n.id}
@@ -59,7 +60,11 @@ export default function AdminNotifications() {
                 !n.read ? 'border-l-4' : 'opacity-75'
               }`}
             >
-              <div className={`w-10 h-10 rounded-full ${s.bg} ${s.text} flex items-center justify-center shrink-0`}>
+              <div
+                className={`w-10 h-10 rounded-full ${s.bg} ${s.text} flex items-center justify-center shrink-0 ${
+                  needsAttention ? 'animate-pulse ring-2 ring-red-200/70' : ''
+                }`}
+              >
                 <Icon name={s.icon} />
               </div>
               <div className="flex-1 min-w-0">
@@ -70,7 +75,9 @@ export default function AdminNotifications() {
                 <p className="text-sm text-on-surface-variant mt-1">{n.body}</p>
                 <div className="flex items-center gap-2 mt-3">
                   <span
-                    className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${s.bg} ${s.text}`}
+                    className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${s.bg} ${s.text} ${
+                      needsAttention ? 'animate-[pulse_1.8s_ease-in-out_infinite]' : ''
+                    }`}
                   >
                     <span className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />
                     {n.severity}

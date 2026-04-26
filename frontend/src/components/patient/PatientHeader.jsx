@@ -18,7 +18,7 @@ export default function PatientHeader({
 
   return (
     <header
-      className={`relative ${bg} text-white rounded-b-[20px] shadow-hero z-30 ${
+      className={`sticky top-0 relative ${bg} text-white rounded-b-[20px] shadow-hero header-emboss z-30 ${
         isHero ? 'px-container-padding pt-6 pb-8' : 'px-5 h-16 flex items-center justify-between'
       }`}
     >

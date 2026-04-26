@@ -50,7 +50,7 @@ export default function HospitalServices() {
     <PatientShell hideNav>
       <PatientHeader
         title="Mga Serbisyo"
-        subtitle={hospital.shortName}
+        subtitle={hospital.name}
         rightAction={<Icon name="medical_services" className="text-white/95" size={20} />}
       />
 
@@ -115,10 +115,10 @@ export default function HospitalServices() {
         </section>
 
         <Link
-          to={`/patient/hospital/${hospital.id}`}
+          to="/patient/messages"
           className="block w-full text-center bg-primary-container text-white py-3 rounded-full font-label-bold text-label-bold uppercase shadow-card"
         >
-          Bumalik sa hospital details
+          Mag-Inquire
         </Link>
       </main>
     </PatientShell>

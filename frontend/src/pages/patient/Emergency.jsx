@@ -17,7 +17,6 @@ export default function Emergency() {
       <PatientHeader
         title="EMERGENCY"
         subtitle="Pinakamalapit na ER, agad."
-        toneOverride="red"
       />
 
       <main className="px-container-padding py-stack-lg space-y-stack-lg">

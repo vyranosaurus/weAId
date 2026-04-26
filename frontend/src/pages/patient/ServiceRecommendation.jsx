@@ -9,7 +9,7 @@ export default function ServiceRecommendation() {
     <PatientShell hideNav>
       <PatientHeader title="Suriin" subtitle="Resulta ng AI" />
 
-      <main className="px-container-padding py-stack-lg space-y-stack-lg">
+      <main className="px-container-padding py-stack-lg space-y-stack-lg screen-enter">
         {/* Big rec card */}
         <div className="bg-white rounded-2xl p-stack-lg shadow-card relative overflow-hidden border border-primary-container/20">
           <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary-container/5 rounded-full blur-2xl" />
@@ -21,7 +21,7 @@ export default function ServiceRecommendation() {
               {recommendation.service}
             </h1>
             <span className="inline-block mt-2 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-[11px] font-bold uppercase">
-              {recommendation.urgency} · 2 araw na maghintay → tumagal pa
+              {recommendation.urgency} · {recommendation.waitNote}
             </span>
 
             <div className="mt-stack-lg space-y-stack-sm">

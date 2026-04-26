@@ -15,10 +15,7 @@ export default function PatientNotifications() {
   return (
     <PatientShell>
       <PatientHeader
-        title="Mga abiso"
-        rightAction={
-          <button className="text-white text-xs font-bold uppercase">Markahan lahat</button>
-        }
+        title="Mga Abiso"
       />
 
       <main className="px-container-padding py-stack-md space-y-stack-sm screen-enter">

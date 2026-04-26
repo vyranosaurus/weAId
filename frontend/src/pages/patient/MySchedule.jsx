@@ -21,6 +21,7 @@ const statusStyles = {
 
 export default function MySchedule() {
   const [tab, setTab] = useState('today');
+  const [showAddPrompt, setShowAddPrompt] = useState(false);
   const list = reservations.filter((r) => r.status === tab);
 
   return (
@@ -28,11 +29,6 @@ export default function MySchedule() {
       <PatientHeader
         title="Inyong iskedyul"
         showBack={false}
-        rightAction={
-          <button className="p-2 rounded-full hover:bg-white/10">
-            <Icon name="filter_list" />
-          </button>
-        }
       />
 
       {/* Tabs */}
@@ -54,7 +50,15 @@ export default function MySchedule() {
         </div>
       </div>
 
-      <main className="px-container-padding py-stack-md space-y-stack-md">
+      <main className="px-container-padding py-stack-md space-y-stack-md screen-enter">
+        <button
+          onClick={() => setShowAddPrompt(true)}
+          className="w-full bg-primary-container text-white py-3 rounded-full font-label-bold text-label-bold uppercase shadow-card flex items-center justify-center gap-2"
+        >
+          <Icon name="add_circle" size={18} />
+          Magdagdag ng schedule
+        </button>
+
         {list.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl shadow-card">
             <Icon name="event_busy" size={48} className="text-on-surface-variant" />
@@ -76,7 +80,7 @@ export default function MySchedule() {
               <Link
                 key={r.id}
                 to={`/patient/reservation/${r.id}`}
-                className="block bg-white rounded-xl p-4 shadow-card relative overflow-hidden border border-outline-variant/20 hover:shadow-md transition-all"
+                className="block bg-white rounded-xl p-4 shadow-card relative overflow-hidden border-2 border-primary-container/25 hover:border-primary-container/45 hover:shadow-md transition-all"
               >
                 {r.status === 'today' && (
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary-container" />
@@ -118,6 +122,44 @@ export default function MySchedule() {
           })
         )}
       </main>
+
+      {showAddPrompt && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4">
+          <div className="w-full max-w-xs bg-white rounded-2xl p-4 space-y-3 shadow-xl">
+            <h3 className="font-bold text-on-surface text-base">Paano kayo mag-schedule?</h3>
+            <p className="text-[12px] text-on-surface-variant">
+              Piliin kung gusto ninyo ng AI-guided flow o manual na pag-fill ng form.
+            </p>
+
+            <div className="space-y-2">
+              <Link
+                to="/patient/triage"
+                onClick={() => setShowAddPrompt(false)}
+                className="w-full bg-primary-container text-white py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+              >
+                <Icon name="smart_toy" size={16} />
+                Talk to AI
+              </Link>
+              <Link
+                to="/patient/condition-form"
+                onClick={() => setShowAddPrompt(false)}
+                className="w-full bg-white border border-primary-container text-primary-container py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+              >
+                <Icon name="edit_note" size={16} />
+                Manual Form
+              </Link>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowAddPrompt(false)}
+              className="w-full py-2 text-[12px] font-semibold text-on-surface-variant hover:text-on-surface"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </PatientShell>
   );
 }

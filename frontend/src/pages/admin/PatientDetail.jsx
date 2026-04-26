@@ -20,16 +20,13 @@ export default function AdminPatientDetail() {
   return (
     <AdminShell breadcrumb={`Patient · ${p.name}`}>
       {/* Header card */}
-      <div className="bg-white rounded-2xl p-stack-lg shadow-card border-l-4 border-primary-container flex flex-col md:flex-row gap-4 items-start">
+      <div className="bg-gradient-to-br from-white to-[#fff9f9] rounded-2xl p-stack-lg shadow-[0_14px_28px_rgba(0,0,0,0.08)] border border-primary-container/25 flex flex-col md:flex-row gap-4 items-start">
         <div className="w-16 h-16 rounded-full bg-primary-container/15 text-primary-container flex items-center justify-center text-2xl font-bold">
           {p.name[0]}
         </div>
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="font-display-md text-display-md">{p.name}</h1>
-            <span className="font-ai-signature font-black text-primary-container ai-glow-dark text-xl">
-              AI
-            </span>
             <span
               className={`text-[11px] font-bold px-2 py-1 rounded-full ${sP.bg} ${sP.text}`}
             >
@@ -42,13 +39,13 @@ export default function AdminPatientDetail() {
           <p className="text-on-surface mt-2">{p.complaint}</p>
         </div>
         <div className="flex flex-col gap-2 w-full md:w-auto">
-          <button className="bg-primary-container text-white px-5 py-2 rounded-full text-xs font-bold uppercase shadow-card">
+          <button className="bg-primary-container text-white px-5 py-2 rounded-full text-xs font-bold uppercase shadow-card hover:bg-[#600000] transition-all">
             <Icon name="campaign" size={16} className="inline mr-1" /> Tawagin
           </button>
-          <button className="bg-white border border-outline-variant text-on-surface px-5 py-2 rounded-full text-xs font-bold uppercase">
+          <button className="bg-white border border-outline-variant/70 text-on-surface px-5 py-2 rounded-full text-xs font-bold uppercase hover:border-primary-container/40 hover:bg-primary-container/5 transition-all">
             <Icon name="chat" size={16} className="inline mr-1" /> Magmensahe
           </button>
-          <button className="bg-white border border-red-500 text-red-600 px-5 py-2 rounded-full text-xs font-bold uppercase">
+          <button className="bg-white border border-red-500/70 text-red-600 px-5 py-2 rounded-full text-xs font-bold uppercase hover:bg-red-50 transition-all">
             <Icon name="flag" size={16} className="inline mr-1" /> I-flag
           </button>
         </div>
@@ -93,7 +90,7 @@ export default function AdminPatientDetail() {
 
           {/* Timeline */}
           <div className="bg-white rounded-xl shadow-card border border-outline-variant/20 p-5">
-            <h3 className="font-headline-sm text-headline-sm mb-4">weAId Journey</h3>
+            <h3 className="font-headline-sm text-headline-sm mb-4">History</h3>
             <ol className="relative border-l-2 border-primary-container/30 ml-3 space-y-4">
               {triageTimeline.map((t, i) => (
                 <li key={i} className="ml-5 relative">

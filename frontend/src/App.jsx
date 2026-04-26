@@ -24,14 +24,14 @@ import Emergency from './pages/patient/Emergency.jsx';
 import PatientSettings from './pages/patient/Settings.jsx';
 import HealthTips from './pages/patient/HealthTips.jsx';
 import HospitalSearch from './pages/patient/HospitalSearch.jsx';
+import FAQs from './pages/patient/FAQs.jsx';
+import QueueStatus from './pages/patient/QueueStatus.jsx';
 
 import AdminLogin from './pages/admin/Login.jsx';
 import AdminOverview from './pages/admin/Overview.jsx';
 import LiveQueue from './pages/admin/LiveQueue.jsx';
 import Incoming from './pages/admin/Incoming.jsx';
 import AdminPatientDetail from './pages/admin/PatientDetail.jsx';
-import ServicesCapacity from './pages/admin/ServicesCapacity.jsx';
-import Staffing from './pages/admin/Staffing.jsx';
 import Analytics from './pages/admin/Analytics.jsx';
 import HospitalProfile from './pages/admin/HospitalProfile.jsx';
 import AdminMessages from './pages/admin/Messages.jsx';
@@ -67,6 +67,8 @@ export default function App() {
       <Route path="/patient/emergency" element={<Emergency />} />
       <Route path="/patient/settings" element={<PatientSettings />} />
       <Route path="/patient/tips" element={<HealthTips />} />
+      <Route path="/patient/faqs" element={<FAQs />} />
+      <Route path="/patient/queue" element={<QueueStatus />} />
 
       {/* Admin */}
       <Route path="/login/admin" element={<AdminLogin />} />
@@ -74,8 +76,6 @@ export default function App() {
       <Route path="/admin/queue" element={<LiveQueue />} />
       <Route path="/admin/incoming" element={<Incoming />} />
       <Route path="/admin/patient/:id" element={<AdminPatientDetail />} />
-      <Route path="/admin/services" element={<ServicesCapacity />} />
-      <Route path="/admin/staffing" element={<Staffing />} />
       <Route path="/admin/analytics" element={<Analytics />} />
       <Route path="/admin/profile" element={<HospitalProfile />} />
       <Route path="/admin/messages" element={<AdminMessages />} />

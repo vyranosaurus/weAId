@@ -6,7 +6,7 @@ const items = [
   { to: '/patient/search', label: 'Hanapin', icon: 'explore' },
   { to: '/patient/emergency', label: 'Emergency', icon: 'emergency', emergency: true },
   { to: '/patient/messages', label: 'Mensahe', icon: 'chat_bubble' },
-  { to: '/patient/profile', label: 'Profile', icon: 'person' },
+  { to: '/patient/queue', label: 'Queue', icon: 'queue' },
 ];
 
 export default function BottomNav({ className = '' }) {

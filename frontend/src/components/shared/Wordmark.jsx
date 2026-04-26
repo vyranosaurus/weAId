@@ -8,22 +8,22 @@ export default function Wordmark({ size = 'lg', tone = 'light', aiTone }) {
   const baseColor = tone === 'light' ? 'text-white' : 'text-primary-container';
   const embossedShadow =
     tone === 'light'
-      ? '0 1px 0 rgba(255,255,255,0.28), 0 2px 8px rgba(0,0,0,0.32)'
+      ? '0 1px 0 rgba(255,255,255,0.35), 0 3px 12px rgba(0,0,0,0.38)'
       : '0 1px 0 rgba(255,255,255,0.55), 0 2px 8px rgba(128,0,0,0.25)';
   const resolvedAiTone = aiTone || (tone === 'light' ? 'light' : 'maroon');
   const aiColorClass = resolvedAiTone === 'maroon' ? 'text-primary-container' : 'text-white';
   const aiGlowShadow =
     resolvedAiTone === 'maroon'
-      ? '0 0 8px rgba(128,0,0,0.55), 0 0 16px rgba(178,43,29,0.45)'
-      : '0 0 8px rgba(255,255,255,0.65), 0 0 14px rgba(255,255,255,0.45)';
+      ? '0 0 9px rgba(128,0,0,0.58), 0 0 18px rgba(178,43,29,0.48)'
+      : '0 0 9px rgba(255,255,255,0.72), 0 0 16px rgba(255,255,255,0.5)';
   return (
     <span
-      className={`font-bold tracking-tight ${sizeMap[size]} ${baseColor} animate-pulse-slow`}
+      className={`font-extrabold tracking-[-0.02em] ${sizeMap[size]} ${baseColor} animate-pulse-slow`}
       style={{ textShadow: embossedShadow }}
     >
       We
       <span
-        className={`font-ai-signature font-black animate-glow animate-pulse-slow text-[1.22em] leading-none inline-block ${aiColorClass}`}
+        className={`font-ai-signature font-black animate-glow animate-pulse-slow text-[1.22em] leading-none inline-block -mx-[0.01em] ${aiColorClass}`}
         style={{ textShadow: aiGlowShadow }}
       >
         AI

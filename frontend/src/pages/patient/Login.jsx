@@ -12,18 +12,17 @@ export default function PatientLogin() {
         <div className="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-1.5 rounded-full bg-[#2e2e31] z-30" />
         <div className={`flex flex-col flex-1 ${fromLanding ? 'screen-enter' : ''}`}>
           {/* Hero */}
-          <div className="bg-primary-container rounded-b-[20px] shadow-hero px-container-padding pt-12 pb-8">
+          <div className="bg-gradient-to-br from-primary-container via-[#7f1f1f] to-[#5f1414] rounded-b-[20px] shadow-hero px-container-padding pt-12 pb-8">
           <Link to="/" className="inline-flex items-center text-white/80 hover:text-white text-sm font-bold uppercase tracking-wider">
             <Icon name="arrow_back" size={18} />
-            <span className="ml-1">Bumalik</span>
           </Link>
           <div className="mt-6 text-center space-y-1.5">
-            <Wordmark size="md" tone="light" />
+            <Wordmark size="lg" tone="light" />
             <h1 className="font-display-md text-display-md text-white mt-3 tracking-[0.01em] leading-tight">
               Maligayang pagbabalik!
             </h1>
             <p className="font-body-md text-body-md text-white/85 mt-1 tracking-[0.015em]">
-              Pumasok sa account ninyo.
+              Mag-Login sa inyong Account
             </p>
           </div>
           </div>
@@ -72,9 +71,9 @@ export default function PatientLogin() {
 
             <button
               onClick={() => navigate('/patient/home')}
-              className="w-full bg-primary-container text-white font-label-bold text-label-bold uppercase py-4 rounded-full hover:bg-[#600000] transition-all active:scale-95 shadow-card"
+              className="w-full bg-primary-container text-white font-label-bold text-label-bold text-base py-4 rounded-full hover:bg-[#600000] transition-all active:scale-95 shadow-card"
             >
-              Pumasok
+              Log in
             </button>
 
             <div className="flex items-center gap-3 text-on-surface-variant text-xs">
@@ -93,7 +92,7 @@ export default function PatientLogin() {
 
             <button
               onClick={() => navigate('/patient/home')}
-              className="w-full text-on-surface-variant font-label-bold text-label-bold uppercase py-3 hover:text-primary-container"
+              className="w-full bg-surface-container border border-outline-variant/40 text-on-surface font-label-bold text-label-bold uppercase py-3 rounded-full shadow-card hover:bg-primary-container/10 hover:text-primary-container transition-all"
             >
               Magpatuloy bilang Bisita
             </button>

@@ -20,20 +20,12 @@ const categories = [
     tone: 'bg-tertiary-fixed text-tertiary',
     to: '/patient/schedule',
   },
-  { icon: 'medical_information', label: 'Specialists', tone: 'bg-secondary-fixed text-secondary', to: '/patient/search' },
-];
-
-const steps = [
-  { n: 1, icon: 'edit_note', title: 'Sabihin', body: 'I-type o sabihin sa mic ang nararamdaman.' },
-  { n: 2, icon: 'neurology', title: 'Suriin', body: 'Mag-aanalyze ang AI ng urgency at tamang serbisyo.' },
-  { n: 3, icon: 'local_hospital', title: 'Hanapin', body: 'Pinakamabilis at pinakamalapit na ospital, sasabihin namin.' },
 ];
 
 export default function PatientHome() {
   const defaultAddress = 'Sampaloc, Manila';
   const [address, setAddress] = useState(defaultAddress);
   const [draftAddress, setDraftAddress] = useState(defaultAddress);
-  const [showAddressMenu, setShowAddressMenu] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
 
   useEffect(() => {
@@ -46,7 +38,6 @@ export default function PatientHome() {
 
   const openAddressEditor = () => {
     setDraftAddress(address);
-    setShowAddressMenu(false);
     setShowAddressModal(true);
   };
 
@@ -61,14 +52,14 @@ export default function PatientHome() {
   return (
     <PatientShell>
       {/* Header */}
-      <header className="bg-gradient-to-r from-primary-container via-primary-container to-primary-container/95 rounded-b-[22px] shadow-[0_10px_28px_rgba(0,0,0,0.22)] w-full sticky top-0 z-30 flex justify-between items-center px-4 sm:px-5 h-16 border-b border-white/15 backdrop-blur-sm">
+      <header className="bg-gradient-to-r from-primary-container via-primary-container to-primary-container/95 rounded-b-[22px] shadow-[0_10px_28px_rgba(0,0,0,0.22)] header-emboss w-full sticky top-0 z-30 flex justify-between items-center px-4 sm:px-5 h-16 border-b border-white/15 backdrop-blur-sm">
         <div className="flex items-center">
           <Wordmark size="md" tone="light" />
         </div>
         <div className="flex items-center gap-2 relative">
           <button
             type="button"
-            onClick={() => setShowAddressMenu((prev) => !prev)}
+            onClick={openAddressEditor}
             className="bg-white/15 border border-white/25 rounded-full py-1.5 pl-2.5 pr-2 hidden sm:flex items-center gap-1.5 cursor-pointer hover:bg-white/25 transition-colors"
           >
             <Icon name="location_on" className="text-white/95" size={15} />
@@ -77,17 +68,6 @@ export default function PatientHome() {
             </span>
             <Icon name="arrow_drop_down" className="text-white/95" size={16} />
           </button>
-          {showAddressMenu && (
-            <div className="absolute top-11 right-20 bg-white rounded-xl shadow-xl border border-outline-variant py-1 z-40 min-w-[170px]">
-              <button
-                type="button"
-                onClick={openAddressEditor}
-                className="w-full text-left px-4 py-2 text-sm text-on-surface hover:bg-surface-container"
-              >
-                Customize address
-              </button>
-            </div>
-          )}
           <Link
             to="/patient/notifications"
             className="w-9 h-9 rounded-full bg-white/15 border border-white/25 flex items-center justify-center hover:bg-white/25 transition-colors relative"
@@ -138,12 +118,12 @@ export default function PatientHome() {
         </Link>
 
         {/* Categories */}
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {categories.map((c) => (
             <Link
               key={c.label}
               to={c.to}
-              className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl border-2 border-[#CFCFD4] shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-container hover:shadow-[0_8px_18px_rgba(0,0,0,0.12)] transition-all group"
+              className="h-[150px] flex flex-col items-center justify-center gap-2 p-3 bg-white rounded-xl border-2 border-[#CFCFD4] shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:border-primary-container hover:shadow-[0_8px_18px_rgba(0,0,0,0.12)] transition-all group"
             >
               <div
                 className={`w-12 h-12 rounded-full flex items-center justify-center border border-black/10 shadow-sm ${c.tone}`}
@@ -151,7 +131,7 @@ export default function PatientHome() {
                 <Icon name={c.icon} size={24} />
               </div>
               <div className="text-center leading-tight">
-                <span className="block font-label-bold text-[11px] text-on-surface">{c.label}</span>
+                <span className="block font-extrabold text-[14px] text-primary-container">{c.label}</span>
                 {c.description && (
                   <span className="block mt-0.5 text-[10px] text-on-surface-variant">{c.description}</span>
                 )}
@@ -182,34 +162,10 @@ export default function PatientHome() {
           </div>
         </Link>
 
-        {/* How it works */}
-        <section className="space-y-3">
-          <h3 className="font-headline-sm text-headline-sm font-extrabold text-on-surface">Paano gumagana?</h3>
-          <div className="flex flex-col gap-3">
-            {steps.map((s) => (
-              <div
-                key={s.n}
-                className="bg-gradient-to-br from-white to-[#F9F9FB] rounded-2xl p-4 border border-[#DCDCE2] shadow-[0_6px_14px_rgba(0,0,0,0.07)] flex items-start gap-3.5 transition-all duration-250 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-primary-container/40 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)]"
-              >
-                <div className="w-11 h-11 rounded-full bg-primary-container text-white flex items-center justify-center shrink-0 shadow-sm relative">
-                  <Icon name={s.icon} size={18} />
-                  <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white text-primary-container text-[10px] font-extrabold flex items-center justify-center border border-primary-container/30">
-                    {s.n}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-[16px] leading-tight text-on-surface mb-1">{s.title}</h4>
-                  <p className="font-body-md text-[14px] leading-relaxed text-on-surface-variant">{s.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Health tips peek */}
         <section className="space-y-stack-md">
           <div className="flex justify-between items-center">
-            <h3 className="font-headline-sm text-headline-sm font-extrabold">Mga tip ngayon</h3>
+            <h3 className="font-headline-sm text-headline-sm font-extrabold">Basahin</h3>
             <Link to="/patient/tips" className="text-primary-container font-label-bold text-label-bold">
               Tingnan lahat →
             </Link>
@@ -246,19 +202,17 @@ export default function PatientHome() {
           to="/patient/triage"
           title="Kumusta ka? Chatbot"
           aria-label="Kumusta ka? Chatbot"
-          className="w-14 h-14 bg-primary-container hover:opacity-90 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105"
+          className="relative w-14 h-14 bg-primary-container hover:opacity-90 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105"
         >
-          <Icon name="forum" size={24} />
-        </Link>
-
-        {/* Emergency FAB */}
-        <Link
-          to="/patient/emergency"
-          title="Emergency"
-          aria-label="Emergency"
-          className="w-14 h-14 bg-red-700 hover:bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105"
-        >
-          <Icon name="medical_services" size={24} />
+          <Icon name="smart_toy" size={24} />
+          <span className="absolute right-0 bottom-16 bg-gradient-to-r from-white to-[#fff6f6] border border-primary-container/25 text-primary-container text-[10px] font-extrabold px-3 py-1.5 rounded-full shadow-[0_8px_18px_rgba(122,28,28,0.25)] whitespace-nowrap">
+            <span className="absolute inset-0 rounded-full border border-primary-container/35 animate-ping opacity-40" />
+            <span className="relative z-10 inline-flex items-center gap-1">
+              <Icon name="chat_bubble" size={11} />
+              Kumusta ka?
+            </span>
+            <span className="absolute right-4 -bottom-[5px] w-2.5 h-2.5 bg-white border-r border-b border-primary-container/25 rotate-45" />
+          </span>
         </Link>
       </div>
 

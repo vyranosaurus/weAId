@@ -6,19 +6,14 @@ import Wordmark from '../shared/Wordmark.jsx';
 const items = [
   { to: '/admin', label: 'Overview', icon: 'dashboard', end: true },
   { to: '/admin/queue', label: 'Live Queue', icon: 'pending_actions' },
-  { to: '/admin/incoming', label: 'Incoming', icon: 'emergency' },
-  { to: '/admin/services', label: 'Services & Capacity', icon: 'vital_signs' },
-  { to: '/admin/staffing', label: 'Staffing', icon: 'groups' },
-  { to: '/admin/analytics', label: 'Analytics', icon: 'analytics' },
-  { to: '/admin/profile', label: 'Hospital Profile', icon: 'local_hospital' },
   { to: '/admin/messages', label: 'Messages', icon: 'chat_bubble' },
-  { to: '/admin/notifications', label: 'Notifications', icon: 'notifications' },
-  { to: '/admin/users', label: 'Users', icon: 'manage_accounts' },
+  { to: '/admin/incoming', label: 'Incoming', icon: 'emergency' },
+  { to: '/admin/profile', label: 'Hospital Profile', icon: 'local_hospital' },
   { to: '/admin/settings', label: 'Settings', icon: 'settings' },
 ];
 
 export default function RailNav() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <nav
@@ -38,22 +33,16 @@ export default function RailNav() {
         </div>
       </div>
 
-      <div className={`px-3 py-2 border-b border-outline-variant/20 ${collapsed ? 'flex justify-center' : 'flex items-center justify-between'}`}>
-        {!collapsed && (
-          <span className="text-[10px] uppercase tracking-[0.14em] font-bold text-on-surface-variant transition-opacity duration-200">
-            Navigation
-          </span>
-        )}
+      <div className={`px-3 py-2 border-b border-outline-variant/20 ${collapsed ? 'flex justify-center' : 'flex items-center justify-end'}`}>
         <button
           onClick={() => setCollapsed((v) => !v)}
           className={`h-8 rounded-full border border-outline-variant/40 text-primary-container hover:bg-primary-container/8 hover:border-primary-container/40 flex items-center justify-center transition-all duration-300 ease-out ${
-            collapsed ? 'w-8' : 'px-2.5 gap-1.5'
+            collapsed ? 'w-8' : 'w-8'
           }`}
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           <Icon name={collapsed ? 'chevron_right' : 'chevron_left'} size={18} />
-          {!collapsed && <span className="text-[10px] font-bold uppercase tracking-wider transition-opacity duration-200">Collapse</span>}
         </button>
       </div>
 

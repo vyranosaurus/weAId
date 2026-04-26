@@ -14,12 +14,7 @@ export default function HospitalResults() {
   return (
     <PatientShell>
       <PatientHeader
-        title="Mga ospital sa malapit"
-        rightAction={
-          <button className="p-2 rounded-full hover:bg-white/10">
-            <Icon name="search" />
-          </button>
-        }
+        title="Mga Ospital"
       />
 
       <main className="px-container-padding pt-stack-md space-y-stack-md pb-4">
@@ -30,7 +25,7 @@ export default function HospitalResults() {
           </span>
           <div>
             <p className="text-sm font-bold text-on-surface">
-              Para sa OB-GYN consultation (Urgent), ito ang pinakamabuti.
+              Para sa posibleng heatstroke assessment (Urgent), ito ang pinakamabuti.
             </p>
             <p className="text-xs text-on-surface-variant">
               Naka-sort ayon sa pinakamabilis na pila + pinakamalapit.

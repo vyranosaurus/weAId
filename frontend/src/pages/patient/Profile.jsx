@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PatientShell from '../../components/patient/PatientShell.jsx';
 import Icon from '../../components/shared/Icon.jsx';
 import { currentPatient } from '../../data/patients.js';
@@ -11,10 +11,12 @@ const menu = [
   { icon: 'description', label: 'Medical records', to: '/patient/profile' },
   { icon: 'lightbulb', label: 'Health tips', to: '/patient/tips' },
   { icon: 'settings', label: 'Settings', to: '/patient/settings' },
-  { icon: 'help', label: 'Tulong & FAQs', to: '/patient/settings' },
+  { icon: 'help', label: 'Tulong & FAQs', to: '/patient/faqs' },
 ];
 
 export default function Profile() {
+  const navigate = useNavigate();
+
   return (
     <PatientShell>
       {/* Hero */}
@@ -29,11 +31,13 @@ export default function Profile() {
         <p className="text-white/80 text-sm">
           {currentPatient.age} taong gulang · {currentPatient.sex} · {currentPatient.city}
         </p>
-        <div className="mt-3 flex justify-center gap-2">
-          <span className="bg-white/20 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">
+        <div className="mt-3 flex justify-center gap-2 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 bg-white/18 border border-white/30 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-wide px-3 py-1.5 rounded-full shadow-sm">
+            <Icon name="verified" size={12} />
             PhilHealth
           </span>
-          <span className="bg-white/20 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">
+          <span className="inline-flex items-center gap-1.5 bg-white/18 border border-white/30 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-wide px-3 py-1.5 rounded-full shadow-sm">
+            <Icon name="health_and_safety" size={12} />
             HMO: Maxicare
           </span>
         </div>
@@ -42,9 +46,15 @@ export default function Profile() {
       <main className="px-container-padding py-stack-lg space-y-stack-md screen-enter">
         {/* Health snapshot */}
         <section className="bg-white rounded-xl p-4 shadow-card">
-          <h3 className="font-bold flex items-center gap-2 mb-3">
-            <Icon name="favorite" className="text-primary-container" filled /> Health snapshot
-          </h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-bold flex items-center gap-2">
+              <Icon name="favorite" className="text-primary-container" filled /> Mga Impormasyon
+            </h3>
+            <button className="inline-flex items-center gap-1.5 text-primary-container text-[11px] font-extrabold uppercase tracking-wide border border-primary-container/30 px-2.5 py-1 rounded-full hover:bg-primary-container/5">
+              <Icon name="edit" size={14} />
+              Edit
+            </button>
+          </div>
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
               <p className="text-[10px] uppercase text-on-surface-variant">Blood type</p>
@@ -82,7 +92,10 @@ export default function Profile() {
           ))}
         </section>
 
-        <button className="w-full bg-white border border-red-200 text-red-600 py-3 rounded-xl font-label-bold text-label-bold uppercase">
+        <button
+          onClick={() => navigate('/login/patient')}
+          className="w-full bg-white border border-red-200 text-red-600 py-3 rounded-xl font-label-bold text-label-bold uppercase"
+        >
           Mag-logout
         </button>
 

@@ -15,40 +15,27 @@ const tagColor = {
 export default function HealthTips() {
   return (
     <PatientShell>
-      <PatientHeader title="Mga health tip" />
+      <PatientHeader
+        title="Basahin"
+        rightAction={<Icon name="menu_book" className="text-white/95" size={20} />}
+      />
 
       <main className="px-container-padding py-stack-md space-y-stack-md">
         {/* Featured */}
         <div className="bg-primary-container rounded-2xl p-stack-lg text-white shadow-hero relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
           <span className="text-[10px] uppercase tracking-wider font-bold text-white/80">
-            Featured · Buntis
+            Featured · Klima at Kalusugan
           </span>
           <h2 className="font-display-md text-display-md mt-1">
-            Buntis? Heto ang gagawin sa unang trimester.
+            Mainit na panahon? Paano umiwas sa heat-related illness.
           </h2>
           <p className="text-white/85 text-sm mt-2">
-            5 min basahin · Inaprubahan ng OB-GYN ng PGH.
+            4 min basahin · Hydration, pahinga, at heat safety para sa buong pamilya.
           </p>
           <button className="mt-3 bg-white text-primary-container font-bold px-5 py-2 rounded-full">
             Basahin
           </button>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-2 overflow-x-auto no-scrollbar -mx-container-padding px-container-padding">
-          {['Lahat', 'General', 'Buntis', 'Bata', 'Mental Health', 'Lola/Lolo'].map((t, i) => (
-            <button
-              key={t}
-              className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-bold ${
-                i === 0
-                  ? 'bg-primary-container text-white'
-                  : 'bg-white border border-outline-variant text-on-surface'
-              }`}
-            >
-              {t}
-            </button>
-          ))}
         </div>
 
         {/* List */}

@@ -10,6 +10,7 @@ export default function ConversationDetail() {
 
   return (
     <PatientShell hideNav>
+      <div className="min-h-full flex flex-col">
       <PatientHeader
         title={m.name}
         subtitle={m.subtitle}
@@ -27,7 +28,7 @@ export default function ConversationDetail() {
         </div>
       </div>
 
-      <main className="px-container-padding py-stack-md flex flex-col gap-stack-md pb-44">
+      <main className="px-container-padding py-stack-md flex-1 flex flex-col gap-stack-md pb-6">
         {conversationSample.map((c, i) => (
           <div key={i} className={`flex ${c.from === 'patient' ? 'justify-end' : 'justify-start'}`}>
             <div className="max-w-[85%]">
@@ -53,7 +54,7 @@ export default function ConversationDetail() {
       </main>
 
       {/* Suggested replies + input */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-outline-variant/40 px-container-padding py-3 pb-safe shadow-nav-top z-40">
+      <div className="sticky mt-auto bottom-5 w-full bg-white border-t border-outline-variant/40 px-container-padding py-3 pb-safe shadow-nav-top z-40">
         <div className="flex gap-2 overflow-x-auto no-scrollbar mb-3">
           {suggestedReplies.map((r) => (
             <button
@@ -76,6 +77,7 @@ export default function ConversationDetail() {
             <Icon name="send" />
           </button>
         </div>
+      </div>
       </div>
     </PatientShell>
   );

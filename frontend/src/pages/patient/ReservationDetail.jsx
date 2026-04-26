@@ -10,7 +10,7 @@ export default function ReservationDetail() {
 
   return (
     <PatientShell hideNav>
-      <PatientHeader title="Detalye ng booking" subtitle={r.id} />
+      <PatientHeader title="Detalye" subtitle={r.id} />
 
       <main className="px-container-padding py-stack-lg space-y-stack-lg">
         {/* Live status pill (for today) */}
@@ -43,12 +43,9 @@ export default function ReservationDetail() {
           {r.status === 'today' && (
             <>
               <div className="mt-stack-lg flex flex-col items-center bg-[#F5F5F5] rounded-xl p-4">
-                <div className="w-32 h-32 bg-white border-2 border-primary-container/30 rounded-lg flex items-center justify-center">
-                  <Icon name="qr_code_2" size={96} className="text-primary-container" />
+                <div className="w-40 h-40 bg-white border-2 border-primary-container/30 rounded-lg flex items-center justify-center">
+                  <Icon name="qr_code_2" size={122} className="text-primary-container" />
                 </div>
-                <p className="text-[10px] uppercase tracking-wider text-on-surface-variant mt-2">
-                  Ipakita sa pagdating
-                </p>
               </div>
             </>
           )}
@@ -59,9 +56,23 @@ export default function ReservationDetail() {
           <h3 className="font-bold flex items-center gap-2 mb-3">
             <Icon name="map" className="text-primary-container" /> Direksyon
           </h3>
-          <div className="h-32 rounded-lg bg-gradient-to-br from-tertiary-fixed to-surface-container relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center text-on-surface-variant text-sm">
-              Map preview
+          <div className="h-32 rounded-lg bg-gradient-to-br from-[#efe7e7] to-[#ddd7d7] relative overflow-hidden border border-outline-variant/30">
+            <div className="absolute inset-0 opacity-55">
+              <div className="absolute top-3 left-0 right-0 h-[2px] bg-white/70" />
+              <div className="absolute top-10 left-0 right-0 h-[2px] bg-white/60" />
+              <div className="absolute top-20 left-0 right-0 h-[2px] bg-white/55" />
+              <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-white/55" />
+              <div className="absolute left-28 top-0 bottom-0 w-[2px] bg-white/60" />
+              <div className="absolute left-52 top-0 bottom-0 w-[2px] bg-white/50" />
+            </div>
+            <div className="absolute left-6 top-7 w-[72%] h-[3px] bg-primary-container/75 rounded-full rotate-[18deg]" />
+            <div className="absolute left-[70%] top-[56%] w-3 h-3 rounded-full bg-primary-container border-2 border-white shadow-md" />
+            <div className="absolute left-[18%] top-[34%] w-3 h-3 rounded-full bg-emerald-500 border-2 border-white shadow-md" />
+            <div className="absolute left-[74%] top-[48%] text-[10px] font-bold text-primary-container bg-white/85 px-1.5 py-0.5 rounded">
+              Ospital
+            </div>
+            <div className="absolute left-[8%] top-[26%] text-[10px] font-bold text-emerald-700 bg-white/85 px-1.5 py-0.5 rounded">
+              Kayo
             </div>
             <span className="absolute top-2 left-2 text-xs bg-white px-2 py-1 rounded-full font-bold">
               {r.travelEta || 12} min · {r.distanceKm || 1.4} km
@@ -78,7 +89,7 @@ export default function ReservationDetail() {
             <button className="bg-white border-2 border-primary-container text-primary-container py-3 rounded-full font-label-bold text-label-bold uppercase">
               I-reschedule
             </button>
-            <button className="bg-white border-2 border-red-600 text-red-600 py-3 rounded-full font-label-bold text-label-bold uppercase">
+            <button className="bg-white border-2 border-[#1D1D1F] text-red-600 py-3 rounded-full font-label-bold text-label-bold uppercase">
               I-cancel
             </button>
           </div>

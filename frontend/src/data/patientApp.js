@@ -3,7 +3,7 @@ export const reservations = [
     id: 'RES-WEAID-00187',
     hospitalId: 'pgh',
     hospitalName: 'Philippine General Hospital',
-    service: 'OB-GYN Consultation',
+    service: 'Emergency Heat Assessment',
     date: 'Hunyo 14, 2025',
     timeSlot: '10:30 AM',
     queueNow: 12,
@@ -132,7 +132,7 @@ export const patientMessages = [
 
 export const conversationSample = [
   { from: 'hospital', time: 'Kahapon, 4:30 PM', text: 'Naka-confirm na po ang inyong slot bukas, 10:30 AM.' },
-  { from: 'patient', time: 'Kahapon, 4:32 PM', text: 'Salamat po. Anong bring along ko?' },
+  { from: 'patient', time: 'Kahapon, 4:32 PM', text: 'Salamat po. Anong dadalhin ko?' },
   { from: 'hospital', time: 'Kahapon, 4:35 PM', text: 'Valid ID at PhilHealth card. Kung may listahan ng gamot, pakidala rin.' },
   { from: 'hospital', time: 'Today, 8:42 AM', text: 'Pasensya po, may delay ng 10 min ang inyong slot. 10:40 AM po na lang.' },
 ];

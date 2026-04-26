@@ -21,13 +21,15 @@ export default function AdminLogin() {
             <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/20 to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,255,255,0.14),transparent_40%)] animate-pulse-slow" />
             <div className="relative z-10">
-              <Wordmark size="md" tone="light" />
+              <Wordmark size="md" tone="light" aiTone="maroon" />
               <p className="text-white/80 text-sm mt-2">Hospital Partner Portal</p>
             </div>
             <div className="relative z-10 space-y-6">
               <div>
-                <p className="font-display-lg text-display-lg leading-tight">
-                  Right care, <br /> right hospital, <br /> right time.
+                <p className="font-display-lg text-display-lg font-black leading-tight">
+                  Right <span className="text-[#5f1414] [text-shadow:0_0_1px_rgba(255,255,255,0.95),0_0_6px_rgba(255,255,255,0.35)]">care</span>, <br /> Right{' '}
+                  <span className="text-[#5f1414] [text-shadow:0_0_1px_rgba(255,255,255,0.95),0_0_6px_rgba(255,255,255,0.35)]">hospital</span>, <br /> Right{' '}
+                  <span className="text-[#5f1414] [text-shadow:0_0_1px_rgba(255,255,255,0.95),0_0_6px_rgba(255,255,255,0.35)]">time</span>.
                 </p>
                 <p className="text-white/80 text-lg mt-4">
                   Mas mabilis na pila. Mas matagumpay na outcome. Para sa pasyente at sa inyong staff.
@@ -53,26 +55,16 @@ export default function AdminLogin() {
 
           {/* Right form panel */}
           <div className="w-1/2 flex flex-col justify-center px-6 lg:px-16 py-10 overflow-y-auto">
-            <Link to="/" className="text-primary-container text-sm font-bold uppercase tracking-wider mb-6 inline-flex items-center gap-1">
-              <Icon name="arrow_back" size={18} /> Bumalik sa Landing
-            </Link>
-
             <div className="hidden mb-6">
               <Wordmark size="md" tone="dark" />
             </div>
 
-            <h1 className="font-display-md text-display-md text-on-surface">Sign in to weAId</h1>
+            <h1 className="font-display-md text-display-md text-on-surface">
+              Sign in to We
+              <span className="font-ai-signature font-black text-primary-container">AI</span>
+              d
+            </h1>
             <p className="text-on-surface-variant text-sm mt-1">Hospital admin portal — secure access</p>
-            <div className="mt-4 flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-container/10 text-primary-container text-[10px] font-bold uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse" />
-                Encrypted session
-              </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-outline-variant/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">
-                role-based access
-              </span>
-            </div>
-
             <div className="mt-8 max-w-md space-y-4 bg-white/90 border border-outline-variant/30 shadow-card rounded-2xl p-5">
               <Input label="Hospital ID" defaultValue="PGH-001" icon="local_hospital" />
               <Input label="Email" defaultValue="a.reyes@pgh.gov.ph" icon="mail" />
@@ -89,7 +81,7 @@ export default function AdminLogin() {
               </div>
 
               <button
-                onClick={() => navigate('/admin')}
+                onClick={() => navigate('/admin/queue')}
                 className="w-full bg-primary-container text-white py-4 rounded-full font-label-bold text-label-bold uppercase shadow-card hover:bg-[#600000] active:scale-95 transition-all"
               >
                 Pumasok

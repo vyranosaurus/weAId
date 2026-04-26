@@ -32,12 +32,6 @@ export default function AdminTopBar({ breadcrumb }) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-surface-variant/50 rounded-full border border-outline-variant/30">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-label-bold text-label-bold text-on-surface-variant">
-            Live · synced 2s ago
-          </span>
-        </div>
         <Link
           to="/admin/notifications"
           className="relative text-primary-container hover:bg-surface-variant/50 p-2 rounded-full transition-colors"

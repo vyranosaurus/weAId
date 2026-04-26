@@ -1,58 +1,59 @@
 export const triageScript = [
   {
     id: 1,
-    bot: 'Kumusta po. Ano po ang pinaka-nararamdaman ninyo ngayon?',
+    bot: 'Kumusta ang kalagayan ninyo? Alin dito ang pinaka-nararamdaman ninyo ngayon?',
     placeholder: 'I-type ang nararamdaman…',
     chips: [
-      'Sumasakit ang puson ko',
-      'Lagnat at panghihina',
-      'Sakit ng ulo',
-      'Buntis check-up',
+      'Matinding uhaw at panghihina',
+      'Pagkahilo at sakit ng ulo',
+      'Mainit ang katawan',
+      'Posibleng heatstroke',
     ],
   },
   {
     id: 2,
-    user: 'Sumasakit ang puson ko mula kahapon.',
-    bot: 'Salamat po. Gaano po katagal nang ganito?',
+    user: 'Pagkahilo at sakit ng ulo mula kanina.',
+    bot: 'Salamat. Gaano katagal na kayong may ganitong sintomas?',
     chips: ['Today lang', '1-3 araw', 'Mahigit isang linggo'],
   },
   {
     id: 3,
-    user: '1-3 araw na po.',
-    bot: 'Gaano po kasakit, 1 hanggang 10?',
+    user: '1-3 araw na.',
+    bot: 'May alin pa sa mga sumusunod?',
     chips: ['1-3 (banayad)', '4-6 (medyo malala)', '7-10 (sobra)'],
   },
   {
     id: 4,
-    user: 'Mga 7 po. May lagnat din ako.',
-    bot: 'Naiintindihan ko po. May ibang sintomas pa ba kayo? (pagsusuka, pagtatae, dugo)',
-    chips: ['Wala naman', 'Pagsusuka', 'Pagtatae', 'May dugo'],
+    user: 'May panghihina at sobrang uhaw.',
+    bot: 'Naiintindihan ko. May warning signs ba tulad ng pagsusuka, pagkalito, o hirap huminga?',
+    chips: ['Wala naman', 'Pagsusuka', 'Pagkalito', 'Hirap huminga'],
   },
   {
     id: 5,
-    user: 'Wala naman po, lagnat lang at sakit.',
-    bot: 'Salamat po. Sandali lang, hahanap na ako ng tamang serbisyo para sa inyo.',
+    user: 'Wala naman, pero nanghihina pa rin.',
+    bot: 'Salamat. Sandali lang, hahanap na ako ng tamang serbisyo para sa inyo.',
     chips: [],
     final: true,
   },
 ];
 
 export const recommendation = {
-  service: 'OB-GYN Consultation',
+  service: 'Emergency Heat Assessment',
   urgency: 'Urgent',
+  waitNote: 'Posibleng heat-related illness — huwag patagalin',
   rationale: [
-    'Pananakit ng puson nang 2 araw at may lagnat ay senyales na kailangan ng eksaminasyon.',
-    'Banayad-medyo urgent — hindi pa emergency, pero hindi rin pwedeng hayaan.',
-    'Ang OB-GYN ang pinaka-tamang specialist para sa pananakit ng puson sa kababaihan.',
+    'Ang kombinasyon ng matinding init, panghihina, at pagkahilo ay maaaring senyales ng heat exhaustion o heatstroke.',
+    'Kapag may lagnat, pagkalito, o sobrang uhaw, kailangan ng agarang assessment para maiwasan ang komplikasyon.',
+    'Mas mainam ang maagang hydration at cooling protocol sa ospital kaysa maghintay sa bahay.',
   ],
   alternatives: [
     {
       service: 'General Medicine',
-      reason: 'Kung gusto muna ng general consult bago specialist.',
+      reason: 'Para sa initial evaluation kung banayad pa ang sintomas.',
     },
     {
       service: 'Emergency Room',
-      reason: 'Kung sumakit nang sobra (>8/10) o nagdugo.',
+      reason: 'Kung may pagsusuka, pagkalito, o hirap huminga dahil sa sobrang init.',
     },
   ],
 };

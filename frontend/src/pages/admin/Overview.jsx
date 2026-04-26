@@ -11,7 +11,7 @@ export default function AdminOverview() {
   return (
     <AdminShell breadcrumb="Overview">
       {/* Header band */}
-      <div className="bg-primary-container text-white rounded-b-[20px] -mx-container-padding -mt-container-padding mb-2 px-container-padding pt-stack-lg pb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+      <div className="bg-gradient-to-br from-primary-container via-[#7f1f1f] to-[#5f1414] text-white rounded-b-[20px] shadow-[0_12px_30px_rgba(90,20,20,0.35)] -mx-container-padding -mt-container-padding mb-2 px-container-padding pt-stack-lg pb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
           <h1 className="font-display-md text-display-md">Magandang umaga, Dr. Reyes.</h1>
           <p className="text-white/85 text-sm">Heto ang state ng PGH ngayong umaga.</p>
@@ -20,9 +20,6 @@ export default function AdminOverview() {
           <span className="text-[10px] uppercase tracking-wider text-white/70 font-bold">
             Hunyo 14, 2026 · 08:42 AM · synced 2s ago
           </span>
-          <button className="px-5 py-2 rounded-full border-[1.5px] border-white/60 text-white text-xs font-bold uppercase flex items-center gap-2 hover:bg-white/10">
-            <Icon name="download" size={18} /> Daily report
-          </button>
         </div>
       </div>
 
@@ -51,81 +48,9 @@ export default function AdminOverview() {
         ))}
       </div>
 
-      {/* Chart + AI insights */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 bg-white rounded-xl p-6 shadow-card border border-outline-variant/20">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="font-headline-sm text-headline-sm">Patient flow — last 24h</h2>
-            <div className="flex bg-surface-variant/50 rounded-full p-1">
-              {['24h', '7d', '30d'].map((t, i) => (
-                <button
-                  key={t}
-                  className={`px-4 py-1.5 rounded-full text-[10px] font-bold ${
-                    i === 0
-                      ? 'bg-white text-primary-container shadow-sm'
-                      : 'text-on-surface-variant'
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="h-64 w-full bg-gradient-to-t from-primary-container/10 to-transparent rounded-lg border-b-2 border-primary-container relative flex items-end pb-2 px-2">
-            {sparkline.map((v, i) => (
-              <div
-                key={i}
-                style={{ height: `${(v / 50) * 100}%` }}
-                className="flex-1 mx-0.5 bg-primary-container/40 hover:bg-primary-container rounded-t-md transition-colors relative group"
-              >
-                <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold opacity-0 group-hover:opacity-100 bg-on-surface text-white px-2 py-0.5 rounded">
-                  {v}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-between text-[10px] text-on-surface-variant mt-2">
-            <span>00:00</span>
-            <span>06:00</span>
-            <span>12:00</span>
-            <span>18:00</span>
-            <span>NOW</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-card border border-primary-container/20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
-          <h2 className="font-headline-sm text-headline-sm mb-4 flex items-center gap-2">
-            <span className="font-ai-signature font-black text-primary-container ai-glow-dark text-2xl">
-              AI
-            </span>
-            Insights
-          </h2>
-          <div className="space-y-3">
-            {aiInsights.slice(0, 3).map((ins) => (
-              <div key={ins.id} className="flex gap-3 items-start">
-                <div className="w-2 h-2 rounded-full bg-primary-container mt-2 shrink-0" />
-                <div className="flex-1">
-                  <p className="text-sm text-on-surface-variant">{ins.text}</p>
-                  <a className="text-xs font-bold text-primary-container hover:underline mt-1 block">
-                    Apply suggestion: {ins.impact}
-                  </a>
-                </div>
-              </div>
-            ))}
-            <Link
-              to="/admin/staffing"
-              className="text-xs font-bold text-primary-container uppercase hover:underline block"
-            >
-              Tingnan lahat →
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Live queue + Incoming */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl shadow-card border border-outline-variant/20 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-card border border-primary-container/25 ring-1 ring-primary-container/10 overflow-hidden">
           <div className="px-5 py-4 border-b border-outline-variant/30 flex justify-between items-center">
             <h3 className="font-headline-sm text-headline-sm">Live queue snapshot</h3>
             <Link
@@ -179,7 +104,7 @@ export default function AdminOverview() {
           </table>
         </div>
 
-        <div className="bg-white rounded-xl shadow-card border border-outline-variant/20 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-card border border-primary-container/25 ring-1 ring-primary-container/10 overflow-hidden">
           <div className="px-5 py-4 border-b border-outline-variant/30 flex justify-between items-center">
             <h3 className="font-headline-sm text-headline-sm">Incoming via weAId</h3>
             <Link
@@ -221,13 +146,7 @@ export default function AdminOverview() {
       {/* Service status */}
       <div className="bg-white rounded-xl p-6 shadow-card border border-outline-variant/20">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="font-headline-sm text-headline-sm">Service status snapshot</h3>
-          <Link
-            to="/admin/services"
-            className="text-primary-container text-xs font-bold uppercase hover:underline"
-          >
-            Pamahalaan
-          </Link>
+          <h3 className="font-headline-sm text-headline-sm font-extrabold">Service status snapshot</h3>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           {[

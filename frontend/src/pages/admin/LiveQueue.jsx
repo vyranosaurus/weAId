@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AdminShell from '../../components/admin/AdminShell.jsx';
 import Icon from '../../components/shared/Icon.jsx';
 import { queuePatients, priorityStyles } from '../../data/patients.js';
@@ -11,6 +11,7 @@ const statusStyles = {
 };
 
 export default function LiveQueue() {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showAddedToast, setShowAddedToast] = useState(false);
@@ -26,7 +27,7 @@ export default function LiveQueue() {
     <AdminShell breadcrumb="Live Queue">
       <div className="flex justify-between items-end gap-4 flex-wrap">
         <div>
-          <h1 className="font-display-md text-display-md text-on-surface">Live Queue</h1>
+          <h1 className="font-display-md text-display-md font-black text-primary-container">Live Queue</h1>
           <p className="text-on-surface-variant text-sm">
             Real-time view ng lahat ng pasyente sa ospital — synced 2s ago
           </p>
@@ -95,15 +96,33 @@ export default function LiveQueue() {
               {queuePatients.map((p) => {
                 const sP = priorityStyles[p.priority];
                 const sS = statusStyles[p.status];
+                const isHighPriority = p.priority === 'critical' || p.priority === 'urgent';
                 return (
                   <tr
                     key={p.id}
-                    className="border-b border-outline-variant/20 last:border-0 hover:bg-surface-variant/30 transition-colors"
+                    onClick={() => navigate(`/admin/patient/${p.id}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        navigate(`/admin/patient/${p.id}`);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    className={`border-b border-outline-variant/20 last:border-0 hover:bg-surface-variant/30 transition-colors ${
+                      isHighPriority ? 'queue-row-alert' : ''
+                    } cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/40 ${
+                      isHighPriority ? 'focus-visible:ring-red-300/60' : ''
+                    }`}
                   >
-                    <td className="px-5 py-3 font-mono text-xs font-bold text-primary-container">
+                    <td
+                      className={`px-5 py-3 font-mono text-xs font-bold text-primary-container ${
+                        isHighPriority ? 'border-y border-l border-[#7a1c1c]/45' : ''
+                      }`}
+                    >
                       #{p.id}
                     </td>
-                    <td className="py-3">
+                    <td className={`py-3 ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>
                       <div className="flex items-center gap-2">
                         <Link
                           to={`/admin/patient/${p.id}`}
@@ -111,35 +130,44 @@ export default function LiveQueue() {
                         >
                           {p.name}
                         </Link>
-                        {p.fromWeAId && (
-                          <span className="text-[10px] font-ai-signature font-black text-primary-container ai-glow-dark">
-                            AI
-                          </span>
-                        )}
                       </div>
                       <p className="text-xs text-on-surface-variant">
                         {p.age} y/o · {p.sex}
                       </p>
                     </td>
-                    <td className="py-3 text-xs max-w-[220px] truncate">{p.complaint}</td>
-                    <td className="py-3 text-xs">{p.service}</td>
-                    <td className="py-3 text-xs font-bold">{p.waitMin} min</td>
-                    <td className="py-3">
+                    <td className={`py-3 text-xs max-w-[220px] truncate ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>{p.complaint}</td>
+                    <td className={`py-3 text-xs ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>{p.service}</td>
+                    <td className={`py-3 text-xs font-bold ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>{p.waitMin} min</td>
+                    <td className={`py-3 ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>
                       <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${sS.bg} ${sS.text}`}>
                         {sS.label}
                       </span>
                     </td>
-                    <td className="py-3">
-                      <span className={`text-[10px] font-bold px-2 py-1 rounded-full ${sP.bg} ${sP.text}`}>
+                    <td className={`py-3 ${isHighPriority ? 'border-y border-[#7a1c1c]/45' : ''}`}>
+                      <span
+                        className={`text-[10px] font-bold px-2 py-1 rounded-full ${sP.bg} ${sP.text} ${
+                          isHighPriority ? 'ring-1 ring-red-300/60' : ''
+                        }`}
+                      >
                         {sP.label}
                       </span>
                     </td>
-                    <td className="px-5 py-3 text-right">
+                    <td
+                      className={`px-5 py-3 text-right ${
+                        isHighPriority ? 'border-y border-r border-[#7a1c1c]/45' : ''
+                      }`}
+                    >
                       <div className="flex justify-end gap-1">
-                        <button className="p-2 rounded-full hover:bg-surface-variant/50">
+                        <button
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-full hover:bg-surface-variant/50"
+                        >
                           <Icon name="campaign" className="text-primary-container" size={18} />
                         </button>
-                        <button className="p-2 rounded-full hover:bg-surface-variant/50">
+                        <button
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2 rounded-full hover:bg-surface-variant/50"
+                        >
                           <Icon name="more_vert" size={18} />
                         </button>
                       </div>
