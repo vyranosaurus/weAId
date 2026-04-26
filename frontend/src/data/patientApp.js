@@ -1,0 +1,153 @@
+export const reservations = [
+  {
+    id: 'RES-WEAID-00187',
+    hospitalId: 'pgh',
+    hospitalName: 'Philippine General Hospital',
+    service: 'OB-GYN Consultation',
+    date: 'Hunyo 14, 2025',
+    timeSlot: '10:30 AM',
+    queueNow: 12,
+    waitOnArrival: 25,
+    cost: 'LIBRE (PhilHealth)',
+    status: 'today',
+    timeToSlot: '1 oras 22 min',
+    travelEta: 12,
+    distanceKm: 1.4,
+  },
+  {
+    id: 'RES-WEAID-00210',
+    hospitalId: 'maynila',
+    hospitalName: 'Ospital ng Maynila',
+    service: 'Bakuna ng bata (Junior, 6)',
+    date: 'Hunyo 20, 2025',
+    timeSlot: '9:00 AM',
+    queueNow: null,
+    waitOnArrival: 15,
+    cost: 'LIBRE',
+    status: 'upcoming',
+    timeToSlot: '6 araw',
+  },
+  {
+    id: 'RES-WEAID-00099',
+    hospitalId: 'pgh',
+    hospitalName: 'Philippine General Hospital',
+    service: 'Buntis check-up',
+    date: 'Mayo 28, 2025',
+    timeSlot: '2:00 PM',
+    cost: 'LIBRE (PhilHealth)',
+    status: 'past',
+    outcome: 'Tapos',
+  },
+  {
+    id: 'RES-WEAID-00081',
+    hospitalId: 'jrr',
+    hospitalName: 'Jose R. Reyes Memorial',
+    service: 'General consult',
+    date: 'Mayo 15, 2025',
+    timeSlot: '11:00 AM',
+    cost: 'LIBRE',
+    status: 'cancelled',
+    outcome: 'Ikaw ang nag-cancel',
+  },
+];
+
+export const patientNotifications = [
+  {
+    id: 1,
+    type: 'reminder',
+    title: 'Reminder: 1 oras na lang bago ang slot ninyo sa PGH (10:30 AM).',
+    body: 'Magdala ng valid ID at PhilHealth card.',
+    time: 'Ngayon, 9:30 AM',
+    icon: 'schedule',
+    color: 'primary',
+  },
+  {
+    id: 2,
+    type: 'warning',
+    title: 'May ulan papunta sa PGH — magdala ng payong.',
+    body: 'Mga 30 min ang biyahe ngayon.',
+    time: 'Ngayon, 9:18 AM',
+    icon: 'umbrella',
+    color: 'amber',
+  },
+  {
+    id: 3,
+    type: 'info',
+    title: 'Maikli na ang pila ngayon sa OB-GYN ng PGH (8 sa pila lang).',
+    body: 'Pwede pa pong mag-walk-in kung gusto.',
+    time: 'Kahapon, 4:42 PM',
+    icon: 'trending_down',
+    color: 'emerald',
+    fromAi: true,
+  },
+  {
+    id: 4,
+    type: 'critical',
+    title: 'Ang MRI machine ng UST Hospital ay sira hanggang 2PM.',
+    body: 'Naka-pause ang booking dito. Subukan ang ibang ospital.',
+    time: 'Kahapon, 9:12 AM',
+    icon: 'warning',
+    color: 'red',
+  },
+  {
+    id: 5,
+    type: 'info',
+    title: 'Bagong tip: Paano malaman kung kailan dapat magpa-konsulta.',
+    body: '3 min basahin.',
+    time: 'Linggong ito',
+    icon: 'lightbulb',
+    color: 'info',
+  },
+];
+
+export const patientMessages = [
+  {
+    id: 'pm-pgh',
+    name: 'Philippine General Hospital',
+    subtitle: 'via weAId',
+    preview: 'Pasensya po, may delay ng 10 min ang inyong slot.',
+    time: '8:42 AM',
+    unread: 1,
+    pinned: false,
+  },
+  {
+    id: 'pm-maynila',
+    name: 'Ospital ng Maynila',
+    subtitle: 'via weAId',
+    preview: 'Naka-confirm po ang bakuna kay Junior sa Hunyo 20.',
+    time: 'Kahapon',
+    unread: 0,
+    pinned: false,
+  },
+  {
+    id: 'pm-weaid',
+    name: 'weAId Tips & Updates',
+    subtitle: 'Official',
+    preview: 'Bagong feature: family booking — i-tap para malaman.',
+    time: 'Linggong ito',
+    unread: 0,
+    pinned: true,
+  },
+];
+
+export const conversationSample = [
+  { from: 'hospital', time: 'Kahapon, 4:30 PM', text: 'Naka-confirm na po ang inyong slot bukas, 10:30 AM.' },
+  { from: 'patient', time: 'Kahapon, 4:32 PM', text: 'Salamat po. Anong bring along ko?' },
+  { from: 'hospital', time: 'Kahapon, 4:35 PM', text: 'Valid ID at PhilHealth card. Kung may listahan ng gamot, pakidala rin.' },
+  { from: 'hospital', time: 'Today, 8:42 AM', text: 'Pasensya po, may delay ng 10 min ang inyong slot. 10:40 AM po na lang.' },
+];
+
+export const suggestedReplies = [
+  'Salamat po sa update.',
+  'Pwede pong i-reschedule sa hapon?',
+  'Ano pong dadalhin?',
+];
+
+export const healthTips = [
+  { id: 1, title: 'Kailan dapat magpa-konsulta?', tag: 'General', readMin: 3 },
+  { id: 2, title: '10 senyales ng dengue na dapat alam', tag: 'Dengue', readMin: 4 },
+  { id: 3, title: 'Buntis? Heto ang gagawin sa 1st trimester', tag: 'Buntis', readMin: 5 },
+  { id: 4, title: 'Bakuna ng bata: schedule ng DOH', tag: 'Bata', readMin: 4 },
+  { id: 5, title: 'Mental health: kelan dapat humingi ng tulong', tag: 'Mental Health', readMin: 6 },
+  { id: 6, title: 'Senior citizens: libreng services sa LGU', tag: 'Lola/Lolo', readMin: 3 },
+];

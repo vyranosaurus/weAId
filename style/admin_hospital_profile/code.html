@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>weAId Admin - Hospital Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5d5f5f",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-low": "#fff0ee",
+                        "tertiary": "#00137f",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "primary-container": "#800000",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#0021b9",
+                        "surface-tint": "#b22b1d",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "on-primary-container": "#ff8371",
+                        "primary-fixed": "#ffdad4",
+                        "on-surface": "#261816",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "on-tertiary-container": "#94a0ff",
+                        "inverse-on-surface": "#ffedea",
+                        "background": "#fff8f6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#3d2d2a",
+                        "surface-dim": "#eed4d0",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb4a8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-high": "#fde2de",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e2bfb9",
+                        "on-background": "#261816",
+                        "primary": "#570000",
+                        "surface-container-highest": "#f7ddd8",
+                        "error": "#ba1a1a",
+                        "surface-container": "#ffe9e6",
+                        "secondary-container": "#dcdddd",
+                        "outline": "#8e706c",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#dfe0ff",
+                        "on-primary-fixed": "#410000",
+                        "surface-variant": "#f7ddd8",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "secondary-fixed": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .tinted-shadow {
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-[#F5F5F5] text-on-surface font-body-md antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-[260px] border-r border-r border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col h-full overflow-y-auto z-50">
+<div class="text-2xl font-black tracking-tight text-red-900 dark:text-red-500 px-6 py-8">
+            weAId
+            <div class="font-body-md text-sm font-medium text-gray-500 mt-1">Hospital Admin</div>
+</div>
+<div class="flex flex-col gap-1 mt-4">
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="bg-red-50 dark:bg-red-950/30 text-red-900 dark:text-red-400 font-bold border-r-4 border-red-900 px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="local_hospital" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+<span>Hospital Profile</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span>Messages</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Users</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-[260px] flex-1 flex flex-col min-h-screen w-full">
+<!-- TopAppBar -->
+<header class="h-16 w-full sticky top-0 z-40 border-b border-b border-gray-200 dark:border-gray-800 shadow-sm shadow-red-900/5 bg-white dark:bg-gray-900 flex items-center justify-between px-6 h-16">
+<div class="font-montserrat text-sm font-medium text-gray-500">
+<!-- Search bar would go here if not suppressed for focus -->
+</div>
+<div class="flex items-center gap-4 text-red-900 dark:text-red-500">
+<button class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</button>
+<button class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-container-padding pb-24">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-stack-lg border-b border-gray-200 pb-stack-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">Hospital Profile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-stack-sm">How patients see your hospital on weAId.</p>
+</div>
+<div class="flex gap-gutter">
+<button class="px-6 py-3 rounded-full border-[1.5px] border-primary text-primary font-headline-sm text-headline-sm hover:bg-surface-container-low transition-colors">
+                        Preview as patient
+                    </button>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm hover:bg-on-primary-fixed transition-colors">
+                        Save changes
+                    </button>
+</div>
+</div>
+<div class="flex gap-stack-lg">
+<!-- Left 2/3: Form Cards -->
+<div class="w-2/3 flex flex-col gap-stack-lg">
+<!-- Identity Card -->
+<div class="bg-white rounded-xl tinted-shadow p-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-stack-md">Identity</h2>
+<div class="flex gap-stack-lg mb-stack-md">
+<div class="w-32 h-32 bg-surface-container-low rounded-lg flex flex-col items-center justify-center border border-dashed border-outline-variant cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="add_photo_alternate">add_photo_alternate</span>
+<span class="font-label-bold text-label-bold text-primary">Upload Logo</span>
+</div>
+<div class="flex-1 flex flex-col gap-stack-sm">
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-1">Hospital Name</label>
+<input class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-0 font-body-md text-body-md p-3" type="text" value="St. Luke's Medical Center"/>
+</div>
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-1">Hospital Type</label>
+<select class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-0 font-body-md text-body-md p-3">
+<option>Private Tertiary Hospital</option>
+<option>Public General Hospital</option>
+<option>Specialty Clinic</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mb-stack-md">
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-1">Description</label>
+<textarea class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-0 font-body-md text-body-md p-3" rows="3">A premier healthcare institution recognized internationally for its clinical excellence and patient care.</textarea>
+</div>
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-1">Address</label>
+<input class="w-full rounded-xl border-gray-300 focus:border-primary focus:ring-0 font-body-md text-body-md p-3 mb-stack-sm" type="text" value="32nd St. Bonifacio Global City, Taguig"/>
+<div class="h-48 rounded-xl bg-surface-container-low overflow-hidden relative">
+<img alt="Map view of hospital location" class="w-full h-full object-cover opacity-80" data-alt="Map view showing streets and location pin of Bonifacio Global City Taguig in soft daylight" data-location="Taguig" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK-PxfKvlABJhUAUJRcyARDQhyLseEAg24BamqZcBgqV6xZl7-4QVqnK4AQC_wLl20ZlJ0uvurlISmMuRvXzpbQu35zFYPcXnVMMMAgm3mM6aBkK4z3vnO2xA26ji-O8Y4R5GDmF4Ciau0HIt37WhjA5KmjE0ozIOyb58xc0I1jE5bdN2nLy_hY6D0iIehy7AllVlcHZL_OVsq_TUE3RHR_T2da7F98Y8_aa2FdnwMsu27MWhGJKfdP3pWQHussW6AK_WbCckv3ci9"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-md" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 1/3: Sticky Preview -->
+<div class="w-1/3">
+<div class="sticky top-24">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant mb-stack-sm text-center uppercase tracking-widest">Live Preview</h3>
+<!-- Phone Frame -->
+<div class="w-[320px] h-[640px] mx-auto bg-gray-900 rounded-[40px] p-2 shadow-2xl relative border-[6px] border-gray-800">
+<!-- Screen -->
+<div class="w-full h-full bg-[#F5F5F5] rounded-[32px] overflow-hidden flex flex-col relative">
+<!-- App Header (Mock) -->
+<div class="bg-primary text-white p-4 pt-8 pb-12 rounded-b-[20px] relative z-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span class="font-headline-sm text-headline-sm">Search Results</span>
+</div>
+</div>
+<!-- Result Card inside Preview -->
+<div class="px-4 -mt-6 relative z-20">
+<div class="bg-white rounded-xl shadow-sm p-4 border border-gray-100 flex flex-col gap-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 bg-surface-container-low rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Hospital building" class="w-full h-full object-cover" data-alt="Modern hospital building facade with glass windows in bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSfn5Ycl0C2hF-QQ98pjbeA_AwPl_j1wijRjftJuvKBlJHTNWD_R46xln98X7zTwJB0kNbyl6UhtEntNRdDlMWS3O6LhmJXBSpld-taS_HmAYVAJxNoMyCxdx-7MmzaF-gT2tY_LNuqg_ycyzXBIRgDPWplgIHBLIwGbuUP47YWTcjQUQaaN9jy06ypz4VoWOmO_0hofAcGnQGSbx3cnRoPRYLA9EnL9FOdNxz5sdncK9l5gq4XqZe1WzXyNnw4bMgyV8xExtBnwCx"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-sm font-bold text-primary leading-tight">St. Luke's Medical Center</h4>
+<p class="font-body-md text-xs text-on-surface-variant mt-1">Private Tertiary • Taguig</p>
+<div class="flex items-center gap-1 mt-1 text-xs font-medium text-emerald-700 bg-emerald-50 w-max px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span> PhilHealth
+                                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

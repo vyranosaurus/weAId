@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>weAId - Reservation Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-container": "#ff8371",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container-low": "#fff0ee",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#b22b1d",
+                        "secondary-container": "#dcdddd",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5f6161",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary": "#00137f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2bfb9",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#261816",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#000c61",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-high": "#fde2de",
+                        "primary": "#570000",
+                        "on-tertiary-container": "#94a0ff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-container": "#800000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F5F5F5; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased min-h-screen pb-safe flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-[#800000] text-white font-['Montserrat'] font-semibold tracking-tight rounded-b-[20px] w-full fixed top-0 z-50 shadow-xl shadow-[#800000]/10 flex justify-between items-center px-5 h-16 w-full">
+<button class="hover:bg-white/10 active:scale-95 transition-transform p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<div class="text-2xl font-black text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">weAId</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[80px] pb-24 px-container-padding flex flex-col gap-stack-lg max-w-md mx-auto w-full">
+<!-- Hero Section -->
+<div class="bg-primary-container rounded-b-[20px] -mt-[80px] -mx-container-padding pt-32 pb-8 px-container-padding text-center flex flex-col items-center shadow-md">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-display-md text-display-md text-white mb-2">Tagumpay!</h1>
+<p class="font-body-lg text-body-lg text-white/90">Reserved na kayo.</p>
+</div>
+<!-- Details Card -->
+<div class="bg-white rounded-xl p-stack-lg shadow-[0_4px_12px_rgba(128,0,0,0.04)] flex flex-col gap-stack-md -mt-12 relative z-10 border border-gray-100">
+<div class="text-center pb-4 border-b border-gray-100">
+<p class="font-label-bold text-label-bold text-secondary uppercase tracking-wider mb-1">Pagawaan ng Reserbasyon</p>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Philippine General Hospital</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Outpatient Department, Taft Ave, Ermita, Manila</p>
+</div>
+<div class="grid grid-cols-2 gap-4 py-2">
+<div class="bg-surface rounded-lg p-3 text-center border border-surface-variant">
+<p class="font-label-bold text-label-bold text-secondary mb-1">SLOT MO</p>
+<p class="font-display-md text-display-md text-primary-container">09:30 AM</p>
+</div>
+<div class="bg-surface rounded-lg p-3 text-center border border-surface-variant">
+<p class="font-label-bold text-label-bold text-secondary mb-1">QUEUE NUMBER</p>
+<p class="font-display-md text-display-md text-primary-container">#042</p>
+</div>
+</div>
+<div class="flex flex-col items-center pt-4">
+<p class="font-label-bold text-label-bold text-secondary mb-4 text-center">IPAKITA ANG QR CODE NA ITO</p>
+<div class="bg-white p-2 rounded-lg border-2 border-surface-variant mb-2">
+<img alt="QR Code" class="w-[150px] h-[150px]" data-alt="crisp high contrast black and white square qr code for medical appointment scanning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGXlxYEiRqortfIuW2dwIfMV7TrxTsMR7DEKgl2V3kJKqVAU-pp51eLyJZvoInE_eO_XgbIStI7VXlKgxw8a61PkJFnr6b9sWKOhJkoskw_Ec-AdJSJWp4itrRxv2pY35JJHDiTEPszv1wcR6GW-8Dg8BnNqhKa0M0Neg6UYF87HqGEuWWzuuaBucPrRKqyvFEEWG0vRjOvjDT5EPpC2qg89YlJpcga_yU_AhUdkTcBB1EMw5bXMx2RNgvJIM6_sEYXEpxvGMC_QUI"/>
+</div>
+<p class="font-body-md text-body-md text-secondary text-center">Ref: WA-7839-M</p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-stack-sm mt-4">
+<button class="w-full bg-primary-container text-white font-headline-sm text-headline-sm rounded-full py-4 px-6 flex items-center justify-center gap-2 shadow-sm hover:bg-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="directions">directions</span>
+                Direksyon
+            </button>
+<button class="w-full bg-transparent text-primary-container border-[1.5px] border-primary-container font-headline-sm text-headline-sm rounded-full py-4 px-6 flex items-center justify-center gap-2 hover:bg-surface transition-colors active:scale-95">
+                Kanselahin
+            </button>
+</div>
+<!-- Reminder -->
+<div class="text-center mt-2 flex items-start gap-2 text-secondary px-2">
+<span class="material-symbols-outlined text-xl shrink-0" data-icon="info">info</span>
+<p class="font-body-md text-body-md text-left">Pumunta 15 minuto bago ang iyong naka-iskedyul na oras. Dalhin ang iyong weAId ID.</p>
+</div>
+</main>
+<!-- Suppressed BottomNavBar as this is a transactional/success screen -->
+</body></html>

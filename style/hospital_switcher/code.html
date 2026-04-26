@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>weAId Admin Hospital Switcher</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#fff0ee",
+                        "on-primary-fixed": "#410000",
+                        "on-background": "#261816",
+                        "inverse-surface": "#3d2d2a",
+                        "secondary-container": "#dcdddd",
+                        "surface-bright": "#fff8f6",
+                        "primary": "#570000",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "surface-container-high": "#fde2de",
+                        "primary-fixed": "#ffdad4",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "error": "#ba1a1a",
+                        "outline": "#8e706c",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#ff8371",
+                        "background": "#fff8f6",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "inverse-on-surface": "#ffedea",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface": "#fff8f6",
+                        "primary-container": "#800000",
+                        "surface-tint": "#b22b1d",
+                        "on-secondary-fixed-variant": "#454747",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-variant": "#f7ddd8",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "surface-dim": "#eed4d0",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-tertiary-container": "#94a0ff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#261816",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5a413d",
+                        "tertiary-fixed": "#dfe0ff",
+                        "tertiary": "#00137f",
+                        "outline-variant": "#e2bfb9",
+                        "secondary": "#5d5f5f",
+                        "tertiary-container": "#0021b9",
+                        "inverse-primary": "#ffb4a8",
+                        "on-secondary-container": "#5f6161",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "stack-sm": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "ai-signature": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #F5F5F5; }
+        .shadow-tinted { box-shadow: 0 4px 12px rgba(128, 0, 0, 0.04); }
+        .bg-primary-container-hero { background-color: #800000; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased text-on-background">
+<!-- TopNavBar -->
+<nav class="bg-red-900 dark:bg-red-950 text-white docked full-width top-0 rounded-b-[20px] shadow-lg shadow-red-900/20 fixed top-0 left-0 w-full z-50 flex justify-between items-center px-5 h-16">
+<div class="flex items-center">
+<span class="text-2xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] tracking-tight font-display-md text-display-md">
+                we<span class="font-ai-signature text-ai-signature text-[#ff8371]">AI</span>d
+            </span>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="hover:bg-white/10 transition-colors duration-200 p-2 rounded-full Active: opacity-80 scale-95 text-red-100/80 hover:text-white">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Settings" class="hover:bg-white/10 transition-colors duration-200 p-2 rounded-full Active: opacity-80 scale-95 text-red-100/80 hover:text-white">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center gap-2 hover:bg-white/10 transition-colors duration-200 p-1.5 rounded-full cursor-pointer pl-3">
+<span class="font-body-md text-body-md hidden sm:block font-medium">Administrator Profile</span>
+<img alt="Admin User" class="w-8 h-8 rounded-full border-2 border-white/20 object-cover" data-alt="Professional headshot of a male administrator in a light blue shirt smiling warmly against a soft gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM7WSqAZ1WBHP0Vmc6zu4h1D6lRFPG8KFtZ52hukjJ4a9AebmBm4mdEYlr6CCblCOfzEwSxXzbUgxvJUxCPEeVa4rDAZxI2XlpRKllabkohqfhfhvZqBY6lHQjyJT9_u6AT7Ig1PCVNXeFLevlW_nuwhRKQu09W3JAnimPE5qRQG3gtA3MHSfPE0pXOqZuIzZeVi33-nPT8fwlOzKewbLZFJwbJ0GkzlZTzdITjBze1w-yY7_yhb6L1Z_uQROynL9_GAjS1z3tnZbS"/>
+<span class="material-symbols-outlined text-sm text-red-100/80 hover:text-white" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 px-container-padding pb-12 w-full max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col gap-4 max-w-2xl">
+<div>
+<h1 class="font-display-lg text-display-lg text-[#333333] mb-2">Choose a hospital to manage</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">You have access to 3 hospitals.</p>
+</div>
+<div class="relative w-full max-w-md">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary" data-icon="search">search</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest border border-secondary-fixed rounded-full focus:ring-1 focus:ring-primary-container focus:border-primary-container font-body-md text-body-md text-on-surface placeholder-secondary transition-colors" placeholder="Search hospitals you manage…" type="text"/>
+</div>
+</div>
+<!-- Hospital Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+<!-- Hospital Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-tinted flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1">
+<div class="h-32 w-full bg-surface-variant relative">
+<img alt="Hospital Building" class="w-full h-full object-cover" data-alt="Modern multi-story hospital building facade with large glass windows reflecting blue sky on a sunny day" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLlVT1ndHaKjrc30O7k7gnjmKCFaBjirxLtbFjAohpWwL9Fpq7Mt1UtR11vKzRxKQVSNr_g5ZoTS4WSTT88RQhYLBC5e2z-Ijpzsxn5i6v1zIkQKT7HS17B5nhNWPwXCYp_5eI1pt7t8W_N-IYl2T7Ghxm-PtJqd2LKYYVQZlmggQou2KDp-rgAgvfrf0J_EGXs1RHtgilq71cPgqsUfy-vSK-JV56YbAaTBpiiwgQ2CqTHyJ6to1L1reWnj_7rNdm1PSt2oonMlJ6"/>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-stack-md">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Philippine General Hospital</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1">Taft Avenue, Ermita, Manila</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full border border-primary-container bg-surface-container-low text-primary font-label-bold text-[10px] uppercase whitespace-nowrap">
+                            DOH-retained
+                        </span>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold text-on-surface">Live queue: 142</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-label-bold text-label-bold text-on-surface">Avg wait: 38m</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="event_busy">event_busy</span>
+<span class="font-label-bold text-label-bold text-on-surface">No-show: 7%</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4 border-t border-secondary-fixed">
+<div class="w-2.5 h-2.5 rounded-full bg-[#10B981]"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">All services up</span>
+</div>
+<button class="w-full mt-4 bg-primary-container text-on-primary font-headline-sm text-headline-sm py-3 px-6 rounded-full hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+                        Open dashboard
+                        <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Hospital Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-tinted flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1">
+<div class="h-32 w-full bg-surface-variant relative">
+<img alt="Hospital Building" class="w-full h-full object-cover" data-alt="Entrance of a local government hospital with clear signage and ambulances parked in front under bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgZwyn075blTABEyFwnMgKarbB8XT7p36PWwcgZZYOh4yYlUTcM4rAAKqfRGalPySwdgwjv8F5CzKUQSEw7zDh09thXUW3cV1b9N4u_dLy6vlV6z9UV3piafnTooAGSQU-2fAG6qMFqhzgEEuY1DrC1fPLWL3JLcSPNi1wXLd7R8ov2gYk1u8u0wVHiJXkNtueBWqGjRSDir6bVEkNo81RNcC_VcovtrNIHQFr1tNKTyD6AGneJdEk3mwOvcpF0uMTlQnLJ2oJ1hLI"/>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-stack-md">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Quezon City General</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1">Seminary Road, Quezon City</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full border border-[#10B981] bg-[#10B981]/10 text-[#047857] font-label-bold text-[10px] uppercase whitespace-nowrap">
+                            LGU
+                        </span>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold text-on-surface">Live queue: 85</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-label-bold text-label-bold text-on-surface">Avg wait: 22m</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="event_busy">event_busy</span>
+<span class="font-label-bold text-label-bold text-on-surface">No-show: 4%</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4 border-t border-secondary-fixed">
+<div class="w-2.5 h-2.5 rounded-full bg-[#F59E0B]"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">1 service down</span>
+</div>
+<button class="w-full mt-4 bg-primary-container text-on-primary font-headline-sm text-headline-sm py-3 px-6 rounded-full hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+                        Open dashboard
+                        <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Hospital Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-tinted flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1 border border-transparent">
+<div class="h-32 w-full bg-surface-variant relative">
+<img alt="Hospital Building" class="w-full h-full object-cover" data-alt="Modern private hospital interior atrium with glass ceilings, sleek reception desks, and clean white architectural lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG5QLHMrZEayPbky73_a7IQGkQg9jXM5SYZqK8nKyHnpHgQFWr3ZP5gCgi3bXvkkfEbJNGgVa5ODPbKgZ4Fp_B9ncDka2pIkxby6ap7oMuXVEh7cvyHy9BQ1shkeebKmlZeZKrA8TzbPxAwAGxY8VoWcRoUMEmDNOF-oP1Q-rMzyOSehmcT-tcBKrpO7f_1jCTNPKTjpDOeRFIQ4R6lZ18pPTPQppP-3qFUQesi9noTMn8RvM24x68q-7sZbxUQ9TOs-A5aMx4mVKu"/>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-stack-md">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">St. Luke's Medical Center</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-1">Global City, Taguig</p>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-full border border-secondary bg-surface-container-low text-secondary font-label-bold text-[10px] uppercase whitespace-nowrap">
+                            Private
+                        </span>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="group">group</span>
+<span class="font-label-bold text-label-bold text-on-surface">Live queue: 210</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="font-label-bold text-label-bold text-on-surface">Avg wait: 55m</span>
+</div>
+<div class="bg-surface-container px-3 py-1.5 rounded-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="event_busy">event_busy</span>
+<span class="font-label-bold text-label-bold text-on-surface">No-show: 12%</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4 border-t border-secondary-fixed">
+<div class="w-2.5 h-2.5 rounded-full bg-[#EF4444]"></div>
+<span class="font-body-md text-body-md text-[#EF4444] font-medium">ER at capacity</span>
+</div>
+<button class="w-full mt-4 bg-primary-container text-on-primary font-headline-sm text-headline-sm py-3 px-6 rounded-full hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+                        Open dashboard
+                        <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Empty State / Request Access -->
+<div class="bg-transparent border border-secondary-fixed rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="add_business">add_business</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Need access to another hospital?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Request permissions from your regional admin.</p>
+</div>
+</div>
+<button class="w-full md:w-auto px-6 py-3 rounded-full border-[1.5px] border-primary-container text-primary-container font-headline-sm text-headline-sm hover:bg-primary-container hover:text-on-primary transition-colors whitespace-nowrap">
+                Request access
+            </button>
+</div>
+</main>
+</body></html>

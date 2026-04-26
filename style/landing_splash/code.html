@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>weAId Landing Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-container": "#ff8371",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container-low": "#fff0ee",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#b22b1d",
+                        "secondary-container": "#dcdddd",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5f6161",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary": "#00137f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2bfb9",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#261816",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#000c61",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-high": "#fde2de",
+                        "primary": "#570000",
+                        "on-tertiary-container": "#94a0ff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-container": "#800000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased h-screen w-full overflow-hidden flex flex-col font-body-md text-body-md">
+<!-- Hero Section (Top 60%) -->
+<div class="h-[530px] bg-primary-container rounded-b-[20px] shadow-[0_4px_12px_rgba(128,0,0,0.1)] flex flex-col items-center justify-center px-container-padding relative z-10 w-full">
+<!-- Glowing Ambient effect for AI -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white/10 blur-[40px] rounded-full pointer-events-none"></div>
+<div class="text-center z-10 space-y-stack-md flex flex-col items-center">
+<!-- Wordmark with AI Flourish -->
+<h1 class="font-display-lg text-display-lg text-white">
+                we<span class="font-ai-signature text-ai-signature text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">AI</span>d
+            </h1>
+<div class="space-y-stack-sm flex flex-col items-center">
+<p class="font-headline-sm text-headline-sm text-white/90 text-center max-w-[280px]">
+                    Right Care starts with the Right Direction.
+                </p>
+<p class="font-body-md text-body-md text-white/70 text-center">
+                    Libre. Walang appointment. Walang stress.
+                </p>
+</div>
+</div>
+</div>
+<!-- Action Section (Bottom 40%) -->
+<div class="h-[353px] bg-surface flex flex-col items-center justify-center px-container-padding py-stack-lg space-y-stack-lg w-full">
+<div class="w-full space-y-stack-md flex flex-col items-center w-full max-w-sm">
+<!-- Primary Patient Button -->
+<button class="w-full bg-primary-container text-white font-label-bold text-label-bold py-4 rounded-full shadow-[0_4px_12px_rgba(128,0,0,0.04)] active:scale-95 transition-transform uppercase flex justify-center items-center gap-unit">
+                Magpatuloy bilang Pasyente
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<!-- Secondary Partner Login Button -->
+<button class="w-full bg-white border-[1.5px] border-primary-container text-primary-container font-label-bold text-label-bold py-4 rounded-full active:scale-95 transition-transform uppercase flex justify-center items-center gap-unit">
+<span class="material-symbols-outlined text-[16px]">local_hospital</span>
+                Hospital Partner Login
+            </button>
+</div>
+<!-- Language Toggle -->
+<div class="mt-auto pb-safe flex items-center justify-center gap-unit text-on-surface-variant font-label-bold text-label-bold pt-stack-lg">
+<button class="hover:text-primary-container transition-colors">ENGLISH</button>
+<span class="text-secondary-fixed-dim">|</span>
+<button class="text-primary-container hover:text-primary transition-colors">FILIPINO</button>
+</div>
+</div>
+</body></html>

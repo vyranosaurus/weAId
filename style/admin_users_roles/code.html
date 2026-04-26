@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>weAId Admin - Users &amp; Roles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5d5f5f",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-low": "#fff0ee",
+                        "tertiary": "#00137f",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "primary-container": "#800000",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#0021b9",
+                        "surface-tint": "#b22b1d",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "on-primary-container": "#ff8371",
+                        "primary-fixed": "#ffdad4",
+                        "on-surface": "#261816",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fff8f6",
+                        "surface": "#fff8f6",
+                        "on-tertiary-container": "#94a0ff",
+                        "inverse-on-surface": "#ffedea",
+                        "background": "#fff8f6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#3d2d2a",
+                        "surface-dim": "#eed4d0",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb4a8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-high": "#fde2de",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e2bfb9",
+                        "on-background": "#261816",
+                        "primary": "#570000",
+                        "surface-container-highest": "#f7ddd8",
+                        "error": "#ba1a1a",
+                        "surface-container": "#ffe9e6",
+                        "secondary-container": "#dcdddd",
+                        "outline": "#8e706c",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#dfe0ff",
+                        "on-primary-fixed": "#410000",
+                        "surface-variant": "#f7ddd8",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "secondary-fixed": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-[260px] border-r border-r border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col h-full overflow-y-auto z-50">
+<div class="text-2xl font-black tracking-tight text-red-900 dark:text-red-500 px-6 py-8">
+<div class="flex items-center gap-3">
+<img alt="Hospital Logo" class="w-8 h-8 rounded-full object-cover" data-alt="minimalist red cross or medical cross logo on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNf8LzpeEvoYt0LofPBqvatRf7eLZag87kBmWXkbDTFZo0RFEIlpgV8J0b3xicVRM4R79H44MCVe5tbC_MwdCjm7e20iJbpouJHoIBwafmK4oQkYI_0Z1KgHqDkYbQq9sHY-ik1gqn5haE0_SwBg521QUcWsJHctt6cg17_2aU8e0hXjZHC4yEt-OcMSCjmlKeK7ozlymHUyYlDImHeW1z6GTIT0sJOgIu6JSVYJm3-igu1wOJ4B2F6mB0b2Icnq2inRpK9CbmT9-K"/>
+<div>
+<div class="font-display-md text-primary">weAId</div>
+<div class="font-label-bold text-on-surface-variant text-[10px]">Hospital Admin</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">local_hospital</span>
+<span class="font-body-md">Hospital Profile</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="font-body-md">Notifications</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mail</span>
+<span class="font-body-md">Messages</span>
+</a>
+<a class="bg-red-50 dark:bg-red-950/30 text-red-900 dark:text-red-400 font-bold border-r-4 border-red-900 px-6 py-4 flex items-center gap-3 active:opacity-80 transition-opacity ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-headline-sm text-sm">Users</span>
+</a>
+<a class="text-gray-600 dark:text-gray-400 font-medium px-6 py-4 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all ease-in-out duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-[260px] flex-1 flex flex-col min-h-screen w-full">
+<!-- TopAppBar -->
+<header class="h-16 w-full sticky top-0 z-40 border-b border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm shadow-red-900/5 flex items-center justify-between px-6 h-16">
+<div class="font-montserrat text-sm font-medium text-red-900 dark:text-red-500">
+                weAId Admin
+            </div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="pl-10 pr-4 py-2 bg-gray-50 border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container outline-none w-64 text-on-surface" placeholder="Search..." type="text"/>
+</div>
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mail</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-container-padding flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col gap-stack-md">
+<h1 class="font-display-lg text-on-surface">Users &amp; Roles</h1>
+<!-- KPI Strip (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="font-body-md text-on-surface-variant">Active Users</span>
+</div>
+<div class="font-display-md text-on-surface">1,248</div>
+<div class="text-sm text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-green-600">trending_up</span>
+<span>+12% this month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<span class="font-body-md text-on-surface-variant">Pending Approvals</span>
+</div>
+<div class="font-display-md text-on-surface">24</div>
+<div class="text-sm text-secondary mt-1">Requires review</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<span class="font-body-md text-on-surface-variant">Active Roles</span>
+</div>
+<div class="font-display-md text-on-surface">12</div>
+<div class="text-sm text-secondary mt-1">Across 8 departments</div>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-secondary-fixed-dim">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a aria-current="page" class="border-primary-container text-primary-container whitespace-nowrap py-4 px-1 border-b-2 font-headline-sm text-sm" href="#">
+                        Users
+                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline-variant whitespace-nowrap py-4 px-1 border-b-2 font-body-md" href="#">
+                        Roles &amp; Permissions
+                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline-variant whitespace-nowrap py-4 px-1 border-b-2 font-body-md" href="#">
+                        Audit Log
+                    </a>
+</nav>
+</div>
+<!-- Users Tab Content -->
+<div class="flex flex-col gap-stack-md bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] overflow-hidden border border-transparent">
+<!-- Filter Bar -->
+<div class="p-6 border-b border-surface-variant flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-bright">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-secondary-fixed-dim rounded-lg text-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none text-on-surface transition-colors" placeholder="Search users by name, email, or ID..." type="text"/>
+</div>
+<button class="px-4 py-2 border border-secondary-fixed-dim rounded-lg text-sm font-body-md text-on-surface hover:bg-surface-variant flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Filters
+                        </button>
+</div>
+<button class="w-full md:w-auto px-6 py-2 bg-primary-container text-on-primary rounded-full font-headline-sm text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add User
+                    </button>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-surface-variant">
+<thead class="bg-surface">
+<tr>
+<th class="px-6 py-3 text-left font-label-bold text-on-surface-variant uppercase tracking-wider" scope="col">User</th>
+<th class="px-6 py-3 text-left font-label-bold text-on-surface-variant uppercase tracking-wider" scope="col">Role</th>
+<th class="px-6 py-3 text-left font-label-bold text-on-surface-variant uppercase tracking-wider" scope="col">Department</th>
+<th class="px-6 py-3 text-left font-label-bold text-on-surface-variant uppercase tracking-wider" scope="col">Status</th>
+<th class="relative px-6 py-3" scope="col"><span class="sr-only">Actions</span></th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10">
+<img alt="" class="h-10 w-10 rounded-full object-cover" data-alt="professional headshot of a female doctor in her 30s wearing scrubs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2UpyLkoYBNVLjNgJxwkNShAGypStDk2hKJ5eMP8aZ2h7lrwJExBdQK-wEXZLqxuuuoRpvS9KkSFuRhjtqy12kwogIqeX0VmMZtBk_JqguJ8UMFvb7JhsMF4EfdUvH-NPDmyZrbnyUrb-z7k9nleya0poKq24WpwGNSdnO--b72dwkYUTyk88NrQgEVQorlAMBxsBRYXO8aIB_SQx0Q-jbwXSbILn3-6nx2GRLd53tHPVAFryQcG7zZJJV906pVgRG64FbaQIiFlvw"/>
+</div>
+<div class="ml-4">
+<div class="font-headline-sm text-sm text-on-surface">Dr. Maria Santos</div>
+<div class="text-sm text-secondary">m.santos@weaid.org</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-primary-fixed text-on-primary-fixed">Super Admin</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-on-surface">Administration</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-green-100 text-green-800">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 bg-tertiary-container text-on-tertiary-container rounded-full flex items-center justify-center font-headline-sm">
+                                            JC
+                                        </div>
+<div class="ml-4">
+<div class="font-headline-sm text-sm text-on-surface">Juan Cruz</div>
+<div class="text-sm text-secondary">j.cruz@weaid.org</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed">Physician</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-on-surface">Cardiology</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-green-100 text-green-800">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10">
+<img alt="" class="h-10 w-10 rounded-full object-cover" data-alt="professional headshot of a male nurse in his 40s wearing blue scrubs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK4ybmHhqFmEazTrBkQoY-fow0sb0_eGh_icBxz183GeUYu7f1VyeFMaAQfYz-uBh24kZScZilvmp1BHjH80vSReWenPgFillHHUSLKk6WS3texjTRPAgyP1WbZ0agp69pFtItiAapFgNfg14RquPzabeLpokNaR45W6DG6k_CejpHod5VWJRjUBNEyYUoIghdSTDAF07kh0zc1nE49ol6ArUbGnre6vFzbISywnupdqKK450sl-gcuWB3Hn0lkYRmQasoQSrW83nq"/>
+</div>
+<div class="ml-4">
+<div class="font-headline-sm text-sm text-on-surface">Roberto Reyes</div>
+<div class="text-sm text-secondary">r.reyes@weaid.org</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-secondary-fixed text-on-secondary-fixed">Nurse</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-on-surface">Pediatrics</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 inline-flex font-label-bold text-[10px] leading-5 rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface px-6 py-4 border-t border-surface-variant flex items-center justify-between">
+<div class="text-sm text-secondary">
+                        Showing <span class="font-headline-sm text-on-surface text-sm">1</span> to <span class="font-headline-sm text-on-surface text-sm">10</span> of <span class="font-headline-sm text-on-surface text-sm">1,248</span> results
+                    </div>
+<div class="flex gap-2">
+<button class="p-2 border border-secondary-fixed-dim rounded-lg text-secondary hover:bg-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-2 border border-secondary-fixed-dim rounded-lg text-on-surface hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

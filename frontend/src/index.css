@@ -1,68 +1,324 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  html,
+  body,
+  #root {
+    @apply h-full;
   }
-  a:hover {
-    color: #747bff;
+
+  html {
+    scroll-behavior: smooth;
   }
-  button {
-    background-color: #f9f9f9;
+
+  body {
+    @apply bg-[#F5F5F5] text-on-surface antialiased;
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(circle at 10% 0%, rgba(128, 0, 0, 0.08), transparent 26%),
+      radial-gradient(circle at 90% 100%, rgba(128, 0, 0, 0.06), transparent 22%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(128, 0, 0, 0.18);
+    color: #261816;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease,
+      box-shadow 160ms ease, transform 120ms ease;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgba(128, 0, 0, 0.45);
+    outline-offset: 2px;
+  }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  .icon-fill {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+@layer utilities {
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .ai-glow-light {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+  .ai-glow-dark {
+    text-shadow: 0 0 8px rgba(128, 0, 0, 0.5);
+  }
+
+  .hero-kenburns {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: hero-kenburns 18s ease-in-out infinite alternate;
+    transform-origin: center;
+    will-change: transform, background-position;
+  }
+
+  .hero-maroon-sweep {
+    background: linear-gradient(
+      115deg,
+      rgba(65, 0, 0, 0.05) 0%,
+      rgba(128, 0, 0, 0.25) 35%,
+      rgba(178, 43, 29, 0.14) 55%,
+      rgba(65, 0, 0, 0.05) 100%
+    );
+    background-size: 220% 220%;
+    animation: hero-maroon-sweep 12s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .landing-exit {
+    animation: landing-exit 340ms ease forwards;
+  }
+
+  .landing-wipe {
+    animation: landing-wipe 340ms ease forwards;
+  }
+
+  .page-enter {
+    animation: page-enter 420ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  .screen-enter {
+    animation: screen-enter 420ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  .login-form-rise {
+    animation: login-form-rise 460ms cubic-bezier(0.18, 0.88, 0.2, 1);
+  }
+
+  .hospital-page-enter {
+    animation: hospital-page-enter 420ms cubic-bezier(0.16, 0.84, 0.22, 1);
+  }
+
+  .hospital-card-domino {
+    animation: hospital-card-domino 420ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    animation-delay: var(--domino-delay, 0ms);
+  }
+
+  .emergency-maroon-pulse {
+    background: linear-gradient(135deg, #9f1239 0%, #7a1c1c 52%, #5b1111 100%);
+    animation: emergency-maroon-pulse 1.8s ease-in-out infinite;
+  }
+
+  .nearest-border-pulse {
+    animation: nearest-border-pulse 2.2s ease-in-out infinite;
+  }
+
+  .notif-alert-pulse {
+    animation: notif-alert-pulse 2.1s ease-in-out infinite;
+  }
+}
+
+@keyframes hero-kenburns {
+  0% {
+    transform: scale(1.03);
+    background-position: 50% 42%;
+  }
+  50% {
+    transform: scale(1.09);
+    background-position: 56% 50%;
+  }
+  100% {
+    transform: scale(1.05);
+    background-position: 46% 56%;
+  }
+}
+
+@keyframes hero-maroon-sweep {
+  0% {
+    background-position: 0% 40%;
+    opacity: 0.25;
+  }
+  50% {
+    background-position: 100% 60%;
+    opacity: 0.45;
+  }
+  100% {
+    background-position: 0% 40%;
+    opacity: 0.25;
+  }
+}
+
+@keyframes landing-exit {
+  0% {
+    transform: none;
+    filter: saturate(1) brightness(1);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    filter: saturate(1.03) brightness(0.9);
+    opacity: 0.85;
+  }
+}
+
+@keyframes landing-wipe {
+  0% {
+    opacity: 0;
+    background-position: 0% 50%;
+  }
+  100% {
+    opacity: 1;
+    background: linear-gradient(120deg, rgba(47, 0, 0, 0.82), rgba(128, 0, 0, 0.65), rgba(255, 180, 168, 0.32));
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes page-enter {
+  0% {
+    opacity: 0.7;
+    transform: none;
+    filter: blur(0.7px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes screen-enter {
+  0% {
+    opacity: 0.7;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes login-form-rise {
+  0% {
+    opacity: 0.55;
+    transform: translateY(36px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hospital-page-enter {
+  0% {
+    opacity: 0.72;
+    transform: translateX(26px);
+    filter: blur(0.8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hospital-card-domino {
+  0% {
+    opacity: 0;
+    transform: translateX(18px) translateY(8px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes emergency-maroon-pulse {
+  0% {
+    filter: brightness(0.94) saturate(1);
+    box-shadow: 0 10px 20px rgba(122, 28, 28, 0.3);
+  }
+  50% {
+    filter: brightness(1.08) saturate(1.05);
+    box-shadow: 0 14px 28px rgba(122, 28, 28, 0.48);
+  }
+  100% {
+    filter: brightness(0.94) saturate(1);
+    box-shadow: 0 10px 20px rgba(122, 28, 28, 0.3);
+  }
+}
+
+@keyframes nearest-border-pulse {
+  0% {
+    border-color: rgba(122, 28, 28, 0.24);
+    box-shadow: 0 0 0 1px rgba(122, 28, 28, 0.06), 0 0 0 0 rgba(122, 28, 28, 0.2);
+    opacity: 0.85;
+  }
+  50% {
+    border-color: rgba(122, 28, 28, 0.62);
+    box-shadow: 0 0 0 1px rgba(122, 28, 28, 0.14), 0 0 0 7px rgba(122, 28, 28, 0.09);
+    opacity: 1;
+  }
+  100% {
+    border-color: rgba(122, 28, 28, 0.24);
+    box-shadow: 0 0 0 1px rgba(122, 28, 28, 0.06), 0 0 0 0 rgba(122, 28, 28, 0.2);
+    opacity: 0.85;
+  }
+}
+
+@keyframes notif-alert-pulse {
+  0% {
+    border-color: rgba(122, 28, 28, 0.35);
+    box-shadow: 0 0 0 0 rgba(122, 28, 28, 0.14);
+  }
+  50% {
+    border-color: rgba(122, 28, 28, 0.65);
+    box-shadow: 0 0 0 4px rgba(122, 28, 28, 0.08);
+  }
+  100% {
+    border-color: rgba(122, 28, 28, 0.35);
+    box-shadow: 0 0 0 0 rgba(122, 28, 28, 0.14);
   }
 }

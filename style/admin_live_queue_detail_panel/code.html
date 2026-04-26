@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>weAId Admin - Live Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "tertiary": "#00137f",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "secondary": "#5d5f5f",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#3d2d2a",
+                        "on-primary-container": "#ff8371",
+                        "outline-variant": "#e2bfb9",
+                        "tertiary-container": "#0021b9",
+                        "surface-tint": "#b22b1d",
+                        "surface-bright": "#fff8f6",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container": "#ffe9e6",
+                        "primary-fixed": "#ffdad4",
+                        "on-secondary-container": "#5f6161",
+                        "outline": "#8e706c",
+                        "surface-container-high": "#fde2de",
+                        "secondary-container": "#dcdddd",
+                        "on-primary-fixed": "#410000",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "surface": "#fff8f6",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary-container": "#800000",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#eed4d0",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "background": "#fff8f6",
+                        "tertiary-fixed": "#dfe0ff",
+                        "surface-container-low": "#fff0ee",
+                        "on-surface": "#261816",
+                        "on-surface-variant": "#5a413d",
+                        "primary": "#570000",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#261816",
+                        "surface-variant": "#f7ddd8",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-tertiary-container": "#94a0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "label-bold": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden">
+<!-- Background Layer (Blurred/Dimmed) -->
+<div class="fixed inset-0 z-0 flex flex-col blur-[2px] opacity-50 bg-surface-container-lowest">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-[0_4px_12px_rgba(128,0,0,0.04)] docked full-width top-0 z-40 flex justify-between items-center h-16 px-6 w-full">
+<div class="flex items-center gap-6">
+<span class="text-2xl font-black text-red-900 dark:text-red-500 uppercase tracking-wider font-['Montserrat'] font-semibold tracking-tight">weAId Admin</span>
+<nav class="hidden md:flex gap-6 h-full">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors h-full flex items-center px-2" href="#">Overview</a>
+<a class="text-red-900 dark:text-red-400 font-bold border-b-2 border-red-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors h-full flex items-center px-2" href="#">Live Queue</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors h-full flex items-center px-2" href="#">Incoming</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors h-full flex items-center px-2" href="#">Doctors</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors h-full flex items-center px-2" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-full border-none text-sm focus:ring-2 focus:ring-red-900 outline-none w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 text-red-900 dark:text-red-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-red-900 dark:text-red-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full object-cover border border-slate-200" data-alt="Professional headshot of a mature female hospital administrator in a white lab coat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4BMiddHWDQLKqT8jTDdrHTK_6WH7KgLR7qUENhckPPPhAQOzVVjlsJKZjuXLJoEgfkTBAPJRYbYtnK7uLLans2YopryCIfptrMH3jjcUxqrBA7K6M-eouqVaLJISLH6JtBcolBQmXx7m6A08ki_QNsHDD3CcgdZA_MQ76OQSe-_YZ2EJ17VtgQSt-3Ly9DS2e8KXlWmpbFn9ZTq0y9fXDaznr4w2O7hXLPT8G7kTre8f45gQ_LoPwLktVlNJMsTY-tTQRjRUXh_3o"/>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-sm docked left-0 h-screen w-64 hidden lg:flex flex-col py-6 gap-2 font-['Montserrat'] text-sm font-medium">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-4 mb-4">
+<img alt="Hospital Brand Logo" class="w-10 h-10 rounded-lg object-cover shadow-sm" data-alt="Minimalist red cross hospital logo on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmzSuYR_-EtvD_-4P-h5u5OLD96gibU99SQ97srUoZopKW892G8SfZ4Pds60gf9hTtNKDIquR9NsWACQkp6st215NTIckoFerKtsq3zfyDXOZlN7114hufjuXo_hED8u23Hz3VVTGR7X20PIodqeUHuvi3n8UO4FcP-_PZ1w8iLNT_YyJZlQ3sTtn3fuLifW0tIykEqVU9uOyCFzjM8naCJq7_UJ6XPB3KhROHJ-Ad7HaRTMPwPcaQkFL8O734tDVxdizAek-eRaMo"/>
+<div>
+<h2 class="text-xl font-bold text-red-900 dark:text-red-500">Main Hospital</h2>
+<p class="text-xs text-slate-500">St. Luke's Branch</p>
+</div>
+</div>
+</div>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 px-4 py-3 mx-2 hover:text-red-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all tap-highlight-none active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-400 rounded-lg px-4 py-3 mx-2 border-l-4 border-red-900 transition-all tap-highlight-none active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">queue</span>
+                    Live Queue
+                </a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 px-4 py-3 mx-2 hover:text-red-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all tap-highlight-none active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">emergency</span>
+                    Incoming
+                </a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 px-4 py-3 mx-2 hover:text-red-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all tap-highlight-none active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+                    Doctors
+                </a>
+<a class="flex items-center gap-3 text-slate-600 dark:text-slate-400 px-4 py-3 mx-2 hover:text-red-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all tap-highlight-none active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</aside>
+<!-- Main Content Area (Fake Data for Background) -->
+<main class="flex-1 p-6 overflow-auto">
+<div class="mb-6 flex justify-between items-center">
+<h1 class="font-display-lg text-display-lg text-on-surface">Live Queue</h1>
+<div class="flex gap-4">
+<div class="bg-surface-container px-4 py-2 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-label-bold text-label-bold text-on-surface">3 CRITICAL</span>
+</div>
+<div class="bg-surface-container px-4 py-2 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="font-label-bold text-label-bold text-on-surface">12 WAITING</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-surface-variant">
+<tr>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant">PATIENT</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant">TRIAGE LEVEL</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant">WAIT TIME</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant">SYMPTOM SUMMARY</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant">ACTION</th>
+</tr>
+</thead>
+<tbody>
+<!-- Mock Rows -->
+<tr class="border-b border-surface-variant hover:bg-surface-container-low cursor-pointer">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-headline-sm text-on-surface-variant">JD</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">John Doe</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-xs">M, 45 yrs</div>
+</div>
+</div>
+</td>
+<td class="p-4"><span class="px-2 py-1 bg-error-container text-on-error-container font-label-bold text-label-bold rounded">LEVEL 2</span></td>
+<td class="p-4 font-body-md text-body-md text-on-surface">14 mins</td>
+<td class="p-4 font-body-md text-body-md text-on-surface-variant truncate max-w-xs">Severe chest pain radiating to left arm.</td>
+<td class="p-4"><button class="text-primary font-label-bold text-label-bold">REVIEW</button></td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-low cursor-pointer bg-surface-container-high">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-headline-sm text-on-surface-variant">MS</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">Maria Santos</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-xs">F, 28 yrs</div>
+</div>
+</div>
+</td>
+<td class="p-4"><span class="px-2 py-1 bg-surface-variant text-on-surface-variant font-label-bold text-label-bold rounded">LEVEL 4</span></td>
+<td class="p-4 font-body-md text-body-md text-on-surface">45 mins</td>
+<td class="p-4 font-body-md text-body-md text-on-surface-variant truncate max-w-xs">Mild fever and persistent cough for 3 days.</td>
+<td class="p-4"><button class="text-primary font-label-bold text-label-bold">REVIEW</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+</div>
+</div>
+<!-- Overlay Scrim -->
+<div class="fixed inset-0 z-40 bg-on-surface/20 transition-opacity"></div>
+<!-- Slide-over Panel -->
+<div class="fixed inset-y-0 right-0 z-50 w-full max-w-[480px] bg-surface-container-lowest shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out border-l border-surface-variant">
+<!-- Header -->
+<div class="bg-primary-container text-on-primary rounded-bl-[20px] p-6 relative flex-shrink-0">
+<button class="absolute top-6 right-6 w-9 h-9 rounded-full bg-on-primary/20 hover:bg-on-primary/30 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-on-primary text-xl">close</span>
+</button>
+<div class="flex items-center gap-4 mb-2">
+<span class="px-2 py-1 bg-error text-on-error font-label-bold text-label-bold rounded tracking-wider">LEVEL 2 - URGENT</span>
+<span class="font-label-bold text-label-bold opacity-80">WAITING: 14 MINS</span>
+</div>
+<h2 class="font-display-md text-display-md mb-1 font-ai-signature text-ai-signature">Patient Assessment</h2>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-8">
+<!-- Patient Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-surface-variant p-5">
+<div class="flex gap-5 items-start">
+<img alt="Patient Photo" class="w-20 h-20 rounded-full object-cover border-2 border-surface-container" data-alt="Headshot portrait of a 45 year old man looking slightly concerned in bright indoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMjbY3sDH64DryObmBb4Li9C26nqNy8KCAO8aApt-AEfaVDEf32FuXEAZuVprhpGTfJHND9h6EZbAFz0o9MCp6ObCpe6OUE21VeVdyqd8nPlIQihUWqdoYEjV9JE6TFqsGvj0WyVEEt2MsrOzdgflzx_pBOb8QCgT9beNeBeTgtDstNYhCO7MWDY5c7O9jWbColVeJLIWy1cX8Q7P1H6YhUK-KZy78WbbS-XDsXZ8sB_6lkHP1VeHkGp-_9cgMxPAcS8d7vAVJB4FX"/>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">John Doe</h3>
+<div class="flex flex-wrap gap-x-4 gap-y-2 mb-3">
+<div class="flex items-center gap-1 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                                45 Years Old
+                            </div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">wc</span>
+                                Male
+                            </div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md text-sm">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                +1 (555) 123-4567
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md text-sm">
+<span class="material-symbols-outlined text-[16px]">home</span>
+                                123 Main St, Apt 4B
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Triage Transcript -->
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">AI Triage Transcript</h4>
+</div>
+<div class="bg-surface-container rounded-xl p-5 border border-surface-variant/50 space-y-4">
+<!-- Patient Message -->
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 mt-1">
+<span class="font-label-bold text-label-bold text-on-secondary-fixed text-[10px]">JD</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl rounded-tl-sm shadow-sm border border-surface-variant/30 text-on-surface font-body-md text-body-md leading-relaxed">
+                            "I've been having this really tight pain in my chest for the last hour. It feels like someone is sitting on me."
+                        </div>
+</div>
+<!-- AI Response -->
+<div class="flex gap-3 flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-on-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="bg-primary/5 p-3 rounded-2xl rounded-tr-sm border border-primary/10 text-on-surface font-body-md text-body-md leading-relaxed">
+                            "I understand, John. I'm noting severe chest pressure. Does this pain spread anywhere else, like your arm, jaw, or back?"
+                        </div>
+</div>
+<!-- Patient Message -->
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 mt-1">
+<span class="font-label-bold text-label-bold text-on-secondary-fixed text-[10px]">JD</span>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-2xl rounded-tl-sm shadow-sm border border-surface-variant/30 text-on-surface font-body-md text-body-md leading-relaxed">
+                            "Yes, it's going down my left arm a bit, and I feel a little sweaty and nauseous."
+                        </div>
+</div>
+<!-- AI Assessment Summary -->
+<div class="mt-4 pt-4 border-t border-surface-variant">
+<h5 class="font-label-bold text-label-bold text-on-surface-variant mb-2 uppercase">AI Assessment Summary</h5>
+<ul class="list-disc pl-5 font-body-md text-body-md text-on-surface space-y-1">
+<li>Primary Complaint: Severe chest pressure (duration: &gt;1hr)</li>
+<li>Radiation: Left arm</li>
+<li>Associated Symptoms: Diaphoresis, Nausea</li>
+<li><strong>Flag: Immediate Cardiac Evaluation Required.</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Vitals (Extra context to make it look realistic) -->
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-3">Reported Vitals</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg p-3 flex flex-col">
+<span class="font-label-bold text-label-bold text-on-surface-variant mb-1">HEART RATE</span>
+<span class="font-display-md text-display-md text-error">112 <span class="font-body-md text-body-md text-on-surface-variant">bpm</span></span>
+</div>
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg p-3 flex flex-col">
+<span class="font-label-bold text-label-bold text-on-surface-variant mb-1">BLOOD PRESSURE</span>
+<span class="font-display-md text-display-md text-error">160/95 <span class="font-body-md text-body-md text-on-surface-variant">mmHg</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Quick Actions -->
+<div class="p-6 bg-surface-container border-t border-surface-variant flex-shrink-0 space-y-3">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full flex items-center justify-center gap-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">person_add</span>
+                Assign Doctor
+            </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="w-full border-[1.5px] border-primary text-primary font-headline-sm text-headline-sm py-3 rounded-full flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">meeting_room</span>
+                    Move to Room
+                </button>
+<button class="w-full border-[1.5px] border-primary text-primary font-headline-sm text-headline-sm py-3 rounded-full flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">phone_in_talk</span>
+                    Call to Desk
+                </button>
+</div>
+<button class="w-full text-on-surface-variant font-label-bold text-label-bold py-2 mt-2 hover:text-on-surface transition-colors underline underline-offset-2">
+                Discharge Patient
+            </button>
+</div>
+</div>
+</body></html>

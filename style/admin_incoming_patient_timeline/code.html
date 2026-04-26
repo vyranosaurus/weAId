@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>weAId Admin - Incoming</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#261816",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#dcdddd",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-container": "#5f6161",
+                        "on-primary-fixed": "#410000",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "tertiary-fixed": "#dfe0ff",
+                        "tertiary-container": "#0021b9",
+                        "surface-container-low": "#fff0ee",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#00137f",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#94a0ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#3d2d2a",
+                        "on-tertiary-fixed": "#000c61",
+                        "surface-container-highest": "#f7ddd8",
+                        "surface-container-high": "#fde2de",
+                        "on-surface-variant": "#5a413d",
+                        "surface": "#fff8f6",
+                        "primary": "#570000",
+                        "inverse-on-surface": "#ffedea",
+                        "on-primary-container": "#ff8371",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#e2bfb9",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-dim": "#eed4d0",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#f7ddd8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdad4",
+                        "on-background": "#261816",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "error": "#ba1a1a",
+                        "surface-container": "#ffe9e6",
+                        "primary-container": "#800000",
+                        "surface-tint": "#b22b1d",
+                        "secondary": "#5d5f5f",
+                        "status-green": "#2E7D32",
+                        "status-blue": "#1565C0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="h-full w-64 fixed left-0 top-0 rounded-r-none border-r border-gray-200 dark:border-gray-800 shadow-2xl bg-primary-container text-white flex flex-col py-8 space-y-2 z-50">
+<div class="px-6 mb-6">
+<div class="flex items-center gap-3">
+<img alt="Hospital Logo" class="w-10 h-10 rounded-full border-2 border-white/20" data-alt="clean minimalist white hospital cross logo on deep maroon background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYDtcqiD2rExn0ArAUHf6uzBxdlwEEGhHy5lUyegFfXSXAX1V3X_jNjfhmmc2kb0UN9Ma4URPiJlMyWcHw0AZn7mQbiNr9wf48n1a-eyDprTREj-AksFBdigLuSpunEvuseNQc4179x9xo632fT0S5H9yYgxQ4OR1vuDf4bn5T5agpUEHzOr7phsyeAE7JAggynOeVUPH54P66oU6wuEcmmrQDgSRPYvSCGWJwDWXXGMf2TLLhTCeiNtbqMupvuarI0FgfDQEZUwcW"/>
+<div>
+<h2 class="text-2xl font-black text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] tracking-tighter font-display-md">weAId</h2>
+<p class="font-body-md text-xs text-white/70">Hospital Administration</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<a class="text-white/70 hover:text-white px-6 py-4 flex items-center gap-3 hover:bg-white/5 transition-all duration-200 hover:translate-x-1 font-['Montserrat'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="text-white/70 hover:text-white px-6 py-4 flex items-center gap-3 hover:bg-white/5 transition-all duration-200 hover:translate-x-1 font-['Montserrat'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">hourglass_empty</span>
+<span>Live Queue</span>
+</a>
+<a class="bg-white/10 text-white font-bold border-l-4 border-white px-6 py-4 flex items-center gap-3 hover:bg-white/5 transition-all duration-200 hover:translate-x-1 font-['Montserrat'] text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">move_to_inbox</span>
+<span>Incoming</span>
+</a>
+<a class="text-white/70 hover:text-white px-6 py-4 flex items-center gap-3 hover:bg-white/5 transition-all duration-200 hover:translate-x-1 font-['Montserrat'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">insights</span>
+<span>Analytics</span>
+</a>
+<a class="text-white/70 hover:text-white px-6 py-4 flex items-center gap-3 hover:bg-white/5 transition-all duration-200 hover:translate-x-1 font-['Montserrat'] font-medium text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full bg-error text-on-error py-3 rounded-full font-label-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+                Emergency Alert
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 h-16 border-b border-b border-gray-200 dark:border-gray-800 shadow-[0_4px_12px_rgba(128,0,0,0.04)] bg-white dark:bg-gray-900 flex justify-between items-center w-full px-5 z-40 sticky">
+<div class="flex items-center gap-4">
+<!-- Search could go here based on "search_bar": "on_left" -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+<input class="pl-9 pr-4 py-1.5 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container w-64 font-body-md" placeholder="Search patients, IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-gray-500 dark:text-gray-400 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full cursor-pointer active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full cursor-pointer active:opacity-80 transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l border-gray-200 pl-6 cursor-pointer active:opacity-80 transition-all">
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full object-cover" data-alt="professional female doctor in white coat smiling softly against neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh1xApN-tiWurUqZsdfv0rWheqEGFuta9105p7J66-d3VVnjXszugRKAoq9Z8kZJvXeIPFwmhkZOKddHqbdsJ1HG2fOsAjHPcC_HRFGjEvdToF834ZRCKHgh397BIdQs1nef6deQNZWrXd4W4A6e8YKT7kE6eZhMOlr7jt3_4eD4tRHrePFMaOyrG8pspx45orDsGjZP7g3dqlB4KnpC8ocCtFxPBekifEZ44myumWs3AUrG4BfLWYCF1sEyu4-W_C_pEX7j9WSTov"/>
+<span class="font-['Montserrat'] font-semibold text-sm tracking-tight text-on-surface hidden md:block">Dr. Santos</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-container-padding overflow-y-auto">
+<!-- Page Header -->
+<div class="mb-stack-lg">
+<div class="flex items-center gap-3 mb-2">
+<h1 class="font-display-lg text-on-surface">Incoming from weAId</h1>
+<div class="bg-primary-container px-3 py-1 rounded-full flex items-center gap-1 shadow-[0_2px_8px_rgba(128,0,0,0.2)]">
+<span class="material-symbols-outlined text-white text-sm animate-pulse" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-ai-signature text-white text-xs">AI Active</span>
+</div>
+</div>
+<p class="font-body-lg text-on-surface-variant">47 patients arriving in the next 2 hours.</p>
+</div>
+<!-- Sub-tabs -->
+<div class="flex gap-6 border-b border-surface-dim mb-stack-lg overflow-x-auto pb-2">
+<button class="font-label-bold text-primary-container border-b-2 border-primary-container pb-2 px-1 whitespace-nowrap">Arriving now (12)</button>
+<button class="font-label-bold text-on-surface-variant hover:text-primary-container pb-2 px-1 whitespace-nowrap transition-colors">Next hour (35)</button>
+<button class="font-label-bold text-on-surface-variant hover:text-primary-container pb-2 px-1 whitespace-nowrap transition-colors">Today (47)</button>
+<button class="font-label-bold text-on-surface-variant hover:text-primary-container pb-2 px-1 whitespace-nowrap transition-colors">This week (203)</button>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<p class="font-label-bold text-on-surface-variant mb-1 uppercase">Avg ETA Accuracy</p>
+<div class="flex items-end gap-2">
+<span class="font-display-md text-status-green">94%</span>
+<span class="font-body-md text-status-green mb-1 flex items-center"><span class="material-symbols-outlined text-sm">trending_up</span></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<p class="font-label-bold text-on-surface-variant mb-1 uppercase">Top Requested Service</p>
+<div class="flex items-center gap-2">
+<span class="font-display-md text-on-surface">OB-GYN</span>
+<span class="material-symbols-outlined text-primary-container">pregnant_woman</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-transparent">
+<p class="font-label-bold text-on-surface-variant mb-1 uppercase">Outside Catchment</p>
+<div class="flex items-center gap-2">
+<span class="font-display-md text-status-blue">4</span>
+<span class="font-body-md text-on-surface-variant">patients</span>
+</div>
+</div>
+</div>
+<!-- Main Layout (2/3 Timeline, 1/3 Map) -->
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Timeline Left (2/3) -->
+<div class="w-full lg:w-2/3 space-y-stack-lg">
+<!-- Bucket: 9:00 - 9:30 AM -->
+<div>
+<h3 class="font-headline-sm text-primary-container mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            9:00 - 9:30 AM
+                        </h3>
+<div class="space-y-stack-sm">
+<!-- Critical Patient Row -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border-l-4 border-l-error border border-surface-dim flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<img alt="Maria Clara" class="w-12 h-12 rounded-full object-cover" data-alt="portrait of elderly filipina woman with worried expression, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFWdPfC3qO22aWV4PEVUQxJQPGzZycF7_-AZRYvy_rsraxpGx1l-e9ZDd6DIpmV_J3g0I6vc8tv6nyc9gwj5XDZrsif-C2VCplUEIU6Gf7kojGEP_7SKDEylM0EC5cmkG9Yd3hwlzvbdcZyy7GazkcDJClm4vT8E_duSfycKjryiCJCQIB32IYQ9cqUb3JKVrwvaaOvIlXBrPK8AxgfjHbMXF4iDarQg69wE7VGediaUB6OJNPedTJim-uVzqayYnxwiSKKJZ7B7Nh"/>
+<div>
+<h4 class="font-label-bold text-on-surface text-sm">Maria Clara, 68F</h4>
+<div class="flex items-center gap-2 mt-1 flex-wrap">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_bus</span>
+                                                ETA 9:15 AM
+                                            </span>
+<span class="bg-primary-container text-white px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">smart_toy</span>
+                                                Cardiology
+                                            </span>
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded-full text-xs font-label-bold">PhilHealth</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto justify-end">
+<button class="bg-primary-container text-white px-4 py-2 rounded-full font-label-bold text-xs hover:bg-on-primary-fixed-variant transition-colors">View Triage</button>
+<button class="border-1.5 border-primary-container text-primary-container px-4 py-2 rounded-full font-label-bold text-xs hover:bg-surface-container transition-colors">Reassign</button>
+</div>
+</div>
+<!-- Normal Patient Row -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-surface-dim flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:border-outline-variant transition-colors">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<img alt="Juan Dela Cruz" class="w-12 h-12 rounded-full object-cover" data-alt="portrait of young filipino man looking tired, natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlPkAR4iz1RABrnUVPfgxRLffR5PfdfCwz4t7DsuSsiNzkhPl0HxqDPl13UNyKlSZK83lXwfitrQi_8HM3_2WNqzLTuHhyihVdrXDdQDWdY8ZEqqGvd35cdCj9u8w3h_j6e3gJlpXu5CHi81XJ8tyGF3-JiUAgZIz4qUQqR_aZbAAvGi4FkDkFwH56arYUOe1mbFKb3WjBNPtlVDuj7Lgs1FpyNSIATfXp2RbkwYXDzsFwxIdFyTjr5Bu4ksDRqz4EiM7AkU24Gk7q"/>
+<div>
+<h4 class="font-label-bold text-on-surface text-sm">Juan Dela Cruz, 24M</h4>
+<div class="flex items-center gap-2 mt-1 flex-wrap">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_car</span>
+                                                ETA 9:25 AM
+                                            </span>
+<span class="bg-primary-container text-white px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">smart_toy</span>
+                                                General Med
+                                            </span>
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded-full text-xs font-label-bold">HMO</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto justify-end">
+<button class="bg-primary-container text-white px-4 py-2 rounded-full font-label-bold text-xs hover:bg-on-primary-fixed-variant transition-colors">View Triage</button>
+<button class="text-secondary hover:text-on-surface p-2 rounded-full transition-colors flex items-center">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bucket: 9:30 - 10:00 AM -->
+<div>
+<h3 class="font-headline-sm text-primary-container mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            9:30 - 10:00 AM
+                        </h3>
+<div class="space-y-stack-sm">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-surface-dim flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:border-outline-variant transition-colors">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-display-md">
+                                        R
+                                    </div>
+<div>
+<h4 class="font-label-bold text-on-surface text-sm">Rosario Reyes, 45F</h4>
+<div class="flex items-center gap-2 mt-1 flex-wrap">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_walk</span>
+                                                ETA 9:40 AM
+                                            </span>
+<span class="bg-primary-container text-white px-2 py-0.5 rounded-full text-xs font-label-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">smart_toy</span>
+                                                OB-GYN
+                                            </span>
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded-full text-xs font-label-bold">Libre</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto justify-end">
+<button class="bg-primary-container text-white px-4 py-2 rounded-full font-label-bold text-xs hover:bg-on-primary-fixed-variant transition-colors">View Triage</button>
+<button class="text-secondary hover:text-on-surface p-2 rounded-full transition-colors flex items-center">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Right (1/3) -->
+<div class="w-full lg:w-1/3">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-surface-dim overflow-hidden sticky top-24">
+<div class="p-4 border-b border-surface-dim flex justify-between items-center bg-white">
+<h3 class="font-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">map</span>
+                                Live arrivals map
+                            </h3>
+<button class="text-secondary hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+<!-- Map Image Area -->
+<div class="relative h-64 bg-secondary-container w-full">
+<img alt="Map of Manila" class="w-full h-full object-cover opacity-80" data-alt="stylized clean minimal digital map interface of Manila with muted tones and maroon accent lines" data-location="Manila" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEUidLnUb8UHsWbpNU2Ko0-S5cQYM4rhzrzxF-lf_Rwnfm-T4WRe-fU7sc5ME4JS2p3Q440XkzKhFeOQfCUKc3NGDh4JqHp9Lyi_4cFw7hqsDiAlEel4AkjjXH1A95EXnbK8XlTBp3S-_J4QJ6Bb-clDiS5B_lnmHvSC_XpUowXF6PXLOxKzcded-1YEOAKPRF0uUvRDGJ71J83HQBeWd2-3ts9JO-TQrq6UacuqSmrTJ35Tbhdj92VWCNGN0AILzCejhZW-Ozzfte"/>
+<!-- Overlay Dots (Stylized) -->
+<div class="absolute top-1/4 left-1/3 w-3 h-3 bg-primary-container rounded-full border-2 border-white shadow-md animate-pulse"></div>
+<div class="absolute top-1/2 left-1/2 w-4 h-4 bg-error rounded-full border-2 border-white shadow-md"></div>
+<div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-primary-container rounded-full border-2 border-white shadow-md"></div>
+<!-- Hospital Location -->
+<div class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-white p-1 rounded-full shadow-lg mb-1">
+<span class="material-symbols-outlined text-primary-container text-sm">local_hospital</span>
+</div>
+<div class="w-1 h-1 bg-primary-container rounded-full"></div>
+</div>
+</div>
+<!-- Legend -->
+<div class="p-4 bg-white space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary-container rounded-full"></div>
+<span class="font-body-md text-sm text-on-surface-variant">Standard Arrival</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-error rounded-full"></div>
+<span class="font-body-md text-sm text-on-surface-variant">Critical / Delayed</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-0.5 bg-primary-container opacity-50"></div>
+<span class="font-body-md text-sm text-on-surface-variant">Predicted Route</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

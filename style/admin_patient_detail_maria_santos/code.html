@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Detail - Malasakit Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#570000",
+                        "surface-bright": "#fff8f6",
+                        "surface-container-high": "#fde2de",
+                        "surface": "#fff8f6",
+                        "outline": "#8e706c",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-secondary-container": "#5f6161",
+                        "tertiary": "#00137f",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-surface-variant": "#5a413d",
+                        "surface-dim": "#eed4d0",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-fixed": "#ffdad4",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#ffe9e6",
+                        "primary-container": "#800000",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "secondary-fixed": "#e2e2e2",
+                        "inverse-on-surface": "#ffedea",
+                        "on-tertiary-fixed": "#000c61",
+                        "secondary-container": "#dcdddd",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#261816",
+                        "surface-container-highest": "#f7ddd8",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary-container": "#ff8371",
+                        "background": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#dfe0ff",
+                        "surface-variant": "#f7ddd8",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#454747",
+                        "outline-variant": "#e2bfb9",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#94a0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "on-primary-fixed": "#410000",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-tint": "#b22b1d",
+                        "secondary": "#5d5f5f",
+                        "surface-container-low": "#fff0ee",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "headline-sm": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "ai-signature": ["inherit", {"lineHeight": "inherit", "fontWeight": "900"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ai-glow {
+            text-shadow: 0 0 10px rgba(128, 0, 0, 0.4), 0 0 20px rgba(128, 0, 0, 0.2);
+            color: #800000;
+        }
+        .ai-glow-white {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        .soft-card-shadow {
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.04);
+        }
+        /* Hide scrollbar for clean UI but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#F5F5F5] font-body-md text-on-background min-h-screen flex antialiased">
+<!-- SideNavBar -->
+<nav class="bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 hidden lg:flex flex-col h-screen sticky top-0 left-0 w-64 z-20 shrink-0 shadow-none">
+<div class="flex items-center px-6 h-16 border-b border-gray-200 dark:border-gray-800 shrink-0">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center mr-3 text-white">
+<span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-red-900 dark:text-red-500 tracking-tight font-display-md leading-none">HealthGate</h1>
+<p class="text-[10px] text-gray-500 uppercase tracking-widest font-label-bold mt-0.5">Admin Portal</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-2 font-montserrat text-sm font-medium">
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-red-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-3 text-gray-400 group-hover:text-red-800 transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-400 font-bold border-l-4 border-red-900 transition-all active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-3 text-red-900 dark:text-red-400">person_search</span>
+                Patients
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-red-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-3 text-gray-400 group-hover:text-red-800 transition-colors">medical_services</span>
+                Staff
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-red-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-3 text-gray-400 group-hover:text-red-800 transition-colors">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:text-red-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-3 text-gray-400 group-hover:text-red-800 transition-colors">settings</span>
+                Settings
+            </a>
+</div>
+<div class="p-4 border-t border-gray-200 dark:border-gray-800 shrink-0">
+<button class="w-full flex items-center justify-center space-x-2 bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 py-3 rounded-lg font-label-bold transition-colors">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span>Emergency Alert</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm flex justify-between items-center w-full px-6 h-16 shrink-0 z-10 sticky top-0">
+<div class="flex items-center text-xl font-bold text-red-900 dark:text-red-500 tracking-tight font-display-md lg:hidden mr-4">
+                HealthGate
+            </div>
+<div class="flex-1 max-w-xl hidden md:flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 border border-transparent focus-within:border-gray-300 dark:focus-within:border-gray-700 transition-colors ml-auto mr-8">
+<span class="material-symbols-outlined text-gray-500 mr-2">search</span>
+<input class="bg-transparent border-none outline-none w-full text-sm font-body-md text-on-surface placeholder-gray-500 focus:ring-0 p-0" placeholder="Search patients, staff, or records..." type="text"/>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-600 rounded-full border border-white"></span>
+</button>
+<button class="text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors p-2 rounded-full hidden sm:block">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-px bg-gray-200 dark:bg-gray-700 mx-2 hidden sm:block"></div>
+<button class="flex items-center space-x-2">
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full object-cover border border-gray-200" data-alt="close up portrait of female medical professional wearing scrubs smiling warmly soft lighting clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa0wHTGbhQsoLBp01fnzYwyR-RC9reiWnHluJwOpUtU7nHBUUYYttqzbJju3AhtVF0-yQ1B0Q3yXaMOPEplv2YPkpVu2yilXIFRD0jkJd8nsL3x-XpsQyhoQY2rEKKKOibBFUc_8-GZuaUuDbKMkgMZ5E4Jo5e5pl7EwZnT5VmQwkuGeHrLpWR-BVnObyWSap5C_sxdSVt20TkESc6GFwmIqUkY6L5UcFCr2hUlxb86dDQ9hwsBXwmlKGFEsCwL25FojzUxU_B_q7y"/>
+</button>
+</div>
+</header>
+<!-- Page Sub-Header / Breadcrumb -->
+<div class="bg-white border-b border-gray-200 px-container-padding py-4 shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sticky top-16 z-10 shadow-sm soft-card-shadow">
+<div class="flex items-center space-x-3">
+<button class="w-8 h-8 rounded-full bg-primary-container/10 text-primary-container flex items-center justify-center hover:bg-primary-container hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+</button>
+<div class="flex items-center text-sm font-body-md text-gray-500">
+<a class="hover:text-primary-container transition-colors" href="#">Live Queue</a>
+<span class="material-symbols-outlined text-sm mx-1 opacity-50">chevron_right</span>
+<span class="font-semibold text-on-surface">Patient #00187 - Maria Santos</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-4 py-2 rounded-full border-[1.5px] border-primary-container text-primary-container font-label-bold text-xs hover:bg-primary-container/5 transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">call</span>
+                    Call patient
+                </button>
+<button class="px-4 py-2 rounded-full border-[1.5px] border-primary-container text-primary-container font-label-bold text-xs hover:bg-primary-container/5 transition-colors flex items-center gap-1.5 hidden md:flex">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">sms</span>
+                    Send SMS
+                </button>
+<button class="px-4 py-2 rounded-full border-[1.5px] border-gray-300 text-gray-600 font-label-bold text-xs hover:bg-gray-50 hover:border-gray-400 transition-colors flex items-center gap-1.5 hidden lg:flex">
+<span class="material-symbols-outlined text-sm">publish</span>
+                    Move up queue
+                </button>
+<button class="px-6 py-2 rounded-full bg-primary-container text-white font-label-bold text-xs hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    Mark done
+                </button>
+</div>
+</div>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding">
+<div class="max-w-7xl mx-auto flex flex-col xl:flex-row gap-stack-lg">
+<!-- LEFT COLUMN (2/3) -->
+<div class="flex-1 flex flex-col gap-stack-lg min-w-0">
+<!-- Identity Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 soft-card-shadow border border-gray-100 flex flex-col md:flex-row gap-6 relative overflow-hidden group hover:border-gray-200 transition-colors">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-bl-[100px] -z-0 pointer-events-none"></div>
+<div class="shrink-0 relative z-10">
+<div class="w-24 h-24 rounded-full border-4 border-white shadow-md relative overflow-hidden">
+<img alt="Maria Santos" class="w-full h-full object-cover" data-alt="headshot portrait of filipina woman mid 30s looking slightly concerned but calm soft studio lighting plain light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUy4llohRW-B_7raw5nZhfS3PJfA8BrBskGVzsvW-ANkMIHYvt9DMN-8CU-3ZJc1FxKpN5-Lu-ubVwOKsP122rJDcpBRVNwyKEIm7nx8BFEAc97DUrVtReW2CeUsr-0grWxdHtLrqk51DY9InRxQKaPGaJ4dUHZ6e3KlUPf6QLwaNu3Qe1UK_3Mwf2U7C9f0GLfyGkFxBgV2a_lASf2QM_UO_jbxAaAmrSLv1lfnur0gP0ADm_H_GnUCUkwkNUVw_CdoV3cxibPSU2"/>
+</div>
+<div class="absolute bottom-0 right-0 w-5 h-5 bg-orange-500 border-2 border-white rounded-full shadow-sm" title="Priority: URGENT"></div>
+</div>
+<div class="flex-1 z-10 flex flex-col justify-center">
+<h2 class="font-display-md text-[#333333] mb-2 leading-tight">Maria Santos, <span class="text-gray-500 font-normal">34F</span></h2>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-orange-100 text-orange-800 text-[10px] font-label-bold flex items-center gap-1 border border-orange-200">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                                    URGENT
+                                </span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-primary-container text-[10px] font-label-bold flex items-center gap-1 border border-primary-container/20">
+<span class="font-ai-signature ai-glow text-[11px] leading-none">AI</span>
+                                    via weAId
+                                </span>
+<span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[10px] font-label-bold flex items-center gap-1 border border-blue-200">
+<span class="material-symbols-outlined text-[12px]">payments</span>
+                                    PhilHealth
+                                </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm">
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 font-label-bold uppercase mb-0.5">PhilHealth ID</span>
+<span class="font-medium text-on-surface">12-345678901-2</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 font-label-bold uppercase mb-0.5">Phone</span>
+<span class="font-medium text-on-surface">+63 917 123 4567</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 font-label-bold uppercase mb-0.5">Address</span>
+<span class="font-medium text-on-surface truncate" title="143 P. Noval St., Sampaloc, Manila">143 P. Noval St., Sampaloc, Manila</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 font-label-bold uppercase mb-0.5">Emergency Contact</span>
+<span class="font-medium text-on-surface">Juan Santos (Husband)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Triage Transcript -->
+<div class="bg-surface-container-lowest rounded-xl soft-card-shadow border border-gray-100 flex flex-col overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-surface-container/30">
+<h3 class="font-headline-sm text-on-surface flex items-center gap-2">
+<span class="font-ai-signature ai-glow text-primary-container">AI</span> 
+                                Triage Transcript
+                            </h3>
+<span class="text-xs text-gray-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">translate</span>
+                                Tagalog
+                            </span>
+</div>
+<div class="p-6 bg-gray-50/50 flex-1 space-y-4 max-h-[300px] overflow-y-auto no-scrollbar">
+<!-- Bot -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="font-ai-signature text-white text-[10px] leading-none">AI</span>
+</div>
+<div class="bg-white border-[1px] border-primary-container/30 text-on-surface text-sm p-3 rounded-2xl rounded-bl-sm shadow-sm font-body-md leading-relaxed">
+                                    Kumusta po Maria? Ako po ang weAId virtual assistant. Ano po ang nararamdaman ninyo ngayon?
+                                </div>
+</div>
+<!-- Patient -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto justify-end">
+<div class="bg-primary-container/10 text-primary-fixed-variant text-sm p-3 rounded-2xl rounded-br-sm shadow-sm font-body-md leading-relaxed">
+                                    Sumasakit ang puson ko mula pa kahapon ng hapon.
+                                </div>
+</div>
+<!-- Bot -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="font-ai-signature text-white text-[10px] leading-none">AI</span>
+</div>
+<div class="bg-white border-[1px] border-primary-container/30 text-on-surface text-sm p-3 rounded-2xl rounded-bl-sm shadow-sm font-body-md leading-relaxed">
+                                    Naiintindihan ko. Gaano po kasakit kung irerate natin mula 1 hanggang 10, kung saan ang 10 ay sobrang sakit na hindi na makagalaw?
+                                </div>
+</div>
+<!-- Patient -->
+<div class="flex items-end gap-2 max-w-[85%] ml-auto justify-end">
+<div class="bg-primary-container/10 text-primary-fixed-variant text-sm p-3 rounded-2xl rounded-br-sm shadow-sm font-body-md leading-relaxed">
+                                    Mga 7 po siguro. Medyo may lagnat din ako kaninang umaga.
+                                </div>
+</div>
+<!-- Bot -->
+<div class="flex items-end gap-2 max-w-[85%]">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="font-ai-signature text-white text-[10px] leading-none">AI</span>
+</div>
+<div class="bg-white border-[1px] border-primary-container/30 text-on-surface text-sm p-3 rounded-2xl rounded-bl-sm shadow-sm font-body-md leading-relaxed">
+                                    Salamat sa impormasyon. May kasama po ba itong pagdurugo o iba pang kakaibang pakiramdam?
+                                </div>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-gray-100 flex flex-wrap gap-3 bg-white">
+<button class="px-4 py-2 rounded-full border-[1.5px] border-primary-container text-primary-container font-label-bold text-xs hover:bg-primary-container/5 transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+                                Replay full conversation
+                            </button>
+<button class="px-4 py-2 rounded-full text-gray-600 hover:text-primary-container hover:bg-gray-50 font-label-bold text-xs transition-colors flex items-center gap-1.5 ml-auto">
+<span class="material-symbols-outlined text-sm">download</span>
+                                Download transcript
+                            </button>
+</div>
+</div>
+<!-- AI Recommendation Card -->
+<div class="bg-surface-container-lowest rounded-xl soft-card-shadow border-t-4 border-t-primary-container overflow-hidden">
+<div class="p-6">
+<h3 class="font-headline-sm text-on-surface flex items-center gap-2 mb-4">
+<span class="font-ai-signature ai-glow text-primary-container">AI</span> 
+                                Service Recommendation
+                            </h3>
+<div class="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-6">
+<div class="flex items-start justify-between">
+<div>
+<div class="text-xs font-label-bold text-orange-800 uppercase tracking-wider mb-1">Primary Suggestion</div>
+<div class="text-xl font-display-md text-on-surface leading-tight">OB-GYN Consultation</div>
+<div class="text-sm font-medium text-orange-700 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-orange-600">warning</span>
+                                            Moderate Urgency
+                                        </div>
+</div>
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-orange-600 shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">pregnant_woman</span>
+</div>
+</div>
+</div>
+<details class="group mb-6">
+<summary class="flex items-center gap-2 cursor-pointer text-sm font-label-bold text-primary-container hover:text-on-primary-fixed-variant transition-colors select-none list-none [&amp;::-webkit-details-marker]:hidden">
+<span class="material-symbols-outlined text-sm transition-transform group-open:rotate-180">expand_more</span>
+                                    Why this recommendation?
+                                </summary>
+<div class="pt-3 pl-6 text-sm text-gray-600 font-body-md space-y-2 relative before:absolute before:left-[11px] before:top-4 before:bottom-2 before:w-px before:bg-gray-200">
+<div class="relative before:absolute before:left-[-15px] before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary-container/50">Reported symptom: Lower abdominal pain (puson) for &gt;24 hours.</div>
+<div class="relative before:absolute before:left-[-15px] before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary-container/50">Pain scale: 7/10 indicates significant discomfort requiring prompt attention.</div>
+<div class="relative before:absolute before:left-[-15px] before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-primary-container/50">Presence of fever suggests possible infection (e.g., PID, UTI, or appendicitis ruled lower probability based on conversation context).</div>
+</div>
+</details>
+<div class="mb-6">
+<div class="text-xs font-label-bold text-gray-500 uppercase tracking-wider mb-2">Alternative Pathways</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded bg-gray-100 text-gray-700 text-xs font-medium border border-gray-200">General Medicine</span>
+<span class="px-3 py-1.5 rounded bg-red-50 text-red-700 text-xs font-medium border border-red-100">Emergency Room (if pain &gt;8)</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex flex-col w-full sm:w-auto">
+<label class="text-[10px] font-label-bold text-gray-500 uppercase tracking-wider mb-1">Nurse Override</label>
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-300 text-gray-700 text-sm rounded-md focus:ring-primary-container focus:border-primary-container block w-full py-2 pl-3 pr-10 cursor-pointer">
+<option>Reassign to OB-GYN...</option>
+<option>General Medicine</option>
+<option>Emergency Room</option>
+<option>Urology</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-primary-container text-white font-label-bold text-xs hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-1.5 shadow-sm mt-auto">
+                                Confirm override
+                            </button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (1/3) -->
+<div class="w-full xl:w-[340px] shrink-0 flex flex-col gap-stack-lg">
+<!-- Status & Queue Card -->
+<div class="bg-primary-container rounded-xl p-6 text-white shadow-lg relative overflow-hidden group">
+<!-- Decorative background elements -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white opacity-5 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute -left-10 -bottom-10 w-32 h-32 bg-black opacity-10 rounded-full blur-xl"></div>
+<div class="relative z-10 text-center mb-6">
+<div class="text-sm font-label-bold text-primary-fixed-dim uppercase tracking-widest mb-1">Current Position</div>
+<div class="text-4xl font-display-lg tracking-tight mb-2">Queue #00187</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+                                10:30 AM via weAId
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 relative z-10">
+<div class="bg-black/20 rounded-lg p-3 backdrop-blur-sm border border-white/5 text-center">
+<div class="text-[10px] text-primary-fixed font-label-bold uppercase mb-1">Time in Queue</div>
+<div class="text-xl font-bold text-amber-300 flex items-center justify-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                                    48m
+                                </div>
+</div>
+<div class="bg-black/20 rounded-lg p-3 backdrop-blur-sm border border-white/5 text-center">
+<div class="text-[10px] text-primary-fixed font-label-bold uppercase mb-1">Est. Wait</div>
+<div class="text-xl font-bold text-white">~22m</div>
+</div>
+</div>
+</div>
+<!-- Vitals & History Card -->
+<div class="bg-surface-container-lowest rounded-xl soft-card-shadow border border-gray-100 flex flex-col">
+<div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 rounded-t-xl">
+<h3 class="font-headline-sm text-sm text-on-surface">Clinical Snapshot</h3>
+<span class="material-symbols-outlined text-gray-400 text-lg">medical_information</span>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded bg-gray-100 flex items-center justify-center shrink-0 text-gray-500 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">history</span>
+</div>
+<div>
+<div class="text-xs font-label-bold text-gray-500 uppercase">Last Visit</div>
+<div class="text-sm font-medium text-on-surface">14 Oct 2023 (Internal Med)</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded bg-red-50 flex items-center justify-center shrink-0 text-red-500 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">coronavirus</span>
+</div>
+<div>
+<div class="text-xs font-label-bold text-gray-500 uppercase">Allergies</div>
+<div class="text-sm font-medium text-red-600">Amoxicillin (Hives)</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded bg-blue-50 flex items-center justify-center shrink-0 text-blue-500 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">medication</span>
+</div>
+<div>
+<div class="text-xs font-label-bold text-gray-500 uppercase">Current Meds</div>
+<div class="text-sm font-medium text-on-surface">None active</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-0">
+<button class="w-full px-4 py-2 rounded-full border-[1.5px] border-gray-300 text-gray-700 font-label-bold text-xs hover:border-primary-container hover:text-primary-container transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+                                Open EMR profile
+                            </button>
+</div>
+</div>
+<!-- Communication Log -->
+<div class="bg-surface-container-lowest rounded-xl soft-card-shadow border border-gray-100 flex flex-col flex-1 min-h-[300px]">
+<div class="p-4 border-b border-gray-100 bg-gray-50/50 rounded-t-xl">
+<h3 class="font-headline-sm text-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 text-lg">forum</span>
+                                Communication Log
+                            </h3>
+</div>
+<div class="flex-1 p-4 space-y-4 overflow-y-auto no-scrollbar bg-white">
+<!-- Msg -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-label-bold text-primary-container">System SMS</span>
+<span class="text-[10px] text-gray-400">09:15 AM</span>
+</div>
+<div class="bg-gray-100 text-gray-700 text-xs p-2.5 rounded-lg rounded-tl-sm font-body-md">
+                                    Your queue number is #00187. Est wait: 45m.
+                                </div>
+</div>
+<!-- Msg -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-label-bold text-primary-container">System SMS</span>
+<span class="text-[10px] text-gray-400">09:45 AM</span>
+</div>
+<div class="bg-gray-100 text-gray-700 text-xs p-2.5 rounded-lg rounded-tl-sm font-body-md">
+                                    Please proceed to Waiting Area B. You are 5th in line.
+                                </div>
+</div>
+</div>
+<div class="p-3 border-t border-gray-100 bg-white rounded-b-xl">
+<div class="relative flex items-center">
+<input class="w-full bg-gray-50 border border-gray-200 text-sm rounded-full py-2 pl-4 pr-10 focus:ring-primary-container focus:border-primary-container text-on-surface placeholder-gray-400 font-body-md" placeholder="Type message..." type="text"/>
+<button class="absolute right-1 w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center hover:bg-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

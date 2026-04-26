@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>weAId - Mga ospital sa malapit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-container": "#ff8371",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container-low": "#fff0ee",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#b22b1d",
+                        "secondary-container": "#dcdddd",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5f6161",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary": "#00137f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2bfb9",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#261816",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#000c61",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-high": "#fde2de",
+                        "primary": "#570000",
+                        "on-tertiary-container": "#94a0ff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-container": "#800000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F5F5F5; }
+        /* Safe area padding for bottom nav */
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        
+        /* Hide scrollbar for chips */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col pt-16 pb-24">
+<!-- TopAppBar -->
+<header class="bg-[#800000] dark:bg-[#600000] text-white font-['Montserrat'] font-semibold tracking-tight rounded-b-[20px] w-full fixed top-0 z-50 shadow-xl shadow-[#800000]/10 flex justify-between items-center px-5 h-16 w-full transition-transform">
+<div class="flex items-center gap-4">
+<button aria-label="Go back" class="active:scale-95 transition-transform hover:bg-white/10 rounded-full p-2 -ml-2">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</button>
+<h1 class="text-white font-bold font-headline-sm text-headline-sm">Mga ospital sa malapit</h1>
+</div>
+<div>
+<button aria-label="Search" class="active:scale-95 transition-transform hover:bg-white/10 rounded-full p-2 -mr-2">
+<span class="material-symbols-outlined text-white">search</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-3xl mx-auto px-container-padding flex flex-col gap-stack-lg mt-stack-md">
+<!-- Filter Chips Row -->
+<section class="flex overflow-x-auto no-scrollbar gap-stack-sm pb-2 -mx-container-padding px-container-padding">
+<button class="flex-shrink-0 flex items-center gap-1 bg-primary-container text-white px-4 py-2 rounded-full font-label-bold text-label-bold shadow-[0_4px_12px_rgba(128,0,0,0.2)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+                Lahat
+            </button>
+<button class="flex-shrink-0 flex items-center gap-1 bg-white text-on-surface border border-outline-variant px-4 py-2 rounded-full font-label-bold text-label-bold shadow-sm active:scale-95 transition-transform">
+                Distance <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-1 bg-white text-on-surface border border-outline-variant px-4 py-2 rounded-full font-label-bold text-label-bold shadow-sm active:scale-95 transition-transform">
+                Libre
+            </button>
+<button class="flex-shrink-0 flex items-center gap-1 bg-white text-on-surface border border-outline-variant px-4 py-2 rounded-full font-label-bold text-label-bold shadow-sm active:scale-95 transition-transform">
+                PhilHealth
+            </button>
+<button class="flex-shrink-0 flex items-center gap-1 bg-white text-on-surface border border-outline-variant px-4 py-2 rounded-full font-label-bold text-label-bold shadow-sm active:scale-95 transition-transform">
+                LGU Only
+            </button>
+</section>
+<!-- Results Info -->
+<div class="flex justify-between items-end -mb-stack-sm">
+<p class="font-body-md text-body-md text-on-surface-variant">May nahanap na 12 na ospital</p>
+<button class="font-label-bold text-label-bold text-primary flex items-center gap-1">
+                Pinakamalapit <span class="material-symbols-outlined text-[16px]">sort</span>
+</button>
+</div>
+<!-- Hospital Cards List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Card 1 (Action Card) -->
+<article class="bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-gray-100 p-4 flex flex-col gap-stack-md relative overflow-hidden">
+<!-- Highlight Indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex justify-between items-start gap-2 pl-2">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-[#10b981]/10 text-[#10b981] px-2 py-0.5 rounded-full font-label-bold text-[10px] uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                                Mabilis ang Pila
+                            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Ospital ng Maynila</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">LGU Public Hospital</p>
+</div>
+<div class="flex flex-col items-end text-right">
+<span class="font-headline-sm text-[18px] font-bold text-on-surface">1.2 km</span>
+<span class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 5 min
+                        </span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 pl-2">
+<span class="bg-[#10b981]/10 text-[#10b981] px-2 py-1 rounded border border-[#10b981]/20 font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> LIBRE
+                    </span>
+<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded border border-blue-200 font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> PHILHEALTH
+                    </span>
+<span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_pharmacy</span> MAY GAMOT
+                    </span>
+</div>
+<div class="flex gap-stack-sm mt-2 pl-2">
+<button class="flex-1 bg-primary-container text-white font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2 shadow-sm">
+                        Mag-book ng slot
+                    </button>
+<button class="flex-1 bg-white text-primary-container border-2 border-primary-container font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">directions</span> Direksyon
+                    </button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-gray-50 p-4 flex flex-col gap-stack-md">
+<div class="flex justify-between items-start gap-2">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-[#f59e0b]/10 text-[#f59e0b] px-2 py-0.5 rounded-full font-label-bold text-[10px] uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
+                                Katamtaman Pila
+                            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">PGH - Outpatient</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">National Government Hospital</p>
+</div>
+<div class="flex flex-col items-end text-right">
+<span class="font-headline-sm text-[18px] font-bold text-on-surface">3.4 km</span>
+<span class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 15 min
+                        </span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-[#10b981]/10 text-[#10b981] px-2 py-1 rounded border border-[#10b981]/20 font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> LIBRE KONSULTA
+                    </span>
+<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded border border-blue-200 font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> PHILHEALTH
+                    </span>
+</div>
+<div class="flex gap-stack-sm mt-2">
+<button class="flex-1 bg-primary-container text-white font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2 shadow-sm">
+                        Mag-book ng slot
+                    </button>
+<button class="flex-1 bg-white text-primary-container border-2 border-primary-container font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">directions</span> Direksyon
+                    </button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] border border-gray-50 p-4 flex flex-col gap-stack-md opacity-80">
+<div class="flex justify-between items-start gap-2">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-[#ef4444]/10 text-[#ef4444] px-2 py-0.5 rounded-full font-label-bold text-[10px] uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ef4444]"></span>
+                                Puno / Mahaba Pila
+                            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Manila Doctors Hospital</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Private Hospital</p>
+</div>
+<div class="flex flex-col items-end text-right">
+<span class="font-headline-sm text-[18px] font-bold text-on-surface">2.1 km</span>
+<span class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_car</span> 10 min
+                        </span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-bold text-[10px] uppercase flex items-center gap-1">
+                        MAY BAYAD
+                    </span>
+<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded border border-blue-200 font-label-bold text-[10px] uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> PHILHEALTH
+                    </span>
+</div>
+<div class="flex gap-stack-sm mt-2">
+<button class="flex-1 bg-surface-variant text-on-surface-variant font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2 cursor-not-allowed">
+                        Slot Unavailable
+                    </button>
+<button class="flex-1 bg-white text-primary-container border-2 border-primary-container font-label-bold text-label-bold py-3 px-4 rounded-full active:scale-95 transition-transform flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">directions</span> Direksyon
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 border-t border-gray-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(128,0,0,0.04)] fixed bottom-0 w-full flex justify-around items-center h-16 px-4 pb-safe bg-white dark:bg-slate-900 md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 font-['Montserrat'] text-[10px] font-bold uppercase w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-[#800000] dark:text-[#ff4d4d] bg-[#800000]/5 rounded-2xl px-3 py-1 hover:text-[#800000] transition-colors active:scale-90 duration-200 font-['Montserrat'] text-[10px] font-bold uppercase w-16" href="#" style="font-variation-settings: 'FILL' 1;">
+<span class="material-symbols-outlined mb-1 text-[24px]">explore</span>
+            Navigate
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 font-['Montserrat'] text-[10px] font-bold uppercase w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">medical_services</span>
+            Records
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 font-['Montserrat'] text-[10px] font-bold uppercase w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+            Profile
+        </a>
+</nav>
+</body></html>

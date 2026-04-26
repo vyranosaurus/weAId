@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hospital Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "tertiary": "#00137f",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#fde2de",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f6",
+                        "surface-dim": "#eed4d0",
+                        "surface-container-low": "#fff0ee",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-background": "#261816",
+                        "primary": "#570000",
+                        "surface": "#fff8f6",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-surface-variant": "#5a413d",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-variant": "#f7ddd8",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fff8f6",
+                        "secondary-container": "#dcdddd",
+                        "inverse-surface": "#3d2d2a",
+                        "outline-variant": "#e2bfb9",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "secondary": "#5d5f5f",
+                        "on-tertiary-container": "#94a0ff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary-container": "#0021b9",
+                        "primary-fixed": "#ffdad4",
+                        "primary-container": "#800000",
+                        "tertiary-fixed": "#dfe0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#ffedea",
+                        "on-secondary-container": "#5f6161",
+                        "on-primary-container": "#ff8371",
+                        "on-secondary-fixed-variant": "#454747",
+                        "outline": "#8e706c",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-tint": "#b22b1d",
+                        "surface-container": "#ffe9e6",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface": "#261816",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "body-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F5F5F5; }
+        .card-shadow { box-shadow: 0 4px 12px rgba(128, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="text-on-surface flex h-screen overflow-hidden">
+<!-- SideNavBar (Predicted JSON) -->
+<nav class="hidden md:flex flex-col h-full w-64 bg-surface-container-lowest border-r border-outline-variant/30 shadow-lg shadow-primary-container/5 z-50 flex-shrink-0">
+<div class="p-6 border-b border-outline-variant/30 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">local_hospital</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary-container">Malasakit Admin</h2>
+<p class="font-label-bold text-[10px] text-on-surface-variant uppercase tracking-wider">Health Management System</p>
+</div>
+</div>
+<div class="flex-1 py-4 overflow-y-auto">
+<!-- Active Item: Overview -->
+<a class="flex items-center gap-3 px-6 py-3 text-primary-container bg-primary-container/10 border-l-4 border-primary-container font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span>Live Queue</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span>Incoming</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">vitals</span>
+<span>Services &amp; Capacity</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>Staffing</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_hospital</span>
+<span>Hospital Profile</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span>Messages</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-primary-container hover:bg-surface-variant/50 font-label-bold text-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar (Predicted JSON adapted to prompt) -->
+<header class="flex justify-between items-center h-16 px-6 w-full bg-surface-container-lowest border-b border-outline-variant/30 shadow-sm shadow-primary-container/5 z-40 flex-shrink-0">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary-container hover:bg-surface-variant/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden sm:flex items-center gap-2 font-body-md text-body-md text-on-surface-variant">
+<span class="font-headline-sm text-headline-sm text-primary-container">Philippine General Hospital</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-bold text-label-bold text-primary-container">Overview</span>
+</div>
+</div>
+<!-- Center Search -->
+<div class="flex-1 max-w-md mx-4 hidden md:block">
+<div class="relative flex items-center w-full h-10 rounded-full bg-surface-variant/30 border border-outline-variant/50 focus-within:border-primary-container focus-within:bg-surface-container-lowest transition-colors px-4">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder-on-surface-variant/60" placeholder="Search patients, services, staff..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-surface-variant/50 rounded-full border border-outline-variant/30">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Live · synced 2s ago</span>
+</div>
+<button class="relative text-primary-container hover:bg-surface-variant/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface-container-lowest"></span>
+</button>
+<button class="text-primary-container hover:bg-surface-variant/50 p-2 rounded-full transition-colors hidden sm:block">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 border border-primary-container/30 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container">person</span>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding space-y-stack-lg">
+<!-- Row A: Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 bg-primary-container text-on-primary rounded-b-[20px] p-6 -mt-container-padding -mx-container-padding mb-8">
+<div>
+<h1 class="font-display-md text-display-md mb-1">Magandang umaga, Dr. Reyes.</h1>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Heto ang state ng PGH ngayong umaga.</p>
+</div>
+<div class="flex flex-col items-end gap-3">
+<span class="font-label-bold text-label-bold text-primary-fixed-dim uppercase tracking-wider">Oct 24, 2023 · 08:42 AM</span>
+<button class="px-6 py-2 rounded-full border-[1.5px] border-primary-fixed-dim text-primary-fixed hover:bg-primary-fixed/10 transition-colors font-label-bold text-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Download daily report
+                    </button>
+</div>
+</div>
+<!-- Row B: KPIs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 card-shadow border-t border-outline-variant/20 flex flex-col justify-between">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-4">Naghihintay ngayon</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-primary-container">142</span>
+<div class="w-16 h-8 bg-surface-variant rounded-md flex items-end overflow-hidden opacity-50">
+<!-- Sparkline mockup -->
+<div class="w-full h-1/2 bg-primary-container/30 border-t-2 border-primary-container"></div>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 card-shadow border-t border-outline-variant/20 flex flex-col justify-between">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-4">Inaasahang dadating</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-surface">47</span>
+<span class="bg-blue-100 text-blue-800 font-label-bold text-[10px] px-2 py-1 rounded-full">+12%</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 card-shadow border-t border-outline-variant/20 flex flex-col justify-between">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-4">Avg wait time</h3>
+<div class="flex items-end justify-between">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-on-surface">38</span>
+<span class="font-body-md text-body-md text-on-surface-variant">min</span>
+</div>
+<span class="bg-amber-100 text-amber-800 font-label-bold text-[10px] px-2 py-1 rounded-full">Elevated</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 card-shadow border-t border-outline-variant/20 flex flex-col justify-between">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-4">No-show rate</h3>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-surface">7%</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full">Good</span>
+</div>
+</div>
+</div>
+<!-- Row C: Chart & AI Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left 2/3: Chart -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-6 card-shadow border border-outline-variant/20">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Patient flow — last 24h</h2>
+<div class="flex bg-surface-variant/50 rounded-full p-1">
+<button class="px-4 py-1.5 rounded-full bg-surface-container-lowest text-primary-container font-label-bold text-[10px] shadow-sm">24h</button>
+<button class="px-4 py-1.5 rounded-full text-on-surface-variant font-label-bold text-[10px] hover:text-primary-container">7d</button>
+<button class="px-4 py-1.5 rounded-full text-on-surface-variant font-label-bold text-[10px] hover:text-primary-container">30d</button>
+</div>
+</div>
+<!-- Chart Area Placeholder -->
+<div class="h-64 w-full bg-gradient-to-t from-primary-container/10 to-transparent rounded-lg border-b-2 border-primary-container relative flex items-end pb-2">
+<!-- Mock grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none">
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+</div>
+</div>
+</div>
+<!-- Right 1/3: AI Insights -->
+<div class="bg-surface-container-lowest rounded-xl p-6 card-shadow border border-primary-container/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="font-ai-signature text-primary-container drop-shadow-[0_0_8px_rgba(128,0,0,0.5)]">AI</span>
+                        Insights
+                    </h2>
+<div class="space-y-4">
+<div class="flex gap-3 items-start">
+<div class="w-2 h-2 rounded-full bg-primary-container mt-2 flex-shrink-0"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">ER volume expected to spike at 2pm based on current traffic patterns.</p>
+<a class="font-label-bold text-label-bold text-primary-container hover:underline" href="#">Apply suggestion: Call 2 standby nurses</a>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-2 h-2 rounded-full bg-primary-container mt-2 flex-shrink-0"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">Ultrasound #2 bottleneck detected. Avg wait is 45m above baseline.</p>
+<a class="font-label-bold text-label-bold text-primary-container hover:underline" href="#">Apply suggestion: Reroute non-criticals</a>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-2 h-2 rounded-full bg-primary-container mt-2 flex-shrink-0"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">Pharmacy queue moving 20% faster than usual.</p>
+<span class="font-label-bold text-label-bold text-secondary-fixed-dim">No action needed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Row D: Lists -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Live Queue -->
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-outline-variant/20 overflow-hidden flex flex-col">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-variant/20 flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Live Queue</h2>
+<button class="text-primary-container font-label-bold text-label-bold hover:underline">View all</button>
+</div>
+<div class="flex-1 overflow-y-auto max-h-80">
+<ul class="divide-y divide-outline-variant/20">
+<!-- Patient 1 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-[14px]">JM</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-error rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Juan Macaraeg</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Chest pain · 14m wait</p>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Critical</span>
+</li>
+<!-- Patient 2 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-[14px]">MG</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-amber-500 rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Maria Garcia</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Laceration · 22m wait</p>
+</div>
+</div>
+<span class="bg-amber-100 text-amber-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Urgent</span>
+</li>
+<!-- Patient 3 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-[14px]">PD</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Pedro Dela Cruz</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Fever · 45m wait</p>
+</div>
+</div>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Normal</span>
+</li>
+<!-- Patient 4 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-[14px]">LS</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Luz Santos</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Checkup · 50m wait</p>
+</div>
+</div>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Normal</span>
+</li>
+<!-- Patient 5 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-[14px]">RB</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Rico Bautista</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">Sprain · 55m wait</p>
+</div>
+</div>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Normal</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Incoming from weAId -->
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-outline-variant/20 overflow-hidden flex flex-col">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-variant/20 flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+                            Incoming from <span class="font-ai-signature text-primary-container">weAId</span>
+</h2>
+<button class="text-primary-container font-label-bold text-label-bold hover:underline">View all</button>
+</div>
+<div class="flex-1 overflow-y-auto max-h-80">
+<ul class="divide-y divide-outline-variant/20">
+<!-- Incoming 1 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-label-bold text-[14px]">AN</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Ana Navarro</p>
+<p class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Arriving in 12m
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant font-label-bold text-[10px] px-2 py-1 rounded-md uppercase">OB-GYN consult</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Reserved</span>
+</div>
+</li>
+<!-- Incoming 2 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-label-bold text-[14px]">CT</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Carlos Tan</p>
+<p class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Arriving in 18m
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant font-label-bold text-[10px] px-2 py-1 rounded-md uppercase">Pediatrics</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Reserved</span>
+</div>
+</li>
+<!-- Incoming 3 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-label-bold text-[14px]">EV</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Elena Villanueva</p>
+<p class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Arriving in 25m
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant font-label-bold text-[10px] px-2 py-1 rounded-md uppercase">Internal Med</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Reserved</span>
+</div>
+</li>
+<!-- Incoming 4 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-label-bold text-[14px]">MR</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Mark Reyes</p>
+<p class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Arriving in 30m
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant font-label-bold text-[10px] px-2 py-1 rounded-md uppercase">Orthopedics</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Reserved</span>
+</div>
+</li>
+<!-- Incoming 5 -->
+<li class="p-4 hover:bg-surface-variant/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-label-bold text-[14px]">SP</div>
+<div>
+<p class="font-headline-sm text-[14px] leading-tight text-on-surface">Sarah Perez</p>
+<p class="font-body-md text-[12px] text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Arriving in 45m
+                                        </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant font-label-bold text-[10px] px-2 py-1 rounded-md uppercase">Cardiology</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Reserved</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom padding for scroll -->
+<div class="h-8"></div>
+</main>
+<!-- Row E: Capacity Status Ribbon (Fixed Bottom) -->
+<div class="bg-surface-container-lowest border-t border-outline-variant/30 py-3 px-6 shadow-[0_-4px_12px_rgba(0,0,0,0.02)] z-30 flex-shrink-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
+<div class="flex items-center gap-6">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Capacity status</span>
+<div class="w-px h-4 bg-outline-variant/50"></div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">ER:</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Open</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">OB-GYN:</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Open</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">Ultrasound #2:</span>
+<span class="bg-amber-100 text-amber-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Limited</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">MRI:</span>
+<span class="bg-error-container text-on-error-container font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Down until 2pm</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface font-medium">Pharmacy:</span>
+<span class="bg-emerald-100 text-emerald-800 font-label-bold text-[10px] px-2 py-1 rounded-full uppercase">Open</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

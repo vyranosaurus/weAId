@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Malasakit Admin - Staffing &amp; AI Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#f7ddd8",
+                        "on-tertiary-fixed": "#000c61",
+                        "on-primary-fixed": "#410000",
+                        "surface-container-high": "#fde2de",
+                        "outline": "#8e706c",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-tertiary-container": "#94a0ff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary": "#00137f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ffe9e6",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#ff8371",
+                        "background": "#fff8f6",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#261816",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container-low": "#fff0ee",
+                        "secondary-container": "#dcdddd",
+                        "surface-bright": "#fff8f6",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-secondary-container": "#5f6161",
+                        "on-surface-variant": "#5a413d",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#3d2d2a",
+                        "on-background": "#261816",
+                        "inverse-primary": "#ffb4a8",
+                        "tertiary-container": "#0021b9",
+                        "inverse-on-surface": "#ffedea",
+                        "primary-fixed": "#ffdad4",
+                        "surface-tint": "#b22b1d",
+                        "primary-container": "#800000",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "on-secondary-fixed-variant": "#454747",
+                        "outline-variant": "#e2bfb9",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary": "#570000",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "container-padding": "20px",
+                        "unit": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Montserrat"],
+                        "display-md": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "ai-signature": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0 4px 12px 0 rgba(128, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="bg-[#F5F5F5] text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-lg shadow-red-900/5 flex flex-col h-full py-6 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-display-md text-display-md shadow-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-red-900 dark:text-red-400 tracking-tight leading-tight">Malasakit Admin</h1>
+<p class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Central Command</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto w-full">
+<ul class="flex flex-col gap-1 w-full px-2">
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span>
+<span class="font-['Montserrat'] font-medium text-sm">Overview</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">queue</span>
+<span class="font-['Montserrat'] font-medium text-sm">Live Queue</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">move_to_inbox</span>
+<span class="font-['Montserrat'] font-medium text-sm">Incoming</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">medical_services</span>
+<span class="font-['Montserrat'] font-medium text-sm">Services &amp; Capacity</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-400 font-bold border-l-4 border-red-900 rounded-r-lg ml-0 mr-2 pl-[12px]">
+<span class="material-symbols-outlined mr-3 text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-['Montserrat'] text-sm">Staffing</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">analytics</span>
+<span class="font-['Montserrat'] font-medium text-sm">Analytics</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">domain</span>
+<span class="font-['Montserrat'] font-medium text-sm">Hospital Profile</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">chat</span>
+<span class="font-['Montserrat'] font-medium text-sm">Messages</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">notifications</span>
+<span class="font-['Montserrat'] font-medium text-sm">Notifications</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2">
+<span class="material-symbols-outlined mr-3 text-[20px]">person</span>
+<span class="font-['Montserrat'] font-medium text-sm">Users</span>
+</li>
+<li class="group flex items-center px-4 py-3 cursor-pointer text-slate-600 dark:text-slate-400 hover:text-red-900 dark:hover:text-red-300 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all rounded-lg mx-2 mt-auto">
+<span class="material-symbols-outlined mr-3 text-[20px]">settings</span>
+<span class="font-['Montserrat'] font-medium text-sm">Settings</span>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 w-[calc(100%-16rem)] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm shadow-red-900/5 flex justify-between items-center h-16 px-6 sticky top-0 z-40">
+<div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 w-96 border border-slate-200 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all">
+<span class="material-symbols-outlined text-slate-400 mr-2 text-[20px]">search</span>
+<input class="bg-transparent border-none outline-none w-full text-sm font-body-md text-on-surface placeholder:text-slate-400 focus:ring-0 p-0" placeholder="Search staff, departments, or shifts..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center text-slate-500 cursor-pointer active:scale-95 transition-transform relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center text-slate-500 cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-6 w-px bg-slate-200 mx-1"></div>
+<button class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border-2 border-transparent hover:border-primary-container transition-all cursor-pointer">
+<img alt="Admin Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJB-jho7kJrus3A9tCupzTOaAi95a49hytWJ4_lm_y2L2A_IWCzBG4Ca8Dv29wXIO55QwdW3vfZ7HCCh02uH7Cl-omgoVdN4yCAN1VJkzrL4DTW9s-3Wo-0Csx6Bsb6q2XEZO0CGKwjJHLap19zbb8gMXeIaNfjHTTZiUbIgg_WcFCvabU2wwJBesPFGK01icSZx7VrtH-3GhXs8fsKGgfBKZ49tlhUq8C7FUBBj0_38JLJ9-pqIq11wZ0p4aTIJj_Y3t68QCv49je"/>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-8 overflow-y-auto">
+<!-- Header Section -->
+<div class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface flex items-center gap-3">
+                    Staffing &amp; 
+                    <span class="inline-flex items-center justify-center bg-primary-container text-white px-3 py-1 rounded-full text-headline-sm font-ai-signature relative overflow-hidden shadow-sm">
+                        AI
+                        <span class="absolute inset-0 bg-white opacity-20 blur-sm rounded-full"></span>
+</span>
+                    Insights
+                </h1>
+<p class="font-body-lg text-body-lg text-secondary mt-1">Smarter rosters from real-time demand.</p>
+</div>
+<!-- Two Column Split -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- LEFT COLUMN (2/3) -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<!-- AI Recommendations Card -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-slate-100 overflow-hidden flex flex-col">
+<div class="p-6 border-b border-slate-100 flex justify-between items-center bg-gradient-to-r from-surface-container-lowest to-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container relative">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<div class="absolute inset-0 rounded-full border border-primary-container/30 animate-pulse"></div>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">AI suggests</h2>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-bold text-[10px] uppercase">
+<span class="material-symbols-outlined text-[12px]">update</span>
+                                Updated 2 min ago
+                            </span>
+</div>
+<div class="p-6 flex flex-col gap-4 bg-background/50">
+<!-- Suggestion 1 -->
+<div class="bg-surface-container-lowest border border-primary-container/20 rounded-lg p-5 shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">swap_horiz</span>
+<p class="font-body-lg text-body-lg text-on-surface font-medium">Move 1 nurse from General Med to OB-GYN</p>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-3">Timeframe: 10:00 AM - 12:00 PM</p>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-50 border border-green-200 text-green-700 font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-[14px]">trending_down</span>
+                                            Saves ~18 wait-min/patient
+                                        </span>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto">
+<button class="px-5 py-2.5 rounded-full text-primary-container font-label-bold text-label-bold hover:bg-surface-container transition-colors">Dismiss</button>
+<button class="px-5 py-2.5 rounded-full border-1.5 border-primary-container text-primary-container font-label-bold text-label-bold hover:bg-primary-container/5 transition-colors">Snooze 1h</button>
+<button class="px-6 py-2.5 rounded-full bg-primary-container text-on-primary font-label-bold text-label-bold hover:bg-primary-fixed-variant transition-colors shadow-sm">Apply</button>
+</div>
+</div>
+</div>
+<!-- Suggestion 2 -->
+<div class="bg-surface-container-lowest border border-slate-200 rounded-lg p-5 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">desk</span>
+<p class="font-body-lg text-body-lg text-on-surface font-medium">Open additional triage desk in ER</p>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-3">Duration: Until 4:00 PM</p>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto">
+<button class="px-5 py-2.5 rounded-full text-secondary font-label-bold text-label-bold hover:bg-slate-100 transition-colors">Dismiss</button>
+<button class="px-6 py-2.5 rounded-full border-1.5 border-slate-300 text-on-surface font-label-bold text-label-bold hover:bg-slate-50 transition-colors">Review</button>
+</div>
+</div>
+</div>
+<!-- Suggestion 3 -->
+<div class="bg-surface-container-lowest border border-slate-200 rounded-lg p-5 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">local_cafe</span>
+<p class="font-body-lg text-body-lg text-on-surface font-medium">Shift break for Dr. Santos</p>
+</div>
+<p class="font-body-md text-body-md text-secondary">Reason: Long continuous shift detected (6h+)</p>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto">
+<button class="px-5 py-2.5 rounded-full text-secondary font-label-bold text-label-bold hover:bg-slate-100 transition-colors">Dismiss</button>
+<button class="px-6 py-2.5 rounded-full border-1.5 border-slate-300 text-on-surface font-label-bold text-label-bold hover:bg-slate-50 transition-colors">Schedule</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Today's staff schedule Card -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-slate-100 p-6 flex flex-col flex-1">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Today's Schedule</h2>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Gantt Chart Area -->
+<div class="relative flex-1 min-h-[300px] border border-slate-200 rounded-lg overflow-hidden bg-white">
+<!-- Time Header -->
+<div class="flex border-b border-slate-200 bg-slate-50 text-[11px] font-label-bold text-secondary sticky top-0 z-10">
+<div class="w-32 flex-shrink-0 p-3 border-r border-slate-200 flex items-center justify-center">Department</div>
+<div class="flex-1 flex">
+<div class="flex-1 border-r border-slate-200 p-2 text-center">8AM</div>
+<div class="flex-1 border-r border-slate-200 p-2 text-center">10AM</div>
+<div class="flex-1 border-r border-slate-200 p-2 text-center bg-primary-container/5 relative">
+                                        12PM
+                                        <div class="absolute top-0 bottom-[-300px] left-1/2 w-px bg-primary-container border-dashed border-l z-20 pointer-events-none"></div>
+</div>
+<div class="flex-1 border-r border-slate-200 p-2 text-center">2PM</div>
+<div class="flex-1 border-r border-slate-200 p-2 text-center">4PM</div>
+<div class="flex-1 border-r border-slate-200 p-2 text-center">6PM</div>
+<div class="flex-1 p-2 text-center">8PM</div>
+</div>
+</div>
+<!-- Rows -->
+<div class="flex border-b border-slate-100">
+<div class="w-32 flex-shrink-0 p-3 border-r border-slate-200 flex items-center bg-white z-10 font-label-bold text-[11px] text-on-surface">Emergency (ER)</div>
+<div class="flex-1 relative h-14 bg-white grid grid-cols-7">
+<div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full bg-primary-container/5"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="h-full"></div>
+<!-- Blocks -->
+<div class="absolute top-2 bottom-2 left-[5%] right-[70%] bg-red-100 border border-red-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-red-800">JD</div>
+<div class="absolute top-2 bottom-2 left-[40%] right-[30%] bg-red-100 border border-red-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-red-800">MS</div>
+</div>
+</div>
+<div class="flex border-b border-slate-100">
+<div class="w-32 flex-shrink-0 p-3 border-r border-slate-200 flex items-center bg-white z-10 font-label-bold text-[11px] text-on-surface">OB-GYN</div>
+<div class="flex-1 relative h-14 bg-white grid grid-cols-7">
+<div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full bg-primary-container/5"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="h-full"></div>
+<!-- Blocks -->
+<div class="absolute top-2 bottom-2 left-[20%] right-[50%] bg-purple-100 border border-purple-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-purple-800">LK</div>
+<!-- Drag preview -->
+<div class="absolute top-2 bottom-2 left-[25%] right-[55%] bg-primary-container/10 border border-primary-container border-dashed rounded-md flex items-center justify-center text-[10px] font-bold text-primary-container opacity-80 cursor-grabbing z-30">AL</div>
+</div>
+</div>
+<div class="flex border-b border-slate-100">
+<div class="w-32 flex-shrink-0 p-3 border-r border-slate-200 flex items-center bg-white z-10 font-label-bold text-[11px] text-on-surface">Pediatrics</div>
+<div class="flex-1 relative h-14 bg-white grid grid-cols-7">
+<div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full bg-primary-container/5"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="h-full"></div>
+<!-- Blocks -->
+<div class="absolute top-2 bottom-2 left-[10%] right-[60%] bg-blue-100 border border-blue-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-blue-800">PT</div>
+<div class="absolute top-2 bottom-2 left-[50%] right-[10%] bg-blue-100 border border-blue-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-blue-800">RN</div>
+</div>
+</div>
+<div class="flex">
+<div class="w-32 flex-shrink-0 p-3 border-r border-slate-200 flex items-center bg-white z-10 font-label-bold text-[11px] text-on-surface">General Med</div>
+<div class="flex-1 relative h-14 bg-white grid grid-cols-7">
+<div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full bg-primary-container/5"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="border-r border-slate-100 h-full"></div><div class="h-full"></div>
+<!-- Blocks -->
+<div class="absolute top-2 bottom-2 left-[0%] right-[80%] bg-emerald-100 border border-emerald-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-emerald-800">CD</div>
+<div class="absolute top-2 bottom-2 left-[30%] right-[40%] bg-emerald-100 border border-emerald-300 rounded-md shadow-sm flex items-center justify-center text-[10px] font-bold text-emerald-800 opacity-40">AL</div>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-4 flex flex-wrap gap-3">
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-sm bg-red-100 border border-red-300"></div><span class="text-[11px] font-medium text-secondary">ER</span></div>
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-sm bg-purple-100 border border-purple-300"></div><span class="text-[11px] font-medium text-secondary">OB-GYN</span></div>
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-sm bg-blue-100 border border-blue-300"></div><span class="text-[11px] font-medium text-secondary">Peds</span></div>
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-sm bg-emerald-100 border border-emerald-300"></div><span class="text-[11px] font-medium text-secondary">Gen Med</span></div>
+<div class="flex items-center gap-1.5 ml-4"><div class="w-3 h-3 rounded-sm bg-primary-container/10 border border-primary-container border-dashed"></div><span class="text-[11px] font-medium text-secondary">AI Suggested Move</span></div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (1/3) -->
+<div class="flex flex-col gap-6">
+<!-- On-duty now card -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-slate-100 p-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1">Current Roster</h2>
+<p class="font-body-md text-body-md text-secondary mb-6">27 on duty / 4 on break / 2 absent</p>
+<!-- Donut Chart Mockup -->
+<div class="relative w-32 h-32 mx-auto mb-6">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#E2E2E2" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#800000" stroke-dasharray="82 18" stroke-dashoffset="0" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.91549430918954" stroke="#FFB4A8" stroke-dasharray="12 88" stroke-dashoffset="-82" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-display-md text-display-md text-primary-container leading-none">27</span>
+<span class="text-[10px] font-label-bold text-secondary uppercase">Active</span>
+</div>
+</div>
+<!-- Breakdown List -->
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-[12px] font-medium text-on-surface mb-1">
+<span>Emergency (ER)</span>
+<span>8/10</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[12px] font-medium text-on-surface mb-1">
+<span>General Med</span>
+<span>12/12</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-emerald-600 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[12px] font-medium text-on-surface mb-1">
+<span>OB-GYN</span>
+<span class="text-error font-bold">3/5</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-error h-1.5 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[12px] font-medium text-on-surface mb-1">
+<span>Pediatrics</span>
+<span>4/4</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Demand forecast card -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-slate-100 p-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Demand Forecast</h2>
+<span class="material-symbols-outlined text-secondary text-[20px]">insights</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4">Expected arrivals next 6h</p>
+<!-- Line Chart Mockup -->
+<div class="h-32 w-full relative border-b border-l border-slate-200 mt-6 pl-2 pb-2">
+<!-- Amber Band -->
+<div class="absolute left-[30%] right-[40%] top-0 bottom-0 bg-amber-50 border-x border-amber-200 z-0">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded whitespace-nowrap">Surge expected (11AM-1PM)</div>
+</div>
+<!-- SVG Line -->
+<svg class="w-full h-full absolute inset-0 z-10" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="vector-effect-non-scaling-stroke" d="M0,80 Q20,75 30,50 T50,20 T70,60 T100,70" fill="none" stroke="#800000" stroke-width="2"></path>
+<!-- Points -->
+<circle cx="30" cy="50" fill="#800000" r="3"></circle>
+<circle cx="50" cy="20" fill="#800000" r="3"></circle>
+</svg>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-5 left-0 w-full flex justify-between text-[9px] text-secondary font-medium">
+<span>9AM</span>
+<span>12PM</span>
+<span>3PM</span>
+</div>
+</div>
+</div>
+<!-- Quick actions card -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-slate-100 p-6 flex-1 flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-4">Quick Actions</h2>
+<div class="flex flex-col gap-3 mt-auto">
+<button class="w-full py-3 rounded-full bg-primary-container text-on-primary font-label-bold text-label-bold hover:bg-primary-fixed-variant transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                                Call in floater nurse
+                            </button>
+<button class="w-full py-3 rounded-full border-1.5 border-primary-container text-primary-container font-label-bold text-label-bold hover:bg-primary-container/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+                                Notify on-call doctor
+                            </button>
+<button class="w-full py-3 rounded-full border-1.5 border-slate-300 text-on-surface font-label-bold text-label-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span>
+                                Open shift swap board
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

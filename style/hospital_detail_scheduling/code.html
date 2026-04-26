@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>weAId - Hospital Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-container": "#ff8371",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container-low": "#fff0ee",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#b22b1d",
+                        "secondary-container": "#dcdddd",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5f6161",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary": "#00137f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2bfb9",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#261816",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#000c61",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-high": "#fde2de",
+                        "primary": "#570000",
+                        "on-tertiary-container": "#94a0ff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-container": "#800000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F5F5F5] text-on-surface antialiased min-h-screen flex flex-col pb-[100px]">
+<!-- TopAppBar (Transactional/Task-focused, overriding default shell visibility per rules for a 'Detail & Scheduling' screen, but implementing a back-nav variant) -->
+<header class="bg-[#800000] text-white font-headline-sm rounded-b-[20px] w-full fixed top-0 z-50 shadow-xl shadow-[#800000]/10 flex justify-between items-center px-5 h-16 w-full">
+<button class="text-white hover:bg-white/10 active:scale-95 transition-transform p-2 rounded-full -ml-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<span class="text-2xl font-black text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] font-ai-signature">weAId</span>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</header>
+<main class="flex-grow pt-16">
+<!-- Hero Section -->
+<div class="relative h-[250px] w-full bg-surface-container-high rounded-b-xl overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="modern hospital building exterior with clear blue sky and bright lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXromtyTNoXmGBqLkesRTPZzjDjVxjJQTRmxUZee72MTjfPJf8DsQXFiMbZAfHhkB-hN3R8dL_ije2j9-DRTkZINakWk8G9mBk3mL8y8NBsxucoPOjU2KcorMHg0yfQDYumC3PZXTW5I6sf4qCtMDIbi0EZWxsoblYrA8JaJqeSFJIaCuGLs0iNfnx4MSDHArcDSHUQarqpoh2HH1kzO5GNDjdExDnhiO2o8cj5J1LCzfD2cjuj9AHdfyLD6WYOdPHbVt-TYV5EJq-');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/90 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-container-padding flex flex-col gap-stack-sm">
+<h1 class="font-display-md text-display-md text-white">St. Luke's Medical Center</h1>
+<div class="flex items-center gap-2 text-white/90 font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Quezon City, Metro Manila</span>
+</div>
+</div>
+</div>
+<!-- Content Canvas -->
+<div class="px-container-padding mt-stack-md flex flex-col gap-stack-lg">
+<!-- Tabs (Bento Style) -->
+<div class="grid grid-cols-4 gap-unit bg-white p-unit rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)]">
+<button class="py-2 text-center font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wide">Overview</button>
+<button class="py-2 text-center font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wide">Services</button>
+<button class="py-2 text-center font-label-bold text-label-bold text-primary-container bg-surface-container rounded-lg uppercase tracking-wide relative">
+                    Iskedyul
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-primary-container rounded-t-sm"></div>
+</button>
+<button class="py-2 text-center font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wide">Reviews</button>
+</div>
+<!-- Date Selector -->
+<div class="flex flex-col gap-stack-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pumili ng Araw</h2>
+<div class="flex gap-stack-sm overflow-x-auto pb-2 -mx-container-padding px-container-padding snap-x">
+<div class="snap-center shrink-0 w-[72px] h-[80px] bg-white border border-secondary-fixed rounded-xl flex flex-col items-center justify-center gap-1 shadow-[0_4px_12px_rgba(128,0,0,0.04)]">
+<span class="font-label-bold text-label-bold text-on-surface-variant">LUN</span>
+<span class="font-display-md text-display-md text-on-surface">12</span>
+</div>
+<div class="snap-center shrink-0 w-[72px] h-[80px] bg-primary-container rounded-xl flex flex-col items-center justify-center gap-1 shadow-[0_4px_12px_rgba(128,0,0,0.1)] ring-2 ring-primary-container ring-offset-2">
+<span class="font-label-bold text-label-bold text-white/80">MAR</span>
+<span class="font-display-md text-display-md text-white">13</span>
+</div>
+<div class="snap-center shrink-0 w-[72px] h-[80px] bg-white border border-secondary-fixed rounded-xl flex flex-col items-center justify-center gap-1 shadow-[0_4px_12px_rgba(128,0,0,0.04)]">
+<span class="font-label-bold text-label-bold text-on-surface-variant">MIY</span>
+<span class="font-display-md text-display-md text-on-surface">14</span>
+</div>
+<div class="snap-center shrink-0 w-[72px] h-[80px] bg-white border border-secondary-fixed rounded-xl flex flex-col items-center justify-center gap-1 shadow-[0_4px_12px_rgba(128,0,0,0.04)]">
+<span class="font-label-bold text-label-bold text-on-surface-variant">HUW</span>
+<span class="font-display-md text-display-md text-on-surface">15</span>
+</div>
+<div class="snap-center shrink-0 w-[72px] h-[80px] bg-surface-container-low border border-surface-variant rounded-xl flex flex-col items-center justify-center gap-1 opacity-50">
+<span class="font-label-bold text-label-bold text-outline">BIY</span>
+<span class="font-display-md text-display-md text-outline">16</span>
+</div>
+</div>
+</div>
+<!-- Wait Time Info Box -->
+<div class="bg-surface-container border border-surface-variant rounded-xl p-stack-md flex items-start gap-stack-sm shadow-[0_4px_12px_rgba(128,0,0,0.04)]">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">timer</span>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-[20px]">Estimated wait on arrival: ~25 min</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[12px] mt-1">Based on current ER traffic and selected time slot.</p>
+</div>
+</div>
+<!-- Time Slots Grid -->
+<div class="flex flex-col gap-stack-sm mb-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center justify-between">
+<span>Available Slots</span>
+<span class="font-body-md text-body-md text-primary-container bg-surface-container px-2 py-1 rounded-full text-[12px]">Morning</span>
+</h2>
+<div class="grid grid-cols-3 gap-unit">
+<button class="bg-white border border-secondary-fixed rounded-xl py-3 font-body-md text-body-md text-on-surface shadow-[0_4px_12px_rgba(128,0,0,0.04)]">08:00 AM</button>
+<button class="bg-white border border-secondary-fixed rounded-xl py-3 font-body-md text-body-md text-on-surface shadow-[0_4px_12px_rgba(128,0,0,0.04)]">08:30 AM</button>
+<button class="bg-surface-container-low border border-surface-variant rounded-xl py-3 font-body-md text-body-md text-outline opacity-50 line-through">09:00 AM</button>
+<button class="bg-primary-container rounded-xl py-3 font-body-md text-body-md text-white font-semibold shadow-[0_4px_12px_rgba(128,0,0,0.1)] ring-2 ring-primary-container ring-offset-1">09:30 AM</button>
+<button class="bg-white border border-secondary-fixed rounded-xl py-3 font-body-md text-body-md text-on-surface shadow-[0_4px_12px_rgba(128,0,0,0.04)]">10:00 AM</button>
+<button class="bg-white border border-secondary-fixed rounded-xl py-3 font-body-md text-body-md text-on-surface shadow-[0_4px_12px_rgba(128,0,0,0.04)]">10:30 AM</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action -->
+<div class="fixed bottom-0 w-full p-container-padding bg-white/90 backdrop-blur-md border-t border-secondary-fixed shadow-[0_-4px_20px_rgba(128,0,0,0.08)] pb-safe z-40">
+<button class="w-full bg-primary-container text-white font-headline-sm text-headline-sm py-4 rounded-full shadow-[0_4px_12px_rgba(128,0,0,0.2)] active:scale-[0.98] transition-transform">
+            Kunin ang slot — Libre
+        </button>
+</div>
+</body></html>

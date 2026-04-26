@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>weAId Patient Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#5d5f5f",
+                        "surface-variant": "#f7ddd8",
+                        "secondary-fixed": "#e2e2e2",
+                        "tertiary-fixed-dim": "#bcc2ff",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-container": "#ff8371",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-container-low": "#fff0ee",
+                        "on-tertiary-fixed-variant": "#1830c2",
+                        "outline": "#8e706c",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-tint": "#b22b1d",
+                        "secondary-container": "#dcdddd",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5f6161",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "tertiary": "#00137f",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2bfb9",
+                        "background": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#261816",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#000c61",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "inverse-on-surface": "#ffedea",
+                        "surface-container-highest": "#f7ddd8",
+                        "on-surface-variant": "#5a413d",
+                        "surface-container-high": "#fde2de",
+                        "primary": "#570000",
+                        "on-tertiary-container": "#94a0ff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#eed4d0",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary": "#ffffff",
+                        "on-background": "#261816",
+                        "tertiary-container": "#0021b9",
+                        "inverse-surface": "#3d2d2a",
+                        "primary-container": "#800000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "label-bold": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "ai-signature": ["Montserrat"],
+                        "display-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "ai-signature": ["inherit", { "lineHeight": "inherit", "fontWeight": "900" }],
+                        "display-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F5F5F5] min-h-screen text-on-surface pb-[80px] md:pb-0 pt-[64px]">
+<!-- TopAppBar -->
+<header class="bg-[#800000] dark:bg-[#600000] rounded-b-[20px] w-full fixed top-0 z-50 shadow-xl shadow-[#800000]/10 flex justify-between items-center px-5 h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white cursor-pointer active:scale-95 transition-transform">menu</span>
+<span class="text-2xl font-black text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] font-ai-signature text-ai-signature">weAId</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-white/20 rounded-full py-1 px-3 flex items-center gap-1 cursor-pointer hover:bg-white/30 transition-colors">
+<span class="font-label-bold text-label-bold text-white uppercase">Deliver care to: Sampaloc, Manila</span>
+<span class="material-symbols-outlined text-white text-[16px]">arrow_drop_down</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-white text-[20px]">notifications</span>
+</div>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-white/30 object-cover" data-alt="Portrait of a smiling young filipino woman in professional attire against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuxf4oCl5m9LtPfo-JMUzC1DlIUjLXytBiRIc3YsoskBhPfriqqcmAmKaPLQbzRtS1FvtQUSvaTKBZy3cxqWUOc2-YdjIby5osNaBegvakbV_7s1rYar5o5RhIj2I-V93AHh_WF4u4aTUQD68uuzeiMP5GjK2NeZheUrxvdyRZagZlFgFnmajQxzvADzvNZCrF5wkdNAhttcEjz2eBTVehTJ9zxlWqLSGvUWjNO9lP0xeM5tybdTqSF2bgJkgFpzx-NntoccoQDkVJ"/>
+</div>
+</header>
+<main class="max-w-md mx-auto md:max-w-4xl px-container-padding py-stack-lg space-y-stack-lg">
+<!-- Search Bar -->
+<div class="relative w-full">
+<input class="w-full h-[56px] rounded-full bg-white border border-secondary-fixed focus:border-primary-container focus:ring-1 focus:ring-primary-container pl-5 pr-12 font-body-md text-body-md text-on-surface shadow-[0_4px_12px_rgba(128,0,0,0.04)] outline-none transition-all placeholder:text-secondary-fixed-dim" placeholder="Ano po ang nararamdaman ninyo?" type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white hover:bg-[#600000] transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<!-- Quick Actions Grid -->
+<div class="grid grid-cols-4 gap-unit">
+<button class="flex flex-col items-center gap-stack-sm p-unit bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] hover:border hover:border-secondary-fixed transition-all group">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">emergency</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Emergency</span>
+</button>
+<button class="flex flex-col items-center gap-stack-sm p-unit bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] hover:border hover:border-secondary-fixed transition-all group">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary-container group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">stethoscope</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Konsulta</span>
+</button>
+<button class="flex flex-col items-center gap-stack-sm p-unit bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] hover:border hover:border-secondary-fixed transition-all group">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Iskedyul</span>
+</button>
+<button class="flex flex-col items-center gap-stack-sm p-unit bg-white rounded-xl shadow-[0_4px_12px_rgba(128,0,0,0.04)] hover:border hover:border-secondary-fixed transition-all group">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">medical_information</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Specialists</span>
+</button>
+</div>
+<!-- Promo Banner -->
+<div class="bg-primary-container rounded-[20px] p-stack-lg text-white shadow-[0_4px_12px_rgba(128,0,0,0.1)] relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 space-y-stack-md">
+<h2 class="font-headline-sm text-headline-sm text-white">Walang oras na masasayang...</h2>
+<p class="font-body-md text-body-md text-white/90">Find the nearest available clinic or hospital equipped to handle your current symptoms right away.</p>
+<button class="mt-2 bg-white text-primary-container font-body-lg text-body-lg font-semibold px-6 py-2 rounded-full hover:bg-surface-variant transition-colors active:scale-95">Hanapin ngayon</button>
+</div>
+</div>
+<!-- How it works -->
+<section class="space-y-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">How it works</h3>
+<div class="flex flex-col md:flex-row gap-stack-md">
+<!-- Step 1 -->
+<div class="bg-white rounded-xl p-stack-md shadow-[0_4px_12px_rgba(128,0,0,0.04)] flex-1 flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex-shrink-0 flex items-center justify-center text-primary-container font-bold font-headline-sm text-[16px]">1</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Sabihin</h4>
+<p class="font-body-md text-body-md text-secondary">Describe your symptoms naturally using the microphone or text input.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-white rounded-xl p-stack-md shadow-[0_4px_12px_rgba(128,0,0,0.04)] flex-1 flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex-shrink-0 flex items-center justify-center text-primary-container font-bold font-headline-sm text-[16px]">2</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Suriin</h4>
+<p class="font-body-md text-body-md text-secondary">Our system analyzes urgency and determines the right type of care needed.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-white rounded-xl p-stack-md shadow-[0_4px_12px_rgba(128,0,0,0.04)] flex-1 flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex-shrink-0 flex items-center justify-center text-primary-container font-bold font-headline-sm text-[16px]">3</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Hanapin</h4>
+<p class="font-body-md text-body-md text-secondary">We guide you to the nearest available facility with the right specialists.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center h-16 px-4 pb-safe bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 z-50 shadow-[0_-4px_12px_rgba(128,0,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#800000] dark:text-[#ff4d4d] bg-[#800000]/5 rounded-2xl px-3 py-1 group" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Montserrat'] text-[10px] font-bold uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+<span class="font-['Montserrat'] text-[10px] font-bold uppercase mt-1">Navigate</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px]">medical_services</span>
+<span class="font-['Montserrat'] text-[10px] font-bold uppercase mt-1">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#800000] transition-colors active:scale-90 duration-200 group" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-['Montserrat'] text-[10px] font-bold uppercase mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
